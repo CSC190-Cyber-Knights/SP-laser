@@ -5,16 +5,16 @@ import HomePage from "./pages/HomePage.jsx";
 import {ContactForm} from "./pages/ContactForm.jsx";
 import {SignIn} from "./pages/SignIn.jsx";
 import AboutMe from "./pages/AboutMe.jsx";
-
+import {Layout} from "./components/layout/Layout.jsx";
 
 function App() {
   return (
       <BrowserRouter>
         <Routes>
-          <Route path={'/'} element={<HomePage/>}/>
-          <Route path={'/contact'} element={<ContactForm/>}/>
-          <Route path={"/signin"} element={<SignIn/>}/>
-          <Route path={"/about"} element={<AboutMe/>}/>
+          <Route path={'/'} element={<Layout><HomePage/></Layout>}/>
+          <Route path={'/contact'} element={<Layout><ContactForm/></Layout>}/>
+          <Route path={"/signin"} element={<Layout><SignIn/></Layout>}/>
+          <Route path={"/about"} element={<Layout><AboutMe/></Layout>}/>
         </Routes>
       </BrowserRouter>
   )

@@ -1,4 +1,5 @@
 //Import the functions you need from the SDKs you need
+// eslint-disable-next-line no-unused-vars
 import {initializeApp} from "firebase/app";
 import {getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged} from "firebase/auth";
 // Your web app's Firebase configuration
@@ -23,7 +24,7 @@ export const userSignIn = async () => {
       .then((result) => {
         //results from google
         const user = result.user.DisplayName
-        const email = result.user.email
+        const email  = result.user.email
         console.log(user)
       }).catch((error) => {
         const errorCode = error.code
@@ -35,8 +36,8 @@ export const userSignIn = async () => {
 export const userSignOut = async () => {
   signOut(auth).then(() => {
     alert("You have been signed out")
-  }).catch((error) => {
-
+  }).catch((e) => {
+    console.error(e)
   })
 }
 
