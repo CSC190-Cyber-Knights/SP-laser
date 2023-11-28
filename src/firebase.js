@@ -1,6 +1,6 @@
 //Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import {getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged} from "firebase/auth";
+import {initializeApp} from "firebase/app";
+import {getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged} from "firebase/auth";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDRGD42qYfcoahaW-THL9ZrkDP1GV9kbsQ",
@@ -18,35 +18,34 @@ export const auth = getAuth(app)
 const provider = new GoogleAuthProvider()
 
 //function that prompts the user with a popup to sign in via google
-export const userSignIn = async() => {
-  return signInWithPopup(auth,provider)
-  .then((result) => {
-    //results from google
-      const user=result.user.DisplayName
-      const email = result.user.email
-      console.log(user)
-  }).catch((error) => {
-      const errorCode = error.code
-      const errorMsg = error.message
-  })
+export const userSignIn = async () => {
+  return signInWithPopup(auth, provider)
+      .then((result) => {
+        //results from google
+        const user = result.user.DisplayName
+        const email = result.user.email
+        console.log(user)
+      }).catch((error) => {
+        const errorCode = error.code
+        const errorMsg = error.message
+      })
 }
 
 //signs out the user
-export const userSignOut = async() => {
-  signOut(auth).then(()=> {
-      alert("You have been signed out")
-  } ).catch((error) => {
+export const userSignOut = async () => {
+  signOut(auth).then(() => {
+    alert("You have been signed out")
+  }).catch((error) => {
 
   })
 }
 
 //always checks to see if user is still signed in
-onAuthStateChanged(auth, (user) =>{
+onAuthStateChanged(auth, (user) => {
   //if user is signed in
-  if(user){
-      alert("You signed In")
-  }else{//not signed in
-
+  if (user) {
+    alert("You signed In")
+  } else {//not signed in
   }
 })
 

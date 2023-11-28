@@ -1,28 +1,20 @@
 import {GoogleButton} from 'react-google-button';
-import React from 'react';
 import {userSignIn, userSignOut} from "../firebase"
 
 export const SignIn = () => {
-    return (
-      <div>
+  return (<div>
         <h1 className='text-center text-3xl font-bold py-8'>This is going to be the Sign In Page</h1>
         <GoogleButton onClick={() => {
-            userSignIn()
-            }} />
-
-            <button onClick={() => {
-              userSignOut()
-            }}>
-              This is a button to sign out
-            </button>
-
+          userSignIn()
+        }}/>
+        <button onClick={() => {
+          userSignOut()
+        }}>
+          This is a button to sign out
+        </button>
       </div>
-      
-      
-    );
-
-    
-  };
+  );
+};
 /*
 //const signInButton = document.getElementById("signInButton")
 //const signOutButton = document.getElementById("signOutButton")

@@ -44,5 +44,4 @@ InfoCard.propTypes = {
   icon: PropTypes.element.isRequired, // react component or jsx
   title: PropTypes.element.isRequired,
   desc: PropTypes.element.isRequired,
-
 }

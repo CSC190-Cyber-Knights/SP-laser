@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
 import {ContactForm} from "./pages/ContactForm.jsx";
 import {SignIn} from "./pages/SignIn.jsx";
+import AboutMe from "./pages/AboutMe.jsx";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Route path={'/'} element={<HomePage/>}/>
           <Route path={'/contact'} element={<ContactForm/>}/>
           <Route path={"/signin"} element={<SignIn/>}/>
+          <Route path={"/about"} element={<AboutMe/>}/>
         </Routes>
       </BrowserRouter>
   )
