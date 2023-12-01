@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage.jsx";
 import {ContactForm} from "./pages/ContactForm.jsx";
 import {SignIn} from "./pages/SignIn.jsx";
 import AboutMe from "./pages/AboutMe.jsx";
+import Gallery from "./pages/Gallery.jsx";
 import {Layout} from "./components/layout/Layout.jsx";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path={'/contact'} element={<Layout><ContactForm/></Layout>}/>
           <Route path={"/signin"} element={<Layout><SignIn/></Layout>}/>
           <Route path={"/about"} element={<Layout><AboutMe/></Layout>}/>
+            <Route path={"/gallery"} element={<Layout><Gallery/></Layout>}/>
         </Routes>
       </BrowserRouter>
   )
