@@ -16,7 +16,7 @@ function App() {
           <Route path={'/contact'} element={<Layout><ContactForm/></Layout>}/>
           <Route path={"/signin"} element={<Layout><SignIn/></Layout>}/>
           <Route path={"/about"} element={<Layout><AboutMe/></Layout>}/>
-            <Route path={"/gallery"} element={<Layout><Gallery/></Layout>}/>
+          <Route path={"/gallery"} element={<Layout><Gallery/></Layout>}/>
         </Routes>
       </BrowserRouter>
   )
