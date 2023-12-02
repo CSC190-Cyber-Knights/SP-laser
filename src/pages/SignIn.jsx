@@ -1,5 +1,5 @@
 import {GoogleButton} from 'react-google-button';
-import {userSignIn, userSignOut} from "../firebase"
+import {userSignIn, userSignOut} from "../services/firebase.js"
 
 export const SignIn = () => {
   return (<div>
