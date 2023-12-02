@@ -7,6 +7,8 @@
 [ELE-logowhiteorange]: Images/Everything_Laser_Engraved-logos_whiteorange.png
 [gallery-prototype]: Images/Gallery%20Prototype.PNG
 [Jira-Timeline]: Images/Jira%20Timeline.PNG
+[Relation-Diagram]: Images/Relational_Diagram.png
+[Home-Page]: Images/Home_Page.PNG
 
 # Laser Engraving Portfolio and Digital Storefront
 
@@ -19,7 +21,12 @@ customers to send order requests. The client receives the order requests via ema
 the client can review all of his previous, current, and awaiting order requests. The client can edit/update the gallery 
 photos via the admin dashboard.
 
+## Home Page
+[![Logo][Home-Page]](https://example.com)
+## Gallery Page
 [![Logo][gallery-prototype]](https://example.com)
+## Relational Diagram
+[![Logo][Relation-Diagram]](https://example.com)
 
 ## Built With
 * [![React][React.js]][React-url]
