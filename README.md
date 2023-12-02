@@ -3,12 +3,12 @@
 [Firebase.js]: https://img.shields.io/badge/Firebase-purple
 [Firebase-url]: https://firebase.google.com/
 
-[ELE-logo]: Images/Everything_Laser_Engraved_icon.png
-[ELE-logowhiteorange]: Images/Everything_Laser_Engraved-logos_whiteorange.png
-[gallery-prototype]: Images/Gallery%20Prototype.PNG
-[Jira-Timeline]: Images/Jira%20Timeline.PNG
-[Relation-Diagram]: Images/Relational_Diagram.png
-[Home-Page]: Images/Home_Page.PNG
+[ELE-logo]: docs/media/Everything_Laser_Engraved_icon.png
+[ELE-logowhiteorange]: docs/media/Everything_Laser_Engraved-logos_whiteorange.png
+[gallery-prototype]: docs/media/Gallery%20Prototype.PNG
+[Jira-Timeline]: docs/media/Jira%20Timeline.PNG
+[Relation-Diagram]: docs/media/Relational_Diagram.png
+[Home-Page]: docs/media/Home_Page.PNG
 
 # Laser Engraving Portfolio and Digital Storefront
 
