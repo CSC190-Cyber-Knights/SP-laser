@@ -23,7 +23,7 @@ import PropTypes from "prop-types";
  * The `title` and `desc` props should be strings. The component uses Tailwind CSS for styling, so make sure that Tailwind is properly configured in your project.
  */
 export const InfoCard = ({icon, title, desc}) => (
-    <div className=" transition delay-75 m-2 p-3 gap-1.5 flex flex-col sm:max-w-xs w-72 font-inter shadow-lg bg-slate-200 rounded-lg hover:shadow-sm">
+    <div className=" transition delay-75 h-fit m-2 p-3 gap-1.5 flex flex-col sm:max-w-xs w-72 font-inter shadow-lg bg-slate-200 rounded-lg hover:shadow-sm">
       {/* Header - Simplified className string */}
       <div className="flex flex-row items-center gap-3 pt-2">
         <div className="h-6 w-6 flex-shrink-0">
