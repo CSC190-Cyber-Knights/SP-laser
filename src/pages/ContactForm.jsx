@@ -1,19 +1,18 @@
-import { GiLaserPrecision } from 'react-icons/gi';
-import { useState } from 'react';
+import {GiLaserPrecision} from 'react-icons/gi';
+import {useState} from 'react';
 
 
 export const ContactForm = () => {
   const [formData, setFormData] = useState({
-    fname: '',
-    lname: '',
+    firstName: '',
+    lastName: '',
     userEmail: '',
     userPhone: '',
     orderDescription: '',
   });
 
   const handleChange = (e) => {
-    const { id, value } = e.target;
-
+    const {id, value} = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [id]: value,
@@ -22,20 +21,17 @@ export const ContactForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-      // log the submitted form data
-      console.log('Submitted Form Data:', formData);
-
-      // Reset the form after submission
-      setFormData({
-        fname: '',
-        lname: '',
-        userEmail: '',
-        userPhone: '',
-        orderDescription: '',
-      });
-
-      console.log('Order submitted successfully!');
+    // log the submitted form data
+    console.log('Submitted Form Data:', formData);
+    // Reset the form after submission
+    setFormData({
+      firstName: '',
+      lastName: '',
+      userEmail: '',
+      userPhone: '',
+      orderDescription: '',
+    });
+    console.log('Order submitted successfully!');
   };
   return (
       <div className="flex flex-col items-center min-h-screen">
@@ -63,11 +59,12 @@ export const ContactForm = () => {
                   className="shadow rounded-lg border-slate-300 h-12 p-2 bg-neutral-100"
                   type="text"
                   placeholder="John"
-                  value={formData.fname}
+                  value={formData.firstName}
                   onChange={handleChange}
                   required
               />
             </div>
+
             <div className="flex flex-col w-1/2">
               <label htmlFor="lname" className="text-neutral-600">Last Name</label>
               <input
@@ -75,7 +72,7 @@ export const ContactForm = () => {
                   className="shadow rounded-lg border-slate-300 h-12 p-2 bg-neutral-100"
                   type="text"
                   placeholder="Doe"
-                  value={formData.lname}
+                  value={formData.lastName}
                   onChange={handleChange}
                   required
               />

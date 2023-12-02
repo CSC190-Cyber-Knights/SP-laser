@@ -11,7 +11,8 @@ const AboutMe = () => {
       <div>
         <h2>{collectionCount}</h2>
         <h1>The Artistry of a Veteran-Owned Laser Engraving Business</h1>
-        <p>In the heart of our bustling city in Northern California stands a small yet vibrant business, where
+        <p>
+          In the heart of our bustling city in Northern California stands a small yet vibrant business, where
           creativity meets heartfelt dedication. This haven of craftsmanship is not just another engraving studio—it's a
           testament to the passion and sincerity of its owner, a veteran whose journey through service has now
           transcended into the art of personalization.
@@ -45,7 +46,8 @@ const AboutMe = () => {
           In this era of mass production, Michael's business stands as a beacon of personalized craftsmanship. With a
           veteran's dedication, an artist's creativity, and a sincere passion for making people happy, he's not just
           engraving objects—he's engraving the stories and emotions that make them invaluable. In his studio, the art of
-          personalization becomes a legacy, one heartfelt engraving at a time.</p>
+          personalization becomes a legacy, one heartfelt engraving at a time.
+        </p>
       </div>
   );
 };
