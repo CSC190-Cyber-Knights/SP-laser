@@ -4,6 +4,7 @@ import {
   Bars3Icon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
+import {Link} from 'react-router-dom'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -12,7 +13,9 @@ export default function Header() {
         <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
           <div className="flex lg:flex-1">
             <a href="#" className="-m-1.5 p-1.5">
-              <span className="font-semibold">Laser Engraving</span>
+              <span className="font-semibold">
+                <Link to={"/"}>Laser Engraving</Link>
+              </span>
             </a>
           </div>
 
@@ -41,10 +44,10 @@ export default function Header() {
             </Popover>
 
             <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-              Gallery
+              <Link to={"/gallery"}>Gallery</Link>
             </a>
             <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-              Contact
+              <Link to={"/contact"}>Contact</Link>
             </a>
             <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
               FAQ
@@ -57,7 +60,9 @@ export default function Header() {
               className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
-                <span className="text-lg font-semibold">LaserMade</span>
+                <span className="text-lg font-semibold">
+                  <Link to={"/"}>LaserMade</Link>
+                </span>
               </a>
               <button
                   type="button"
@@ -75,13 +80,13 @@ export default function Header() {
                       href="#"
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    Gallery
+                    <Link to={"/gallery"}>Gallery</Link>
                   </a>
                   <a
                       href="#"
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    About
+                    <Link to={"/about"}>About</Link>
                   </a>
                   <a
                       href="#"
