@@ -1,18 +1,25 @@
-import {GoogleButton} from 'react-google-button';
-import {userSignIn, userSignOut} from "../services/firebase.js"
+import { GoogleButton } from "react-google-button";
+import { userSignIn, userSignOut } from "../services/firebase.js";
 
 export const SignIn = () => {
-  return (<div>
-        <h1 className='text-center text-3xl font-bold py-8'>This is going to be the Sign In Page</h1>
-        <GoogleButton onClick={() => {
-          userSignIn()
-        }}/>
-        <button onClick={() => {
-          userSignOut()
-        }}>
-          This is a button to sign out
-        </button>
-      </div>
+  return (
+    <div>
+      <h1 className="text-center text-3xl font-bold py-8">
+        This is going to be the Sign In Page
+      </h1>
+      <GoogleButton
+        onClick={() => {
+          userSignIn();
+        }}
+      />
+      <button
+        onClick={() => {
+          userSignOut();
+        }}
+      >
+        This is a button to sign out
+      </button>
+    </div>
   );
 };
 /*
