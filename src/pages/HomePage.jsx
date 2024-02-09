@@ -58,7 +58,7 @@ const HomePage = () => {
             </div>
             {/* background image: red dot*/}
             <div className={"transition delay-100 md:text-start w-full"}>
-              <ButtonLink to={"./Gallery.jsx"}>See Gallery</ButtonLink>
+              <ButtonLink to={"./Gallery"}>See Gallery</ButtonLink>
             </div>
           </div>
           {/* Hero Image */}
