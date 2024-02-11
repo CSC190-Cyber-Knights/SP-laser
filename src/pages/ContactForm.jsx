@@ -1,7 +1,26 @@
 import {GiLaserPrecision} from 'react-icons/gi';
 import {useState} from 'react';
+//Import the functions you need from the SDKs you need
+// eslint-disable-next-line no-unused-vars
+import {initializeApp} from "firebase/app";
+import {getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged} from "firebase/auth";
+import {doc, setDoc, addDoc, collection, getFirestore} from "firebase/firestore";
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDRGD42qYfcoahaW-THL9ZrkDP1GV9kbsQ",
+  authDomain: "laserengraving-9a35a.firebaseapp.com",
+  projectId: "laserengraving-9a35a",
+  storageBucket: "laserengraving-9a35a.appspot.com",
+  messagingSenderId: "846011134281",
+  appId: "1:846011134281:web:9c108178f7f7ad45fcea98",
+  measurementId: "G-6LSR5R581F"
+};
 
-
+// Initialize Firebase
+const app = initializeApp(firebaseConfig)
+export const auth = getAuth(app)
+const provider = new GoogleAuthProvider()
+export const db = getFirestore(app);
 export const ContactForm = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -23,8 +42,10 @@ export const ContactForm = () => {
     e.preventDefault();
     // log the submitted form data
     console.log('Submitted Form Data:', formData);
-    // Reset the form after submission
-    setFormData({
+
+    const docRef=await addDoc(collection(db, "orders"), formData);
+
+ setFormData({
       firstName: '',
       lastName: '',
       userEmail: '',
@@ -52,10 +73,10 @@ export const ContactForm = () => {
         >
           {/* Name Input Fields */}
           <div className="flex w-full gap-2">
-            <div className="flex flex-col w-1/2">
+            <div className="flex flex-col w-full">
               <label htmlFor="fname" className="text-neutral-600">First Name</label>
               <input
-                  id="fname"
+                  id="firstName"
                   className="shadow rounded-lg border-slate-300 h-12 p-2 bg-neutral-100"
                   type="text"
                   placeholder="John"
@@ -65,10 +86,10 @@ export const ContactForm = () => {
               />
             </div>
 
-            <div className="flex flex-col w-1/2">
+            <div className="flex flex-col w-full">
               <label htmlFor="lname" className="text-neutral-600">Last Name</label>
               <input
-                  id="lname"
+                  id="lastName"
                   className="shadow rounded-lg border-slate-300 h-12 p-2 bg-neutral-100"
                   type="text"
                   placeholder="Doe"
