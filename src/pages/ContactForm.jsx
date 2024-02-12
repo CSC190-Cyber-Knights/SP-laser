@@ -42,8 +42,17 @@ export const ContactForm = () => {
     e.preventDefault();
     // log the submitted form data
     console.log('Submitted Form Data:', formData);
-
+//    onchange = {validateForm};
     const docRef=await addDoc(collection(db, "orders"), formData);
+
+
+
+
+
+
+
+
+//document.getElementById('ContactForm').addEventListener(onsubmit().button, validateForm);
 
  setFormData({
       firstName: '',
@@ -54,6 +63,55 @@ export const ContactForm = () => {
     });
     console.log('Order submitted successfully!');
   };
+    const validateEmails = (email) => {
+        return email.match(
+            /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+    };
+    function validateEmail(emailString) {
+        const regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        const result = emailString.replace(/\s/g, "").split(/,|;/);
+ //   alert("val email")
+        for(let i = 0; i < result.length; i++) {
+            if(!regex.test(result[i])) {
+                           alert("Invalid email");
+                return false;
+            }
+        }
+        return true;
+    }
+    function validateName(nameString) {
+   //       alert("val name")
+        if (!/^[a-zA-Z]*$/g.test(nameString)) {
+                   alert("Invalid characters");
+            return false;
+        } else{
+            return true;
+        }
+    }
+    function validatePhoneNumber(input_str)
+    {
+ //          alert("val pn")
+        const regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+        if (regex.test(input_str)){
+            return true;
+        } else{
+                  alert("Invalid phone number");
+            return false;
+        }
+    }
+    const validateForm = (e) => {
+  //      alert("val event")
+        const phone = document.getElementById('userPhone').value;
+        const fName = document.getElementById('firstName').value;
+        const lName = document.getElementById('lastName').value;
+        const email = document.getElementById('userEmail').value;
+        validateName(fName);
+        validateName(lName);
+        validateEmail(email);
+        validatePhoneNumber(phone);
+    }
+
   return (
       <div className="flex flex-col items-center min-h-screen">
         {/* Title Section */}
@@ -144,7 +202,7 @@ export const ContactForm = () => {
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className="w-full rounded-lg bg-neutral-800 py-1 text-lg font-light text-neutral-300">
+          <button type="submit" className="w-full rounded-lg bg-neutral-800 py-1 text-lg font-light text-neutral-300" onClick={validateForm}>
             Submit
           </button>
         </form>
