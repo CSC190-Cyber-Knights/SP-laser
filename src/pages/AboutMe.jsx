@@ -1,10 +1,3 @@
-//import {initializeApp} from "firebase/app";
-import {getFirestore, collection, getCountFromServer} from 'firebase/firestore'
-
-const db = getFirestore();
-const myCollection = collection(db, 'orders');
-const snapshot = await getCountFromServer(myCollection);
-const collectionCount = snapshot.data().count;
 
 const AboutMe = () => {
   return (
