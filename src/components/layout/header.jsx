@@ -15,7 +15,7 @@ export default function Header() {
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="font-light">
-              <Link to={"/"}>ELE</Link>
+              <Link to={"/"}>HOME</Link>
             </span>
           </a>
         </div>
@@ -50,7 +50,7 @@ export default function Header() {
             <Link to={"/contact"}>Contact</Link>
           </a>
           <a href="#" className="text-sm font-light leading-6 text-gray-900">
-            FAQ
+            <Link to={"/about"}>FAQ</Link>
           </a>
         </Popover.Group>
       </nav>

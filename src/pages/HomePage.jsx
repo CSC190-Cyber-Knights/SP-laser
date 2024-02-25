@@ -64,7 +64,7 @@ const HomePage = () => {
           {/* Hero Image */}
           <div className={"m-auto p-2"}>
             <img
-                className={"rounded"}
+            className={"rounded"}
                 src="https://cdn.pixabay.com/photo/2021/03/08/07/58/laser-6078455_960_720.jpg"
                 alt="laser engraver"
             />
