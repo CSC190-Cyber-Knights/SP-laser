@@ -32,20 +32,28 @@ const GalleryPage = () => {
           <div className={"grid-rows-4"}>
               <div className={"grid-rows-4"}>
                   <h1 className='text-left text-3xl font-bold py-8'>Firearms</h1>
-                  <img src={"https://firebasestorage.googleapis.com/v0/b/laserengraving-9a35a.appspot.com/o/images%2FIMG_0950.jpeg?alt=media&token=73537dd8-12d3-4d4a-b9f8-9c1a138fac38"} alt="Image Not Found" className={"w-1/6"}/>
+                  <ul className={"flex-container"}>
+                      <img src={"https://firebasestorage.googleapis.com/v0/b/laserengraving-9a35a.appspot.com/o/images%2FIMG_0950.jpeg?alt=media&token=73537dd8-12d3-4d4a-b9f8-9c1a138fac38"} alt="Image Not Found" className={"w-1/6"}/>
+                  </ul>
               </div>
               <div className={"grid-rows-4"}>
                   <h1 className='text-left text-3xl font-bold py-8'>Thermos</h1>
-                  <img src={"https://firebasestorage.googleapis.com/v0/b/laserengraving-9a35a.appspot.com/o/images%2FIMG_7414.jpeg?alt=media&token=cd1d82da-01e1-46eb-be03-9a320040ba43"} alt="Image Not Found" className={"w-1/6"}/>
-                  <img src={"https://firebasestorage.googleapis.com/v0/b/laserengraving-9a35a.appspot.com/o/images%2FIMG_6717.jpeg?alt=media&token=318510f6-72de-44c3-a3f9-6ae90944db0e"} alt="Image Not Found" className={"w-1/6"}/>
-                  <img src={"https://firebasestorage.googleapis.com/v0/b/laserengraving-9a35a.appspot.com/o/images%2FIMG_0561.jpeg?alt=media&token=7581cb12-4c21-46ae-9388-0759aba98cc2"} alt="Image Not Found" className={"w-1/6"}/>
+                  <ul className={"flex-container"}>
+                      <img src={"https://firebasestorage.googleapis.com/v0/b/laserengraving-9a35a.appspot.com/o/images%2FIMG_7414.jpeg?alt=media&token=cd1d82da-01e1-46eb-be03-9a320040ba43"} alt="Image Not Found" className={"w-1/6"}/>
+                      <img src={"https://firebasestorage.googleapis.com/v0/b/laserengraving-9a35a.appspot.com/o/images%2FIMG_6717.jpeg?alt=media&token=318510f6-72de-44c3-a3f9-6ae90944db0e"} alt="Image Not Found" className={"w-1/6"}/>
+                      <img src={"https://firebasestorage.googleapis.com/v0/b/laserengraving-9a35a.appspot.com/o/images%2FIMG_0561.jpeg?alt=media&token=7581cb12-4c21-46ae-9388-0759aba98cc2"} alt="Image Not Found" className={"w-1/6"}/>
+                  </ul>
               </div>
               <div className={"grid-rows-4"}>
                   <h1 className='text-left text-3xl font-bold py-8'>Fishing Lures</h1>
+                  <ul className={"flex-container"}>
+                  </ul>
               </div>
               <div className={"grid-rows-4"}>
                   <h1 className='text-left text-3xl font-bold py-8'>Firearm Accessories</h1>
-                  <img src={"https://firebasestorage.googleapis.com/v0/b/laserengraving-9a35a.appspot.com/o/images%2FIMG_7328.jpeg?alt=media&token=fd664fec-7544-429a-add2-a66deebf7c06"} alt="Image Not Found" className={"w-1/6"}/>
+                  <ul className={"flex-container"}>
+                      <img src={"https://firebasestorage.googleapis.com/v0/b/laserengraving-9a35a.appspot.com/o/images%2FIMG_7328.jpeg?alt=media&token=fd664fec-7544-429a-add2-a66deebf7c06"} alt="Image Not Found" className={"w-1/6"}/>
+                  </ul>
               </div>
           </div>
       </div>
