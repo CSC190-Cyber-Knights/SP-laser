@@ -2,6 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import {initializeApp} from "firebase/app";
 import {getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged} from "firebase/auth";
+import {getStorage} from "firebase/storage";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDRGD42qYfcoahaW-THL9ZrkDP1GV9kbsQ",
@@ -15,6 +16,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
+
+//Firebase storage reference for uploading to Firebase
+const storage = getStorage(app);
+export default storage;
 export const auth = getAuth(app)
 const provider = new GoogleAuthProvider()
 
