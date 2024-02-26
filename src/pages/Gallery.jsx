@@ -5,9 +5,9 @@ import * as url from "url";
 
 //const docRef = doc(db, "gs://laserengraving-9a35a.appspot.com/images", "/IMG_0950.jpeg");
 //const docSnap = await getDoc(docRef);
-const storage = getStorage();
-const imagesRef = ref(storage, 'images)');
-const testImage = ref(storage, 'images/IMG_0950.jpeg');
+const storage = getStorage(); //connect to firebase storage
+const imagesRef = ref(storage, 'images)'); //reference to image in firebase storage
+const testImage = ref(storage, 'images/IMG_0950.jpeg'); //test image
 
 getDownloadURL(ref(storage, 'images/IMG_0950.jpeg')).then((myUrl) => {
 
@@ -28,12 +28,12 @@ getDownloadURL(ref(storage, 'images/IMG_0950.jpeg')).then((myUrl) => {
 const GalleryPage = () => {
   return (
       <div>
-        <h1 className='text-center text-3xl font-bold py-8'>Gallery</h1>
+        <h1 className='text-center text-3xl font-bold py-8'>Gallery</h1> {/*Start of body of Gallery, center text, text size, bold text */}
           <div className={"grid-rows-4"}>
               <div className={"grid-rows-4"}>
                   <h1 className='text-left text-3xl font-bold py-8'>Firearms</h1>
                   <ul className={"flex-container"}>
-                      <img src={"https://firebasestorage.googleapis.com/v0/b/laserengraving-9a35a.appspot.com/o/images%2FIMG_0950.jpeg?alt=media&token=73537dd8-12d3-4d4a-b9f8-9c1a138fac38"} alt="Image Not Found" className={"w-1/6"}/>
+                      <img src={"https://firebasestorage.googleapis.com/v0/b/laserengraving-9a35a.appspot.com/o/images%2FIMG_0950.jpeg?alt=media&token=73537dd8-12d3-4d4a-b9f8-9c1a138fac38"} alt="Image Not Found" className={"w-1/6"}/>{/*grab reference to image from firebase storage*/}
                   </ul>
               </div>
               <div className={"grid-rows-4"}>

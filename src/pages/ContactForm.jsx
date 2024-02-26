@@ -8,6 +8,9 @@ import {initializeApp} from "firebase/app";
 import {getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged} from "firebase/auth";
 import {doc, setDoc, addDoc, collection, getFirestore} from "firebase/firestore";
 
+//ContactForm features centered text and boxes, a header and footer, and
+//these text boxes should only allow certain characters, the requirement different for each
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDRGD42qYfcoahaW-THL9ZrkDP1GV9kbsQ",
@@ -33,7 +36,7 @@ export const ContactForm = () => {
         orderDescription: '',
     });
 
-    const handleChange = (e) => {
+    const handleChange = (e) => { //on a change in textbox, change default or previous values to values in textbox
         const {id, value} = e.target;
         setFormData((prevData) => ({
             ...prevData,
@@ -55,7 +58,7 @@ export const ContactForm = () => {
             to_name:'cyberknightslaser@outlook.com',
             message:formData.orderDescription,
         }
-        emailjs.send('service_zadrexa', 'template_a0upujx', templateParams, 'Io04H3uOQN5v-GZbf' )
+        emailjs.send('service_zadrexa', 'template_a0upujx', templateParams, 'Io04H3uOQN5v-GZbf' )//send to email result of success and text or error
             .then ((result) => {
                 console.log("Success", result.status, result.text);
 
@@ -85,11 +88,11 @@ export const ContactForm = () => {
         );
     };
     function validateEmail(emailString) {
-        const regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-        const result = emailString.replace(/\s/g, "").split(/,|;/);
+        const regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;//regex holds what is allowed or not for emails
+        const result = emailString.replace(/\s/g, "").split(/,|;/);//puts emailstring into a readable format to test
         //   alert("val email")
-        for(let i = 0; i < result.length; i++) {
-            if(!regex.test(result[i])) {
+        for(let i = 0; i < result.length; i++) {//run through each letter
+            if(!regex.test(result[i])) {//if email doesnt follow what set in regex, sends alert and return false email
                 alert("Invalid email");
                 return false;
             }
@@ -98,7 +101,7 @@ export const ContactForm = () => {
     }
     function validateName(nameString) {
         //       alert("val name")
-        if (!/^[a-zA-Z]*$/g.test(nameString)) {
+        if (!/^[a-zA-Z]*$/g.test(nameString)) {//test if name doesn't follow upper or lower case letters, alerts and returns false
             alert("Invalid characters");
             return false;
         } else{
@@ -108,7 +111,7 @@ export const ContactForm = () => {
     function validatePhoneNumber(input_str)
     {
         //          alert("val pn")
-        const regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+        const regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;//regex holds numbers and certain special characters that one would use in emails; (, ), and -
         if (regex.test(input_str)){
             return true;
         } else{
@@ -116,7 +119,7 @@ export const ContactForm = () => {
             return false;
         }
     }
-    const validateForm = (e) => {
+    const validateForm = (e) => { //run through each entered value into functions above
         //      alert("val event")
         const phone = document.getElementById('userPhone').value;
         const fName = document.getElementById('firstName').value;
@@ -128,7 +131,7 @@ export const ContactForm = () => {
         validatePhoneNumber(phone);
     }
 
-    return (
+    return ( //put into sendable form these elements below, as well as displaying them onto the site
         <div className="flex flex-col items-center min-h-screen">
             {/* Title Section */}
             <div className="flex flex-col items-center p-8">

@@ -3,11 +3,13 @@ import {ButtonLink} from "../components/ui/ButtonLink.jsx";
 import Footer from "../components/layout/footer.jsx";
 import { InfoCard } from "../components/ui/InfoCard.jsx";
 
+{/*AboutMe features few css and majority text about client. Also includes header and footer*/}
+
 const AboutMe = () => {
   return (
       <div
       className={
-        "flex flex-col font-inter items-center m-auto p-2 bg-[#ffffff] max-w-7xl justifyContent: 'flex-end' "
+        "flex flex-col font-inter items-center m-auto p-2 bg-[#ffffff] max-w-7xl justifyContent: 'flex-end' " //css code
       }
       >
         <header
@@ -163,7 +165,7 @@ const AboutMe = () => {
                       "font-semibold whitespace-pre-line ps-8 pt-6 "
                   }
               >
-                <ButtonLink to={""}>Twitter  </ButtonLink>
+                <ButtonLink to={""}>Twitter  </ButtonLink> {/*should this be X or left as twitter?*/}
               </div>
           </div>
           <Footer/>
