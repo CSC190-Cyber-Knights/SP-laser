@@ -68,8 +68,7 @@ const imageUpload = async (files) => {
             console.log(`Compressed size: ${result.size}`)
             resolve()
           } catch (e) {
-            // important to show the error if there is one, we should probably add alerts to this
-            console.error(`Upload failed for ${file.name}:`, e)
+            window.console.error(`Upload failed for ${file.name}:`, e)
             reject(e)
           }
         },
