@@ -12,10 +12,9 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*.{jsx,html, js, yaml, yml, css}": [
-      "prettier --write --ignore-unknown"
-    ],
-    "**/*": "imageoptim"
+    "**/*.{jsx,js}": [
+      "npm run lint"
+    ]
   },
   "dependencies": {
     "@emailjs/browser": "^4.1.0",
