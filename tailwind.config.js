@@ -1,14 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       backgroundImage: {
-        "random-line": "url('./src/assets/line.svg')",
+        'random-line': "url('./src/assets/line.svg')",
       },
       fontFamily: {
-        inter: ["Inter", "sans-serif"],
-        poppins: ["Poppins", "sans-serif"],
+        inter: ['Inter', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
       },
     },
   },

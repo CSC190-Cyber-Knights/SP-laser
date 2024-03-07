@@ -1,5 +1,6 @@
 #ignore the node modules
 node_modules
+package.json
 
 # ignore artifacts
 build
@@ -7,4 +8,3 @@ coverage
 
 #ignore any html files
 **/**.html
-

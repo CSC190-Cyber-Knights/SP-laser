@@ -1,19 +1,19 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage.jsx";
-import { ContactForm } from "./pages/ContactForm.jsx";
-import { SignIn } from "./pages/SignIn.jsx";
-import AboutMe from "./pages/AboutMe.jsx";
-import Gallery from "./pages/Gallery.jsx";
-import { Layout } from "./components/layout/Layout.jsx";
+import React from 'react';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import HomePage from './pages/HomePage.jsx';
+import {ContactForm} from './pages/ContactForm.jsx';
+import {SignIn} from './pages/SignIn.jsx';
+import AboutMe from './pages/AboutMe.jsx';
+import Gallery from './pages/Gallery.jsx';
+import {Layout} from './components/layout/Layout.jsx';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route
-          path={"/"}
+          path={'/'}
           element={
             <Layout>
               <HomePage />
@@ -21,7 +21,7 @@ function App() {
           }
         />
         <Route
-          path={"/contact"}
+          path={'/contact'}
           element={
             <Layout>
               <ContactForm />
@@ -29,7 +29,7 @@ function App() {
           }
         />
         <Route
-          path={"/signin"}
+          path={'/signin'}
           element={
             <Layout>
               <SignIn />
@@ -37,7 +37,7 @@ function App() {
           }
         />
         <Route
-          path={"/about"}
+          path={'/about'}
           element={
             <Layout>
               <AboutMe />
@@ -45,7 +45,7 @@ function App() {
           }
         />
         <Route
-          path={"/gallery"}
+          path={'/gallery'}
           element={
             <Layout>
               <Gallery />

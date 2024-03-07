@@ -1,21 +1,18 @@
-import { Fragment, useState } from "react";
-import { Dialog, Popover, Transition } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import {Fragment, useState} from 'react';
+import {Dialog, Popover, Transition} from '@headlessui/react';
+import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline';
+import {Link} from 'react-router-dom';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="bg-white font-inter">
-      <nav
-        className="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8"
-        aria-label="Global"
-      >
+      <nav className="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="font-light">
-              <Link to={"/"}>HOME</Link>
+              <Link to={'/'}>HOME</Link>
             </span>
           </a>
         </div>
@@ -44,28 +41,23 @@ export default function Header() {
           </Popover>
 
           <a href="#" className="text-sm font-light leading-6 text-gray-900">
-            <Link to={"/gallery"}>Gallery</Link>
+            <Link to={'/gallery'}>Gallery</Link>
           </a>
           <a href="#" className="text-sm font-light leading-6 text-gray-900">
-            <Link to={"/contact"}>Contact</Link>
+            <Link to={'/contact'}>Contact</Link>
           </a>
           <a href="#" className="text-sm font-light leading-6 text-gray-900">
-            <Link to={"/about"}>FAQ</Link>
+            <Link to={'/about'}>FAQ</Link>
           </a>
         </Popover.Group>
       </nav>
-      <Dialog
-        as="div"
-        className="lg:hidden"
-        open={mobileMenuOpen}
-        onClose={setMobileMenuOpen}
-      >
+      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="text-lg font-semibold">
-                <Link to={"/"}>LaserMade</Link>
+                <Link to={'/'}>LaserMade</Link>
               </span>
             </a>
             <button
@@ -84,13 +76,13 @@ export default function Header() {
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-light leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  <Link to={"/gallery"}>Gallery</Link>
+                  <Link to={'/gallery'}>Gallery</Link>
                 </a>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-light leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  <Link to={"/about"}>About</Link>
+                  <Link to={'/about'}>About</Link>
                 </a>
                 <a
                   href="#"
