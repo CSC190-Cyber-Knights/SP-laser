@@ -1,8 +1,7 @@
-import Footer from "./footer.jsx";
-import Header from "./header.jsx";
-import PropTypes from "prop-types";
+import Header from './header.jsx';
+import PropTypes from 'prop-types';
 
-export const Layout = ({ children }) => {
+export const Layout = ({children}) => {
   return (
     <>
       <Header />
