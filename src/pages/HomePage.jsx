@@ -1,9 +1,9 @@
-import {InfoCard} from '../components/ui/InfoCard.jsx'
-import SparklesIcon from '@heroicons/react/20/solid/esm/SparklesIcon.js'
-import {EyeIcon, ShieldCheckIcon, UserIcon} from '@heroicons/react/20/solid/index.js'
-import {AiFillSave} from 'react-icons/ai'
-import {BoltIcon} from '@heroicons/react/24/outline/index.js'
-import {ButtonLink} from '../components/ui/ButtonLink.jsx'
+import {InfoCard} from '../components/ui/InfoCard.jsx';
+import SparklesIcon from '@heroicons/react/20/solid/esm/SparklesIcon.js';
+import {EyeIcon, ShieldCheckIcon, UserIcon} from '@heroicons/react/20/solid/index.js';
+import {AiFillSave} from 'react-icons/ai';
+import {BoltIcon} from '@heroicons/react/24/outline/index.js';
+import {ButtonLink} from '../components/ui/ButtonLink.jsx';
 
 {
   /* Homepage features high usage of css and plaintext. It also shows images and a header/footer*/
@@ -62,6 +62,66 @@ const HomePage = () => {
             Why Laser Engraving?
           </h2>
         </div>
+
+        <div
+          className={
+            'm-auto grid grid-rows-1 content-center items-start justify-evenly justify-items-center gap-1.5 sm:grid-cols-2 sm:grid-rows-2 lg:grid-cols-3'
+          }
+        >
+          <InfoCard
+            color={'orange'}
+            icon={<ShieldCheckIcon />}
+            title={'Durability & Quality'}
+            desc={
+              "Unlike other methods, laser engraving etches designs permanently, ensuring they won't fade or wear over time, maintaining quality and durability."
+            }
+          />
+          <InfoCard
+            color={'blue'}
+            icon={<UserIcon />}
+            title={'No Contact'}
+            desc={
+              "Laser engraving is a non-contact process, meaning there's minimal risk of material damage or deformation"
+            }
+          />
+          <InfoCard
+            color={'red'}
+            icon={<EyeIcon />}
+            title={'Precision'}
+            desc={
+              'Laser engraving offers unparalleled accuracy, ensuring your designs are reproduced with crisp, clear lines every time.'
+            }
+          />
+          <InfoCard
+            color={'green'}
+            icon={<BoltIcon />}
+            title={'Freedom'}
+            desc={
+              'Unleash your creativity with unlimited design possibilities - if you can imagine it, laser engraving can create it.'
+            }
+          />
+          <InfoCard
+            color={'purple'}
+            icon={<AiFillSave />}
+            title={'Scalability'}
+            desc={
+              'From one-off custom pieces to large production runs, laser engraving scales with your needs without losing quality or detail.'
+            }
+          />
+          <InfoCard
+            color={'pink'}
+            icon={<SparklesIcon />}
+            title={'Fine Detailing'}
+            desc={
+              'Capable of capturing intricate designs and fine details, laser engraving is ideal ' +
+              'for both artistic endeavors and precise branding needs.'
+            }
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
 
         <div
           className={

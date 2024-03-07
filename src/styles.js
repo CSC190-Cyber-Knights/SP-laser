@@ -14,7 +14,7 @@ const styles = {
 
   marginX: 'sm:mx-16 mx-6',
   marginY: 'sm:my-16 my-6',
-}
+};
 
 export const layout = {
   section: `flex md:flex-row flex-col ${styles.paddingY}`,
@@ -24,6 +24,6 @@ export const layout = {
   sectionImg: `flex-1 flex ${styles.flexCenter} md:ml-10 ml-0 md:mt-0 mt-10 relative`,
 
   sectionInfo: `flex-1 ${styles.flexStart} flex-col`,
-}
+};
 
-export default styles
+export default styles;

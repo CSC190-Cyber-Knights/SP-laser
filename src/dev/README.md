@@ -12,8 +12,8 @@ link in `palette.tsx`). There are some ready-to-use palettes for popular React l
 packages and can be added as a dependency:
 
 ```jsx
-import AntdPalette from '@react-buddy/palette-antd'
-import ReactIntlPalette from '@react-buddy/palette-react-intl'
+import AntdPalette from '@react-buddy/palette-antd';
+import ReactIntlPalette from '@react-buddy/palette-react-intl';
 
 export const PaletteTree = () => (
   <Palette>
@@ -34,7 +34,7 @@ export const PaletteTree = () => (
       </Component>
     </Category>
   </Palette>
-)
+);
 ```
 
 React Buddy explicitly registers any previewed component in the `previews.tsx` file so that you can specify required
@@ -51,20 +51,20 @@ e.g. implicitly obtain user session:
 
 ```typescript
 export const useInitial: () => InitialHookStatus = () => {
-  const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     async function login() {
-      const response = await loginRequest(DEV_LOGIN, DEV_PASSWORD)
+      const response = await loginRequest(DEV_LOGIN, DEV_PASSWORD);
       if (response?.status !== 200) {
-        setError(true)
+        setError(true);
       }
-      setLoading(false)
+      setLoading(false);
     }
-    login()
-  }, [])
-  return {loading, error}
-}
+    login();
+  }, []);
+  return {loading, error};
+};
 ```
