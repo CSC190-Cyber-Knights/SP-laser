@@ -1,0 +1,10 @@
+#ignore the node modules
+node_modules
+
+# ignore artifacts
+build
+coverage
+
+#ignore any html files
+**/**.html
+
