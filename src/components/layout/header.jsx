@@ -1,10 +1,10 @@
-import {Fragment, useState} from 'react';
-import {Dialog, Popover, Transition} from '@headlessui/react';
-import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline';
-import {Link} from 'react-router-dom';
+import {Fragment, useState} from 'react'
+import {Dialog, Popover, Transition} from '@headlessui/react'
+import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
+import {Link} from 'react-router-dom'
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
     <header className="bg-white font-inter">
@@ -96,5 +96,5 @@ export default function Header() {
         </Dialog.Panel>
       </Dialog>
     </header>
-  );
+  )
 }

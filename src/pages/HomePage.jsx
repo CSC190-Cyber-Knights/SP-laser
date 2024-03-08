@@ -1,9 +1,9 @@
-import {InfoCard} from '../components/ui/InfoCard.jsx';
-import SparklesIcon from '@heroicons/react/20/solid/esm/SparklesIcon.js';
-import {EyeIcon, ShieldCheckIcon, UserIcon} from '@heroicons/react/20/solid/index.js';
-import {AiFillSave} from 'react-icons/ai';
-import {BoltIcon} from '@heroicons/react/24/outline/index.js';
-import {ButtonLink} from '../components/ui/ButtonLink.jsx';
+import {InfoCard} from '../components/ui/InfoCard.jsx'
+import SparklesIcon from '@heroicons/react/20/solid/esm/SparklesIcon.js'
+import {EyeIcon, ShieldCheckIcon, UserIcon} from '@heroicons/react/20/solid/index.js'
+import {AiFillSave} from 'react-icons/ai'
+import {BoltIcon} from '@heroicons/react/24/outline/index.js'
+import {ButtonLink} from '../components/ui/ButtonLink.jsx'
 
 {
   /* Homepage features high usage of css and plaintext. It also shows images and a header/footer*/
@@ -120,7 +120,7 @@ const HomePage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage
