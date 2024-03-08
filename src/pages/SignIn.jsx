@@ -1,5 +1,5 @@
-import {GoogleButton} from 'react-google-button';
-import {userSignIn, userSignOut} from '../services/firebase.js';
+import {GoogleButton} from 'react-google-button'
+import {userSignIn, userSignOut} from '../services/firebase.js'
 
 {
   /*Signin features a google click login if already logged into google, and a signout*/
@@ -12,17 +12,25 @@ export const SignIn = () => {
       {/*allow google account log in*/}
       <GoogleButton
         onClick={() => {
-          userSignIn();
+          userSignIn()
         }}
       />
       <button
         onClick={() => {
-          userSignOut();
+          userSignOut()
         }}
       >
         This is a button to sign out
       </button>
     </div>
-  );
-};
+  )
+}
+/*
+//const signInButton = document.getElementById("signInButton")
+//const signOutButton = document.getElementById("signOutButton")
 
+
+signInButton.addEventListener('click', userSignIn)
+signOutButton.addEventListener('click',userSignOut)
+/*/
+export default SignIn

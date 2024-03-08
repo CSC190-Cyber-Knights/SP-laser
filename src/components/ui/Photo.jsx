@@ -1,8 +1,8 @@
-import {useState} from 'react';
+import {useState} from 'react'
 
 export default function PhotoObj(props) {
-  const {url} = props;
-  const color = 'green';
+  const {url} = props
+  const color = 'green'
 
   return (
     <div className={'flex w-1/4 flex-col bg-slate-500'}>
@@ -10,5 +10,5 @@ export default function PhotoObj(props) {
         <img src={url} alt="product description" className={'w-fit'} />
       </div>
     </div>
-  );
+  )
 }

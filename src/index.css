@@ -7,6 +7,9 @@
   src: url(' ../public/fonts/Inter-VariableFont_slnt,wght.ttf');
 }
 
+::selection {
+  background: #ff3a20;
+}
 @font-face {
   font-family: 'Poppins', sans-serif;
   src: url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,900;1,300;1,600;1,700;1,800;1,900&display=swap');

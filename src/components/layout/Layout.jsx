@@ -1,5 +1,5 @@
-import Header from './header.jsx';
-import PropTypes from 'prop-types';
+import Header from './header.jsx'
+import PropTypes from 'prop-types'
 
 export const Layout = ({children}) => {
   return (
@@ -8,9 +8,9 @@ export const Layout = ({children}) => {
       <main>{children}</main>
       <Footer/>
     </>
-  );
-};
+  )
+}
 
 Layout.propTypes = {
   children: PropTypes.element, // react component or jsx
-};
+}
