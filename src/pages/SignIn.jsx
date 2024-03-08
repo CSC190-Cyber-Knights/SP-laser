@@ -1,5 +1,5 @@
-import {GoogleButton} from 'react-google-button';
-import {userSignIn, userSignOut} from '../services/firebase.js';
+import {GoogleButton} from 'react-google-button'
+import {userSignIn, userSignOut} from '../services/firebase.js'
 
 {
   /*Signin features a google click login if already logged into google, and a signout*/

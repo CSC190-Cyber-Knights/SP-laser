@@ -1,7 +1,7 @@
-import {doc, getDoc} from 'firebase/firestore';
-import {getStorage, ref, getDownloadURL} from 'firebase/storage';
-import {db} from './ContactForm.jsx';
-import * as url from 'url';
+import {doc, getDoc} from 'firebase/firestore'
+import {getStorage, ref, getDownloadURL} from 'firebase/storage'
+import {db} from './ContactForm.jsx'
+import * as url from 'url'
 
 //const docRef = doc(db, "gs://laserengraving-9a35a.appspot.com/images", "/IMG_0950.jpeg");
 //const docSnap = await getDoc(docRef);
@@ -11,86 +11,86 @@ const testImage = ref(storage, 'images/IMG_0950.jpeg') //test image
 
 getDownloadURL(ref(storage, 'images/IMG_0950.jpeg'))
   .then((myUrl) => {
-    const xhr = new XMLHttpRequest();
-    xhr.responseType = 'blob';
+    const xhr = new XMLHttpRequest()
+    xhr.responseType = 'blob'
     xhr.onload = (event) => {
-      const blob = xhr.response;
-    };
-    xhr.open('GET', myUrl);
-    xhr.send();
+      const blob = xhr.response
+    }
+    xhr.open('GET', myUrl)
+    xhr.send()
 
-    const myImg = document.getElementById('myimg');
-    myImg.setAttribute('src', myUrl);
+    const myImg = document.getElementById('myimg')
+    myImg.setAttribute('src', myUrl)
   })
-  .catch((error) => {});
+  .catch((error) => {})
 
 function checkAll() {
-  let checkbox = document.getElementById('checkA');
+  let checkbox = document.getElementById('checkA')
   if (checkbox.checked) {
-    document.getElementById('checkF').checked = true;
-    document.getElementById('checkFA').checked = true;
-    document.getElementById('checkT').checked = true;
-    document.getElementById('checkFL').checked = true;
+    document.getElementById('checkF').checked = true
+    document.getElementById('checkFA').checked = true
+    document.getElementById('checkT').checked = true
+    document.getElementById('checkFL').checked = true
   }
-  checkF();
-  checkFA();
-  checkT();
-  checkFL();
+  checkF()
+  checkFA()
+  checkT()
+  checkFL()
 }
 function checkF() {
-  let checkbox = document.getElementById('checkF');
-  let container = document.getElementsByClassName('firearms');
+  let checkbox = document.getElementById('checkF')
+  let container = document.getElementsByClassName('firearms')
   if (checkbox.checked) {
     for (let i = 0; i < container.length; i++) {
-      container[i].style.display = 'flex';
+      container[i].style.display = 'flex'
     }
   } else {
     for (let i = 0; i < container.length; i++) {
-      container[i].style.display = 'none';
+      container[i].style.display = 'none'
     }
-    document.getElementById('checkA').checked = false;
+    document.getElementById('checkA').checked = false
   }
 }
 function checkFA() {
-  let checkbox = document.getElementById('checkFA');
-  let container = document.getElementsByClassName('firearm_accessories');
+  let checkbox = document.getElementById('checkFA')
+  let container = document.getElementsByClassName('firearm_accessories')
   if (checkbox.checked) {
     for (let i = 0; i < container.length; i++) {
-      container[i].style.display = 'flex';
+      container[i].style.display = 'flex'
     }
   } else {
     for (let i = 0; i < container.length; i++) {
-      container[i].style.display = 'none';
+      container[i].style.display = 'none'
     }
-    document.getElementById('checkA').checked = false;
+    document.getElementById('checkA').checked = false
   }
 }
 function checkT() {
-  let checkbox = document.getElementById('checkT');
-  let container = document.getElementsByClassName('thermos');
+  let checkbox = document.getElementById('checkT')
+  let container = document.getElementsByClassName('thermos')
   if (checkbox.checked) {
     for (let i = 0; i < container.length; i++) {
-      container[i].style.display = 'flex';
+      container[i].style.display = 'flex'
     }
   } else {
     for (let i = 0; i < container.length; i++) {
-      container[i].style.display = 'none';
+      container[i].style.display = 'none'
     }
-    document.getElementById('checkA').checked = false;
+    document.getElementById('checkA').checked = false
   }
 }
 function checkFL() {
-  let checkbox = document.getElementById('checkFL');
-  let container = document.getElementsByClassName('fishing_lures');
+  let checkbox = document.getElementById('checkFL')
+  let container = document.getElementsByClassName('fishing_lures')
   if (checkbox.checked) {
     for (let i = 0; i < container.length; i++) {
-      container[i].style.display = 'flex';
+      container[i].style.display = 'flex'
     }
   } else {
     for (let i = 0; i < container.length; i++) {
-      container[i].style.display = 'none';
+      container[i].style.display = 'none'
     }
-    document.getElementById('checkA').checked = false;
+    document.getElementById('checkA').checked = false
   }
 }
 
@@ -174,7 +174,7 @@ const GalleryPage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default GalleryPage;
+export default GalleryPage

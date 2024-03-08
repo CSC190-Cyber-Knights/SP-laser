@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 /**
  * `InfoCard` is a reusable React component that displays a card with an icon, a title, and a description.
@@ -42,8 +42,8 @@ export const InfoCard = ({icon, title, desc, color}) => {
     sky: 'bg-sky-200',
     violet: 'bg-violet-200',
     amber: 'bg-amber-200',
-  };
-  const bgColor = colorClasses[color] || colorClasses.gray;
+  }
+  const bgColor = colorClasses[color] || colorClasses.gray
 
   return (
     <div
