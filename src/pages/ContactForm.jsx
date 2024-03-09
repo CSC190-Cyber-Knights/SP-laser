@@ -34,7 +34,10 @@ export const ContactForm = () => {
         userEmail: '',
         userPhone: '',
         orderDescription: '',
+        file:'',
     });
+
+    const [ file,setFile] = useState(null);
 
     const handleChange = (e) => { //on a change in textbox, change default or previous values to values in textbox
         const {id, value} = e.target;
@@ -48,17 +51,17 @@ export const ContactForm = () => {
         e.preventDefault();
         // log the submitted form data
         console.log('Submitted Form Data:', formData);
-//    onchange = {validateForm};
+
+        // update the firestore database. File will not be loaded to the data base
         const docRef=await addDoc(collection(db, "orders"), formData);
 
-        var fromwhom = formData.firstName + ' ' +formData.lastName+ '    phone: ' + formData.userPhone + '   email: '+ formData.userEmail;
-        var templateParams= {
-            //from_name:formData.firstName + ' ' +formData.lastName+ '  phone:' + formData.userPhone + 'email:'+ formData.userEmail,
-            from_name: fromwhom,
-            to_name:'cyberknightslaser@outlook.com',
-            message:formData.orderDescription,
-        }
-        emailjs.send('service_zadrexa', 'template_a0upujx', templateParams, 'Io04H3uOQN5v-GZbf' )//send to email result of success and text or error
+
+        // Send the email with file attachment
+        var sForm = document.getElementById("orderForm");
+
+        // the ID used are based anishrajah personal paid emailjs account
+        emailjs.sendForm('service_ywhri5k', 'template_i2wvm7j',sForm, 'wme-Hao43E-l4SCEG' )//send to email result of success and text or error
+
             .then ((result) => {
                 console.log("Success", result.status, result.text);
 
@@ -66,10 +69,11 @@ export const ContactForm = () => {
                 console.log("FAILED", error);
             });
 
-
-
-
-
+        function resetForm($form) {
+            $form.find('input:file').val('');
+        }
+        //resetForm($('#orderForm'));
+        document.getElementById('file').value = null;
 
 //document.getElementById('ContactForm').addEventListener(onsubmit().button, validateForm);
 
@@ -79,6 +83,7 @@ export const ContactForm = () => {
             userEmail: '',
             userPhone: '',
             orderDescription: '',
+            file:'',
         });
         console.log('Order submitted successfully!');
     };
@@ -144,6 +149,7 @@ export const ContactForm = () => {
 
             {/* Form Section */}
             <form
+                id="orderForm"
                 className="flex flex-col w-full max-w-lg p-4 items-start gap-3"
                 onSubmit={handleSubmit}
                 noValidate
@@ -154,6 +160,7 @@ export const ContactForm = () => {
                         <label htmlFor="fname" className="text-neutral-600">First Name</label>
                         <input
                             id="firstName"
+                            name="firstName"
                             className="shadow rounded-lg border-slate-300 h-12 p-2 bg-neutral-100"
                             type="text"
                             placeholder="John"
@@ -167,6 +174,7 @@ export const ContactForm = () => {
                         <label htmlFor="lname" className="text-neutral-600">Last Name</label>
                         <input
                             id="lastName"
+                            name="lastName"
                             className="shadow rounded-lg border-slate-300 h-12 p-2 bg-neutral-100"
                             type="text"
                             placeholder="Doe"
@@ -182,6 +190,7 @@ export const ContactForm = () => {
                     <label htmlFor="user-email" className="text-neutral-600">Email</label>
                     <input
                         id="userEmail"
+                        name="userEmail"
                         className="shadow rounded-lg border-slate-300 h-12 p-2 bg-neutral-100"
                         type="email" // Changed to 'email' type for proper validation
                         placeholder="johndoe2022@gmail.com"
@@ -196,6 +205,7 @@ export const ContactForm = () => {
                     <label htmlFor="user-phone" className="text-neutral-600">Phone Number</label>
                     <input
                         id="userPhone"
+                        name="userPhone"
                         className="shadow rounded-lg border-slate-300 h-12 p-2 bg-neutral-100 placeholder:italic"
                         type="tel" // Changed to 'tel' type for proper validation
                         placeholder="(###) ###-####"
@@ -211,6 +221,7 @@ export const ContactForm = () => {
                     <label htmlFor="order-description" className="text-neutral-600">Describe It</label>
                     <textarea
                         id="orderDescription"
+                        name="orderDescription"
                         className="shadow rounded-lg border-slate-300 bg-neutral-100 p-1.5"
                         rows="5" // Adjusted for better default size
                         placeholder="Provide a detailed description..."
@@ -218,6 +229,25 @@ export const ContactForm = () => {
                         onChange={handleChange}
                         required
                     />
+                </div>
+
+                <div>
+                    <input
+                        type="file"
+                        name="file"
+                        id="file"
+                        onChange={(e) => setFile(e.target.files[0])}
+                        accept="/image/*" />
+                </div>
+
+                <div>
+                    <input
+                        type ="hidden"
+                        id="to_name"
+                        name="to_name"
+                        value = "cyberknightslaser@outlook.com"
+                    />
+
                 </div>
 
                 {/* Submit Button */}
