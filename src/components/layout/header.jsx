@@ -52,6 +52,9 @@ export default function Header() {
           <a href="#" className="text-sm font-light leading-6 text-gray-900">
             <Link to={"/about"}>FAQ</Link>
           </a>
+          <a href="#" className="text-sm font-light leading-6 text-gray-900">
+            <Link to={"/signin"}>Admin Login</Link>
+          </a>
         </Popover.Group>
       </nav>
       <Dialog
