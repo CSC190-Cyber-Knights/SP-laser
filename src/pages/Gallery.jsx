@@ -1,29 +1,72 @@
-import {doc, getDoc} from "firebase/firestore";
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import {db} from "./ContactForm.jsx";
-import * as url from "url";
+import {getStorage, ref, getDownloadURL, list, listAll} from 'firebase/storage'
+import {db} from './ContactForm.jsx'
+import * as url from 'url'
+import PhotoObj from "../components/ui/Photo.jsx";
 
-//const docRef = doc(db, "gs://laserengraving-9a35a.appspot.com/images", "/IMG_0950.jpeg");
-//const docSnap = await getDoc(docRef);
-const storage = getStorage(); //connect to firebase storage
-const imagesRef = ref(storage, 'images)'); //reference to image in firebase storage
-const testImage = ref(storage, 'images/IMG_0950.jpeg'); //test image
+const storage = getStorage() //connect to firebase storage
+const imagesRef = ref(storage, 'images/') //reference to image in firebase storage
 
-getDownloadURL(ref(storage, 'images/IMG_0950.jpeg')).then((myUrl) => {
+window.onload = function GeneratePhotos(){
+    console.log("GeneratePhotos Called")
+    listAll(imagesRef)
+        .then((imagesListResult) => {
+            imagesListResult.prefixes.forEach((folderRef) => {
+                const category = folderRef.name + " w-1/6 h-1/6"
 
-        const xhr = new XMLHttpRequest();
-        xhr.responseType = 'blob';
-        xhr.onload = (event) => {
-            const blob = xhr.response;
-        };
-        xhr.open('GET', myUrl);
-        xhr.send();
-
-        const myImg = document.getElementById('myimg');
-        myImg.setAttribute('src', myUrl);
-    })
-    .catch((error) => {
+                listAll(folderRef)
+                    .then((itemListResult) => {
+                        itemListResult.items.forEach((itemRef) => {
+                            getDownloadURL(ref(storage, itemRef.fullPath))
+                                .then((myUrl) => {
+                                    console.log(category + ", " + itemRef.fullPath)
+                                    CreateNewPhoto(category, myUrl)
+                                })
+                                .catch((error) => {})
+                        });
+                    })
+            });
+        }).catch((error) => {
+        // Uh-oh, an error occurred!
     });
+}
+
+
+function CreateNewPhoto(category, url)
+{
+    let newImg = new Image();
+    newImg.src = url;
+    newImg.alt = "Image not found";
+    newImg.className = category;
+    document.getElementById('galleryID').appendChild(newImg);
+}
+
+//Might need the commented code below in the future, ask Paul before deleting please
+/*
+async function pageToken(){
+
+  const firstPage = await list(imagesRef, { maxResults: 100 });
+  //Do stuff here
+
+  console.log(firstPage.toString())
+  for (let i = 0; i < firstPage.items.length; i++)
+  {
+    getDownloadURL(ref(storage, firstPage.items[i].name))
+        .then((myUrl) => {
+          console.log(firstPage.items[i].name)
+          CreateNewPhoto(category, myUrl)
+        })
+        .catch((error) => {})
+  }
+
+  if (firstPage.nextPageToken){
+    const secondPage = await list(imagesRef, {
+      maxResults: 100,
+      pageToken: firstPage.nextPageToken,
+    });
+    //Do stuff here
+  }
+}
+*/
 
 function checkAll(){
     let checkbox = document.getElementById('checkA');
@@ -106,7 +149,7 @@ const GalleryPage = () => {
           <div className={"grid-rows-4"}>
               <div className={"grid-rows-4"}>
                   <h1 className='text-left text-3xl font-bold py-8'><span><span><input type={"checkbox"} id={"checkA"} onChange={checkAll} checked></input></span> All Photos |</span> <span><span><input type={"checkbox"} id={"checkF"} onChange={checkF}></input></span> Firearms |</span> <span><span><input type={"checkbox"} id={"checkFA"} onChange={checkFA}></input></span> Firearm Accessories |</span> <span><span><input type={"checkbox"} id={"checkT"} onChange={checkT}></input></span> Thermos |</span> <span><span><input type={"checkbox"} id={"checkFL"} onChange={checkFL}></input></span> Fishing Lures</span></h1>
-                  <ul className={"flex-container"}>
+                  <ul id={'galleryID'} className={"flex-container"}>
                       <img src={"https://firebasestorage.googleapis.com/v0/b/laserengraving-9a35a.appspot.com/o/images%2FIMG_0950.jpeg?alt=media&token=73537dd8-12d3-4d4a-b9f8-9c1a138fac38"} alt="Image Not Found" className={"w-1/6 firearms"}/>{/*grab reference to image from firebase storage*/}
                       <img src={"https://firebasestorage.googleapis.com/v0/b/laserengraving-9a35a.appspot.com/o/images%2FIMG_7414.jpeg?alt=media&token=cd1d82da-01e1-46eb-be03-9a320040ba43"} alt="Image Not Found" className={"w-1/6 thermos"}/>
                       <img src={"https://firebasestorage.googleapis.com/v0/b/laserengraving-9a35a.appspot.com/o/images%2FIMG_6717.jpeg?alt=media&token=318510f6-72de-44c3-a3f9-6ae90944db0e"} alt="Image Not Found" className={"w-1/6 thermos"}/>
