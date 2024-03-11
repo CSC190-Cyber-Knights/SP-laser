@@ -4,7 +4,7 @@ import { ButtonLink } from "../components/ui/ButtonLink.jsx";
 }
 
 const AboutMe = () => {
-  return (<div style={{ display: 'flex', alignItems: 'center' }} >
+  return (<div style={{ display: 'flex', alignItems: 'center', backgroundColor: '#7D7D7D' }} >
 
     <div
     >
@@ -15,14 +15,14 @@ const AboutMe = () => {
       </hr>
       <div style={{ margin: '50px' }}
       >
-        <p
+        <p style={{ color: '#FFFFFF' }}
           className={"text-balance text-base indent-8 p-2 text-sm 0 sm:font-medium text-center mt-2 italic self-center md:text-lg text-neutral-500 w-8/12 md:w-8/12"}>
           In the heart of our bustling city in Northern California stands a small yet vibrant business, where
           creativity meets heartfelt dedication. This haven of craftsmanship is not just another engraving
           studio—it's a testament to the passion and sincerity of its owner, a veteran whose journey through service has now
           transcended into the art of personalization.
         </p>
-        <p style={{ fontWeight: 'bold' }}
+        <p style={{ fontWeight: 'bold', color: '#FFFFFF' }}
           className={"text-balance text-base indent-8 p-2 text-sm text-neutral-700 font-poppins sm:font-medium "}>
           Meet Michael, a veteran whose unwavering commitment and dedication extend far beyond his military service.
           With a heart full of creativity and a soul brimming with passion, he ventured into the realm of laser
@@ -38,7 +38,7 @@ const AboutMe = () => {
           memory or a heartfelt message on a family heirloom, Michael understands the significance of each request.
 
 
-        <p style={{ fontWeight: 'bold' }}
+        <p style={{ fontWeight: 'bold', color: '#FFFFFF' }}
           className={"text-balance text-base indent-8 p-2 text-sm text-neutral-700 font-poppins sm:font-medium"
           }>
             
