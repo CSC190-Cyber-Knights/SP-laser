@@ -1,10 +1,11 @@
-import {getStorage, ref, getDownloadURL, list, listAll} from 'firebase/storage'
+import {getStorage, ref, getDownloadURL, list, listAll, uploadBytesResumable} from 'firebase/storage'
 import {db} from './ContactForm.jsx'
 import * as url from 'url'
 import PhotoObj from "../components/ui/Photo.jsx";
 
 const storage = getStorage() //connect to firebase storage
 const imagesRef = ref(storage, 'images/') //reference to image in firebase storage
+let file
 
 window.onload = function GeneratePhotos(){
     console.log("GeneratePhotos Called")
@@ -30,6 +31,31 @@ window.onload = function GeneratePhotos(){
     });
 }
 
+//function to update the file variable with user input
+function handleChange(event) {
+    file = event.target.files[0]
+}
+const handleUpload = () => {
+
+    if (!file) {
+        alert("Please choose an image");
+    }
+
+    const storageRef = ref(storage, `/images/${file.name}`);
+
+    // Receives the storage reference and the file to upload.
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+        "state_changed",
+        (err) => console.log(err),
+        () => {
+            // download url
+            getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                console.log(url);
+            });
+        });
+};
 
 function CreateNewPhoto(category, url)
 {
@@ -157,6 +183,8 @@ const GalleryPage = () => {
                       <img src={"https://firebasestorage.googleapis.com/v0/b/laserengraving-9a35a.appspot.com/o/images%2FIMG_7328.jpeg?alt=media&token=fd664fec-7544-429a-add2-a66deebf7c06"} alt="Image Not Found" className={"w-1/6 firearm_accessories"}/>
                   </ul>
               </div>
+              <input type="file" onChange={handleChange} accept="/image/*" />
+              <button onClick={handleUpload}>Upload</button>
           </div>
       </div>
   );
