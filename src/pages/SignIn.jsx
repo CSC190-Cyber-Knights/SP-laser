@@ -42,9 +42,13 @@ export const SignIn = () => {
     };
 
     return (
-        <div className="flex flex-col items-center min-h-screen">
+        <div className="flex flex-col items-center min-h-screen" style={{ backgroundColor: '#333333' }}>
             <div className="flex flex-col items-center p-8">
-                <h1 className="text-5xl font-bold tracking-tight text-neutral-600">
+                <h1 className="text-5xl font-bold tracking-tight text-neutral-600"
+                    style={{
+                        fontWeight: 'bold', // font bold
+                        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
+                        color: '#FFFFFF' }}>
                     Admin Login
                 </h1>
             </div>
@@ -53,7 +57,11 @@ export const SignIn = () => {
                 onSubmit={handleSubmit}
             >
                 <div className="flex flex-col w-full">
-                    <label htmlFor="username" className="text-neutral-600">Username</label>
+                    <label htmlFor="username" className="text-neutral-600"
+                           style={{
+                               fontWeight: 'bold', // font bold
+                               textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                               color: '#FFFFFF' }}>Username</label>
                     <input
                         id="username"
                         name="username"
@@ -65,7 +73,10 @@ export const SignIn = () => {
                     />
                 </div>
                 <div className="flex flex-col w-full">
-                    <label htmlFor="password" className="text-neutral-600">Password</label>
+                    <label htmlFor="password" className="text-neutral-600"style={{
+                        fontWeight: 'bold', // font bold
+                        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                        color: '#FFFFFF' }}>Password</label>
                     <input
                         id="password"
                         name="password"

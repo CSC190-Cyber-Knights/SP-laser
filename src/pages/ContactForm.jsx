@@ -38,7 +38,6 @@ export const ContactForm = () => {
     });
 
     const [ file,setFile] = useState(null);
-    let validForm = false;
 
     const handleChange = (e) => { //on a change in textbox, change default or previous values to values in textbox
         const {id, value} = e.target;
@@ -60,8 +59,6 @@ export const ContactForm = () => {
         // Send the email with file attachment
         var sForm = document.getElementById("orderForm");
 
-        // check if valid form to send
-        if (validForm === true){
         // the ID used are based anishrajah personal paid emailjs account
         emailjs.sendForm('service_ywhri5k', 'template_i2wvm7j',sForm, 'wme-Hao43E-l4SCEG' )//send to email result of success and text or error
 
@@ -71,7 +68,7 @@ export const ContactForm = () => {
             }, (error) => {
                 console.log("FAILED", error);
             });
-        }
+
         function resetForm($form) {
             $form.find('input:file').val('');
         }
@@ -102,7 +99,6 @@ export const ContactForm = () => {
         for(let i = 0; i < result.length; i++) {//run through each letter
             if(!regex.test(result[i])) {//if email doesnt follow what set in regex, sends alert and return false email
                 alert("Invalid email");
-                validForm = false;
                 return false;
             }
         }
@@ -111,8 +107,7 @@ export const ContactForm = () => {
     function validateName(nameString) {
         //       alert("val name")
         if (!/^[a-zA-Z]*$/g.test(nameString)) {//test if name doesn't follow upper or lower case letters, alerts and returns false
-            alert("Invalid character in name");
-            validForm = false;
+            alert("Invalid characters");
             return false;
         } else{
             return true;
@@ -126,7 +121,6 @@ export const ContactForm = () => {
             return true;
         } else{
             alert("Invalid phone number");
-            validForm = false;
             return false;
         }
     }
@@ -136,22 +130,28 @@ export const ContactForm = () => {
         const fName = document.getElementById('firstName').value;
         const lName = document.getElementById('lastName').value;
         const email = document.getElementById('userEmail').value;
-        validForm = true;
         validateName(fName);
         validateName(lName);
         validateEmail(email);
         validatePhoneNumber(phone);
     }
 
-    return ( //put into sendable form these elements below, as well as displaying them onto the site
-        <div className="flex flex-col items-center min-h-screen">
+    return ( //put into sendable form these elements below, as well as displaying them onto the sitep
+        <div className="flex flex-col items-center min-h-screen" style={{ backgroundColor: '#003153' }}> {/*background color */}
             {/* Title Section */}
             <div className="flex flex-col items-center p-8">
-                <h1 className="text-5xl font-bold tracking-tight text-neutral-600 flex items-center gap-2">
+                <h1 className="text-5xl font-bold tracking-tight text-neutral-600 flex items-center gap-2"
+                    style={{color: '#FFFFFF'}}>
                     <GiLaserPrecision className="text-red-400"/>
                     Order Form
                 </h1>
-                <h2 className="text-lg font-light">Let me know what you want to create</h2>
+                <h2 className="text-lg font-light" style={{
+                    fontSize: '24px', // font larger
+                    fontWeight: 'bold', // font bold
+                    color: '#FFFFFF', // color to white
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', // shadow for depth
+                    marginBottom: '20px' // space below the heading
+                }}>Let me know what you want to create</h2>
             </div>
 
             {/* Form Section */}
@@ -164,7 +164,11 @@ export const ContactForm = () => {
                 {/* Name Input Fields */}
                 <div className="flex w-full gap-2">
                     <div className="flex flex-col w-full">
-                        <label htmlFor="fname" className="text-neutral-600">First Name</label>
+                        <label htmlFor="fname" className="text-neutral-600" style={{
+                            fontWeight: 'bold',
+                            color: '#FFFFFF',
+                            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                        }}>First Name</label>
                         <input
                             id="firstName"
                             name="firstName"
@@ -178,7 +182,12 @@ export const ContactForm = () => {
                     </div>
 
                     <div className="flex flex-col w-full">
-                        <label htmlFor="lname" className="text-neutral-600">Last Name</label>
+                        {/* Last Name Label */}
+                        <label htmlFor="lname" className="text-neutral-600" style={{
+                            fontWeight: 'bold',
+                            color: '#FFFFFF',
+                            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                        }}>Last Name</label>
                         <input
                             id="lastName"
                             name="lastName"
@@ -194,7 +203,12 @@ export const ContactForm = () => {
 
                 {/* Email Input Field */}
                 <div className="flex flex-col w-full">
-                    <label htmlFor="user-email" className="text-neutral-600">Email</label>
+                    {/* Email Label */}
+                    <label htmlFor="user-email" className="text-neutral-600" style={{
+                        fontWeight: 'bold',
+                        color: '#FFFFFF',
+                        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                    }}>Email</label>
                     <input
                         id="userEmail"
                         name="userEmail"
@@ -209,7 +223,12 @@ export const ContactForm = () => {
 
                 {/* Phone Number Input Field */}
                 <div className="flex flex-col w-full">
-                    <label htmlFor="user-phone" className="text-neutral-600">Phone Number</label>
+                    {/* Phone Number Label */}
+                    <label htmlFor="user-phone" className="text-neutral-600" style={{
+                        fontWeight: 'bold',
+                        color: '#FFFFFF',
+                        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                    }}>Phone Number</label>
                     <input
                         id="userPhone"
                         name="userPhone"
@@ -225,7 +244,12 @@ export const ContactForm = () => {
 
                 {/* Description Textarea */}
                 <div className="flex flex-col w-full">
-                    <label htmlFor="order-description" className="text-neutral-600">Describe It</label>
+                    {/* Order Description Label */}
+                    <label htmlFor="order-description" className="text-neutral-600" style={{
+                        fontWeight: 'bold',
+                        color: '#FFFFFF',
+                        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                    }}>Describe It</label>
                     <textarea
                         id="orderDescription"
                         name="orderDescription"
