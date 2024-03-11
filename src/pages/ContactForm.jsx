@@ -38,6 +38,7 @@ export const ContactForm = () => {
     });
 
     const [ file,setFile] = useState(null);
+    let validForm = false;
 
     const handleChange = (e) => { //on a change in textbox, change default or previous values to values in textbox
         const {id, value} = e.target;
@@ -59,6 +60,8 @@ export const ContactForm = () => {
         // Send the email with file attachment
         var sForm = document.getElementById("orderForm");
 
+        // check if valid form to send
+        if (validForm === true){
         // the ID used are based anishrajah personal paid emailjs account
         emailjs.sendForm('service_ywhri5k', 'template_i2wvm7j',sForm, 'wme-Hao43E-l4SCEG' )//send to email result of success and text or error
 
@@ -68,7 +71,7 @@ export const ContactForm = () => {
             }, (error) => {
                 console.log("FAILED", error);
             });
-
+        }
         function resetForm($form) {
             $form.find('input:file').val('');
         }
@@ -99,6 +102,7 @@ export const ContactForm = () => {
         for(let i = 0; i < result.length; i++) {//run through each letter
             if(!regex.test(result[i])) {//if email doesnt follow what set in regex, sends alert and return false email
                 alert("Invalid email");
+                validForm = false;
                 return false;
             }
         }
@@ -107,7 +111,8 @@ export const ContactForm = () => {
     function validateName(nameString) {
         //       alert("val name")
         if (!/^[a-zA-Z]*$/g.test(nameString)) {//test if name doesn't follow upper or lower case letters, alerts and returns false
-            alert("Invalid characters");
+            alert("Invalid character in name");
+            validForm = false;
             return false;
         } else{
             return true;
@@ -121,6 +126,7 @@ export const ContactForm = () => {
             return true;
         } else{
             alert("Invalid phone number");
+            validForm = false;
             return false;
         }
     }
@@ -130,6 +136,7 @@ export const ContactForm = () => {
         const fName = document.getElementById('firstName').value;
         const lName = document.getElementById('lastName').value;
         const email = document.getElementById('userEmail').value;
+        validForm = true;
         validateName(fName);
         validateName(lName);
         validateEmail(email);
