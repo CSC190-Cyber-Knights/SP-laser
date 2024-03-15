@@ -50,7 +50,7 @@ export default function Header() {
             <Link to={"/contact"}>Contact</Link>
           </a>
           <a href="#" className="text-sm font-light leading-6 text-gray-900">
-            <Link to={"/about"}>FAQ</Link>
+            <Link to={"/about"}>About</Link>
           </a>
           <a href="#" className="text-sm font-light leading-6 text-gray-900">
             <Link to={"/signin"}>Admin Login</Link>
