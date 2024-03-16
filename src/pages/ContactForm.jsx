@@ -1,4 +1,3 @@
-
 import {GiLaserPrecision} from 'react-icons/gi';
 import {useState} from 'react';
 import emailjs from '@emailjs/browser';
@@ -6,7 +5,10 @@ import emailjs from '@emailjs/browser';
 // eslint-disable-next-line no-unused-vars
 import {initializeApp} from "firebase/app";
 import {getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged} from "firebase/auth";
-import {doc, setDoc, addDoc, collection, getFirestore} from "firebase/firestore";
+import { addDoc, collection, getFirestore} from "firebase/firestore";
+import {getStorage, ref, getDownloadURL, uploadBytesResumable} from 'firebase/storage';
+
+
 
 //ContactForm features centered text and boxes, a header and footer, and
 //these text boxes should only allow certain characters, the requirement different for each
@@ -27,6 +29,9 @@ const app = initializeApp(firebaseConfig)
 export const auth = getAuth(app)
 const provider = new GoogleAuthProvider()
 export const db = getFirestore(app);
+
+// Connect the Firebase storage
+const storage = getStorage() //connect to firebase storage
 export const ContactForm = () => {
     const [formData, setFormData] = useState({
         firstName: '',
@@ -40,6 +45,7 @@ export const ContactForm = () => {
     const [ file,setFile] = useState(null);
     let validForm = false;
 
+    // function handleChange()
     const handleChange = (e) => { //on a change in textbox, change default or previous values to values in textbox
         const {id, value} = e.target;
         setFormData((prevData) => ({
@@ -48,6 +54,7 @@ export const ContactForm = () => {
         }));
     };
 
+    // function handleSubmit()
     const handleSubmit = async (e) => {
         e.preventDefault();
         // log the submitted form data
@@ -62,25 +69,41 @@ export const ContactForm = () => {
 
         // check if valid form to send
         if (validForm === true){
-        // the ID used are based anishrajah personal paid emailjs account
-        emailjs.sendForm('service_ywhri5k', 'template_i2wvm7j',sForm, 'wme-Hao43E-l4SCEG' )//send to email result of success and text or error
+            // the ID used are based anishrajah personal paid emailjs account
+            emailjs.sendForm('service_ywhri5k', 'template_i2wvm7j',sForm, 'wme-Hao43E-l4SCEG' )//send to email result of success and text or error
 
-            .then ((result) => {
-                console.log("Success", result.status, result.text);
+                .then ((result) => {
+                    console.log("Success", result.status, result.text);
 
-            }, (error) => {
-                console.log("FAILED", error);
-            });
+                }, (error) => {
+                    console.log("FAILED", error);
+                });
         }
 
-        function resetForm($form) {
-            $form.find('input:file').val('');
+        // upload the image to the Firebase storage under 'uploads'
+        // if there is no file uploaded then skip the uploading to image to Firebase storage
+        if (file) {
+
+            const storageRef = ref(storage, `/uploads/${file.name}`);
+
+            // Receives the storage reference and the file to upload.
+            const uploadTask = uploadBytesResumable(storageRef, file);
+
+            uploadTask.on(
+                "state_changed",
+                (err) => console.log(err),
+                () => {
+                    // download url
+                    getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                        console.log(url);
+                    });
+                });
         }
-        //resetForm($('#orderForm'));
+
+        // erase the file name from the label
         document.getElementById('file').value = null;
 
-//document.getElementById('ContactForm').addEventListener(onsubmit().button, validateForm);
-
+        // initialize the all the fields in the form
         setFormData({
             firstName: '',
             lastName: '',
@@ -162,7 +185,7 @@ export const ContactForm = () => {
                 }}>Let me know what you want to create</h2>
             </div>
 
-            {/* Form Section */}
+            {/* Submit order Form Section */}
             <form
                 id="orderForm"
                 className="flex flex-col w-full max-w-lg p-4 items-start gap-3"
@@ -270,15 +293,23 @@ export const ContactForm = () => {
                     />
                 </div>
 
+                {/*file upload button */}
                 <div>
                     <input
                         type="file"
                         name="file"
                         id="file"
+                        title =" "
+                        style={{
+                            fontWeight: 'bold',
+                            color: '#FFFFFF',
+                            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                        }}
                         onChange={(e) => setFile(e.target.files[0])}
                         accept="/image/*" />
                 </div>
 
+                {/* hidden element for the email forwarding */}
                 <div>
                     <input
                         type ="hidden"
@@ -289,9 +320,19 @@ export const ContactForm = () => {
 
                 </div>
 
-                {/* Submit Button */}
-                <button type="submit" className="w-full rounded-lg bg-neutral-800 py-1 text-lg font-light text-neutral-300" onClick={validateForm}>
+                {/* Form Submit Button */}
+                <button
+                    type="submit"
+                    style={{
+                        fontWeight: 'bold',
+                        color: '#FFFFFF',
+                        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                    }}
+                    className="w-full rounded-lg bg-neutral-800 py-1 text-lg font-light text-neutral-300"
+                    onClick={validateForm}>
+
                     Submit
+
                 </button>
             </form>
 
