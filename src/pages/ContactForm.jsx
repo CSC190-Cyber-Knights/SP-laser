@@ -144,15 +144,22 @@ export const ContactForm = () => {
         validatePhoneNumber(phone);
     }
 
-    return ( //put into sendable form these elements below, as well as displaying them onto the site
-        <div className="flex flex-col items-center min-h-screen">
+    return ( //put into sendable form these elements below, as well as displaying them onto the sitep
+        <div className="flex flex-col items-center min-h-screen" style={{ backgroundColor: '#003153' }}> {/*background color */}
             {/* Title Section */}
             <div className="flex flex-col items-center p-8">
-                <h1 className="text-5xl font-bold tracking-tight text-neutral-600 flex items-center gap-2">
+                <h1 className="text-5xl font-bold tracking-tight text-neutral-600 flex items-center gap-2"
+                    style={{color: '#FFFFFF'}}>
                     <GiLaserPrecision className="text-red-400"/>
                     Order Form
                 </h1>
-                <h2 className="text-lg font-light">Let me know what you want to create</h2>
+                <h2 className="text-lg font-light" style={{
+                    fontSize: '24px', // font larger
+                    fontWeight: 'bold', // font bold
+                    color: '#FFFFFF', // color to white
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', // shadow for depth
+                    marginBottom: '20px' // space below the heading
+                }}>Let me know what you want to create</h2>
             </div>
 
             {/* Form Section */}
@@ -165,7 +172,11 @@ export const ContactForm = () => {
                 {/* Name Input Fields */}
                 <div className="flex w-full gap-2">
                     <div className="flex flex-col w-full">
-                        <label htmlFor="fname" className="text-neutral-600">First Name</label>
+                        <label htmlFor="fname" className="text-neutral-600" style={{
+                            fontWeight: 'bold',
+                            color: '#FFFFFF',
+                            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                        }}>First Name</label>
                         <input
                             id="firstName"
                             name="firstName"
@@ -179,7 +190,12 @@ export const ContactForm = () => {
                     </div>
 
                     <div className="flex flex-col w-full">
-                        <label htmlFor="lname" className="text-neutral-600">Last Name</label>
+                        {/* Last Name Label */}
+                        <label htmlFor="lname" className="text-neutral-600" style={{
+                            fontWeight: 'bold',
+                            color: '#FFFFFF',
+                            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                        }}>Last Name</label>
                         <input
                             id="lastName"
                             name="lastName"
@@ -195,7 +211,12 @@ export const ContactForm = () => {
 
                 {/* Email Input Field */}
                 <div className="flex flex-col w-full">
-                    <label htmlFor="user-email" className="text-neutral-600">Email</label>
+                    {/* Email Label */}
+                    <label htmlFor="user-email" className="text-neutral-600" style={{
+                        fontWeight: 'bold',
+                        color: '#FFFFFF',
+                        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                    }}>Email</label>
                     <input
                         id="userEmail"
                         name="userEmail"
@@ -210,7 +231,12 @@ export const ContactForm = () => {
 
                 {/* Phone Number Input Field */}
                 <div className="flex flex-col w-full">
-                    <label htmlFor="user-phone" className="text-neutral-600">Phone Number</label>
+                    {/* Phone Number Label */}
+                    <label htmlFor="user-phone" className="text-neutral-600" style={{
+                        fontWeight: 'bold',
+                        color: '#FFFFFF',
+                        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                    }}>Phone Number</label>
                     <input
                         id="userPhone"
                         name="userPhone"
@@ -226,7 +252,12 @@ export const ContactForm = () => {
 
                 {/* Description Textarea */}
                 <div className="flex flex-col w-full">
-                    <label htmlFor="order-description" className="text-neutral-600">Describe It</label>
+                    {/* Order Description Label */}
+                    <label htmlFor="order-description" className="text-neutral-600" style={{
+                        fontWeight: 'bold',
+                        color: '#FFFFFF',
+                        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                    }}>Describe It</label>
                     <textarea
                         id="orderDescription"
                         name="orderDescription"
