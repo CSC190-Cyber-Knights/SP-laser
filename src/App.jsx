@@ -9,6 +9,7 @@ import AboutMe from './pages/AboutMe.jsx'
 import Gallery from './pages/Gallery.jsx'
 import {Layout} from './components/layout/Layout.jsx'
 import {HomeBeta} from './pages/HomeBeta.jsx'
+import {Admin} from './pages/Admin.jsx'
 
 function App() {
   const {scrollYProgress} = useScroll()
