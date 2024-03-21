@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
+import {motion, useScroll, useSpring} from 'framer-motion'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import HomePage from './pages/HomePage.jsx'
 import {ContactForm} from './pages/ContactForm.jsx'
@@ -23,9 +24,12 @@ function App() {
         <Route
           path={'/'}
           element={
-            <Layout>
-              <HomeBeta />
-            </Layout>
+            <>
+              <motion.div className="fixed bottom-0 left-0 right-0 top-0 h-3 transform bg-red-600" style={{scaleX}} />
+              <Layout>
+                <HomeBeta />
+              </Layout>
+            </>
           }
         />
         <Route

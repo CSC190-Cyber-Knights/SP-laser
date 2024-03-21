@@ -1,3 +1,4 @@
+import {motion} from 'framer-motion'
 import Balancer from 'react-wrap-balancer'
 
 export const HomeBeta = () => {
