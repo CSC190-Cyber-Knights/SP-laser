@@ -38,8 +38,12 @@ import {getStorage, ref, uploadBytes} from 'firebase/storage'
 import {v4} from 'uuid'
 
 import Compressor from 'compressorjs'
+/**
+ * image upload function, designed to be used in any function, takes in n files & compresses the files
+ */
 const imageUpload = async (files) => {
   const storage = getStorage()
+  // files are asynchronously uploaded to the firebase server, but they are compressed upon upload
   for (const file of files) {
     // filename has a 'cmp' tag to notify user the file is compressed
     const imageRef = ref(storage, `images/${file.name + v4()}_cmp`)
@@ -59,15 +63,18 @@ const imageUpload = async (files) => {
           try {
             // await uploadbytes, call to ensure it completed uploading
             await uploadBytes(imageRef, result)
+            // comparing the new and old file sizing
             console.log(`Original size: ${file.size}`)
             console.log(`Compressed size: ${result.size}`)
             resolve()
           } catch (e) {
-            window.console.error(`Upload failed for ${file.name}:`, e)
+            // important to show the error if there is one, we should probably add alerts to this
+            console.error(`Upload failed for ${file.name}:`, e)
             reject(e)
           }
         },
         error: (error) => {
+          // if the compression fails, let the user know
           console.error(`Compression failed for ${file.name}`, error)
           reject(error)
         },
