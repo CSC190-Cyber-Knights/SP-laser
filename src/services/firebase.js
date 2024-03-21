@@ -3,6 +3,7 @@
 import {initializeApp} from 'firebase/app'
 import {getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged} from 'firebase/auth'
 import {getStorage} from 'firebase/storage'
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyDRGD42qYfcoahaW-THL9ZrkDP1GV9kbsQ',
@@ -28,13 +29,14 @@ export const userSignIn = async () => {
   return signInWithPopup(auth, provider)
     .then((result) => {
       //results from google
-      const user = result.user.DisplayName
+      const user = result.user.displayName
       const email = result.user.email
-      console.log(user)
+      console.log(user, email)
     })
     .catch((error) => {
       const errorCode = error.code
       const errorMsg = error.message
+      console.error(errorCode, errorMsg)
     })
 }
 

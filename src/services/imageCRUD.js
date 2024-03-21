@@ -1,7 +1,4 @@
 /*
-import {useState} from "react";
-import {storage} from "./firebase.js";
-import {ref, uploadBytesResumable, getDownloadURL} from "firebase/storage"
 
 // function to import elsewhere to handle uploading images to firebase
 function imageUpload() {
@@ -35,4 +32,48 @@ function imageUpload() {
             }
         );
     };
+
 }*/
+import {getStorage, ref, uploadBytes} from 'firebase/storage'
+import {v4} from 'uuid'
+
+import Compressor from 'compressorjs'
+const imageUpload = async (files) => {
+  const storage = getStorage()
+  for (const file of files) {
+    // filename has a 'cmp' tag to notify user the file is compressed
+    const imageRef = ref(storage, `images/${file.name + v4()}_cmp`)
+    await new Promise((resolve, reject) => {
+      // compressor information settings, this is how we reduce the file size
+      new Compressor(file, {
+        quality: 0.8,
+        retainExif: false,
+        maxWidth: 1920,
+        maxHeight: 1080,
+        resize: 'none',
+        convertSize: 5000000,
+        convertTypes: ['image/png', 'image/webp'],
+        mimeType: 'image/webp',
+        checkOrientation: true,
+        success: async (result) => {
+          try {
+            // await uploadbytes, call to ensure it completed uploading
+            await uploadBytes(imageRef, result)
+            console.log(`Original size: ${file.size}`)
+            console.log(`Compressed size: ${result.size}`)
+            resolve()
+          } catch (e) {
+            window.console.error(`Upload failed for ${file.name}:`, e)
+            reject(e)
+          }
+        },
+        error: (error) => {
+          console.error(`Compression failed for ${file.name}`, error)
+          reject(error)
+        },
+      })
+    })
+  }
+}
+
+export {imageUpload}
