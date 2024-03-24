@@ -1,9 +1,10 @@
 plugins:
-  - "prettier-plugin-tailwindcss"
+  - 'prettier-plugin-tailwindcss'
 printWidth: 120
 useTabs: false
 tabWidth: 2
-trailingComma: "es5"
+semi: false
+trailingComma: 'es5'
 singleQuote: true
 arrowParens: always
 jsxSingleQuote: false
