@@ -12,11 +12,11 @@ export default {
 
     extend: {
       colors: {
-        imposter_red: 'FF0035',
-        cad_grey: '8B939C',
-        eng_violet: '59546C',
-        def_blue: '38405F',
-        rich_black: '0E131F',
+        imposter_red: '#FF0035',
+        cad_grey: '#8B939C',
+        eng_violet: '#59546C',
+        def_blue: '#38405F',
+        rich_black: '#0E131F',
       },
       backgroundImage: {
         'random-line': "url('./src/assets/line.svg')",

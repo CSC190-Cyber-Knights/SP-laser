@@ -14,13 +14,3 @@
   font-family: 'Poppins', sans-serif;
   src: url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,900;1,300;1,600;1,700;1,800;1,900&display=swap');
 }
-
-.flex-container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
