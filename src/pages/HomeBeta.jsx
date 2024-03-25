@@ -1,7 +1,7 @@
 export const HomeBeta = () => {
   return (
-    <div className=" m-auto flex w-screen flex-col justify-center p-2">
-      <section className="flex h-screen w-full flex-col items-start justify-center gap-4 bg-def_blue  p-8">
+    <div className=" m-auto flex w-screen flex-col justify-center bg-rich_black p-2">
+      <section className="flex h-screen w-full flex-col items-start justify-center gap-4  p-8">
         <div className="flex w-3/4 flex-col gap-4">
           <div className="">
             <h2 className="font-inter text-8xl font-bold uppercase text-imposter_red">Precision Laser Engraving</h2>
