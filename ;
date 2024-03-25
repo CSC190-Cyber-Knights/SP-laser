@@ -4,7 +4,7 @@ export const HomeBeta = () => {
       <section className="flex h-screen w-full flex-col items-start justify-center gap-4  p-8">
         <div className="flex w-3/4 flex-col gap-4">
           <div className="">
-            <h2 className="font-inter text-8xl font-bold uppercase text-imposter_red">Precision Laser Engraving</h2>
+            <h2 className="font-inter text-8xl font-bold uppercase text-cad_grey">Precision Laser Engraving</h2>
           </div>
 
           <div>
@@ -22,18 +22,19 @@ export const HomeBeta = () => {
 
       <section className="flex h-screen flex-col justify-evenly gap-4 bg-no-repeat p-8">
         <div className="w-fit self-center text-center">
-          <h2 className="font-inter text-center text-5xl font-extrabold uppercase text-cad_grey">Lets Collaborate</h2>
+          <h2 className="font-inter text-center text-5xl font-extrabold uppercase">Lets Collaborate</h2>
         </div>
         <div>
-          <p className="  text-center font-serif text-9xl font-semibold text-imposter_red">I'm Michael</p>
+          <p className="  text-center font-serif text-9xl font-semibold">I'm Michael</p>
         </div>
         <div className="flex flex-col justify-center gap-2">
           <div className="rounded-lg w-fit items-center self-center  backdrop-blur-lg ">
-            <p className=" self-center p-2 text-center font-serif text-3xl text-cad_grey">
+            <p className=" self-center p-2 text-center font-serif text-3xl text-gray-600">
               I run my engraving business from my own workshop here in Sacramento. All your orders are handled
               personally by me. If its made of metal ask me about it.
             </p>
           </div>
+          <div className="w-fit justify-center"></div>
         </div>
       </section>
     </div>
