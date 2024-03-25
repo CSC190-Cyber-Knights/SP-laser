@@ -9,20 +9,14 @@ export default {
       xl: '1280px',
       '2xl': '1536px',
     },
-    colors: {
-      red: 'FF0035',
-      grey: '8B939C',
-      violet: '59546C',
-      blue: '38405F',
-      black: '0E131F',
-    },
+
     extend: {
       colors: {
-        imposter_red: '#FF0035',
-        cad_grey: '#8B939C',
-        eng_violet: '#59546C',
-        def_blue: '#38405F',
-        rich_black: '#0E131F',
+        imposter_red: 'FF0035',
+        grey: '8B939C',
+        violet: '59546C',
+        blue: '38405F',
+        black: '0E131F',
       },
       backgroundImage: {
         'random-line': "url('./src/assets/line.svg')",
