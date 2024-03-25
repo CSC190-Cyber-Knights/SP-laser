@@ -1,20 +1,21 @@
+import BgVideo from '../components/ui/BgVideo'
+import LaserVideo from '../assets/laser_footage.mp4'
 export const HomeBeta = () => {
   return (
-    <div className=" m-auto flex w-screen flex-col justify-center bg-rich_black p-2">
-      <section className="flex h-screen w-full flex-col items-start justify-center gap-4  p-8">
-        <div className="flex w-3/4 flex-col gap-4">
+    <div className=" m-auto flex w-screen flex-col justify-center bg-mat_grey p-0">
+      <section className=" flex min-h-screen min-w-full flex-col items-start justify-center  gap-4 overflow-hidden p-0">
+        <BgVideo src={LaserVideo} freezeTime={10} />
+        <div className="z-20 flex w-3/4 flex-col gap-4 pl-8">
           <div className="">
-            <h2 className="font-inter text-8xl font-bold uppercase text-imposter_red">Precision Laser Engraving</h2>
+            <h2 className="font-sans text-8xl font-bold uppercase text-imposter_red">Precision Laser Engraving</h2>
           </div>
 
           <div>
-            <p className="w-fit font-serif text-cad_grey">
+            <p className="w-fit font-sans text-lg font-extralight text-cad_grey">
               Welcome to the cutting edge of personalization—where your ideas meet the precision of laser engraving to
-              create lasting impressions. Our state-of-the-art laser technology transforms ordinary objects into
-              extraordinary treasures, etching your memories, designs, and messages with unparalleled accuracy. Whether
-              it's a bespoke gift that speaks volumes, a unique piece of decor that tells your story, or a professional
-              mark that sets your brand apart, we bring your vision to life with the perfect blend of craftsmanship and
-              innovation.
+              create lasting impressions. Whether it's a bespoke gift that speaks volumes, a unique piece of decor that
+              tells your story, or a professional mark that sets your brand apart, we bring your vision to life with the
+              perfect blend of craftsmanship and innovation.
             </p>
           </div>
         </div>
