@@ -9,13 +9,7 @@ export default {
       xl: '1280px',
       '2xl': '1536px',
     },
-    colors: {
-      red: 'FF0035',
-      grey: '8B939C',
-      violet: '59546C',
-      blue: '38405F',
-      black: '0E131F',
-    },
+
     extend: {
       colors: {
         imposter_red: 'FF0035',
