@@ -62,7 +62,7 @@ const AboutMe = () => {
         </div>
       </div>
       {/*Side box with image and links */}
-      <div style={{alignItems: 'center', border: '4px solid #ccc', padding: '30px', borderRadius: '10px'}}>
+      <div style={{alignItems: 'center', border: '2px solid #ccc', padding: '10px', borderRadius: '5px'}}>
         <img
           className={'align=left height=10px p-2'}
           src="https://cdn.pixabay.com/photo/2021/03/08/07/58/laser-6078455_960_720.jpg"

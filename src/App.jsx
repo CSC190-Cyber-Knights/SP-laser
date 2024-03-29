@@ -4,7 +4,8 @@ import {motion, useScroll, useSpring} from 'framer-motion'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import HomePage from './pages/HomePage.jsx'
 import {ContactForm} from './pages/ContactForm.jsx'
-import {SignIn} from './pages/SignIn.jsx'
+import {SignIn} from './components/auth/SignIn.jsx'
+import {SignUp} from './components/auth/SignUp.jsx'
 import AboutMe from './pages/AboutMe.jsx'
 import Gallery from './pages/Gallery.jsx'
 import {Layout} from './components/layout/Layout.jsx'
@@ -50,10 +51,10 @@ function App() {
           }
         />
         <Route
-          path={'/about'}
+          path={'/signup'}
           element={
             <Layout>
-              <AboutMe />
+              <SignUp />
             </Layout>
           }
         />
@@ -70,6 +71,14 @@ function App() {
           element={
             <Layout>
               <Admin />
+            </Layout>
+          }
+        />
+        <Route
+          path={'/about'}
+          element={
+            <Layout>
+              <AboutMe />
             </Layout>
           }
         />
