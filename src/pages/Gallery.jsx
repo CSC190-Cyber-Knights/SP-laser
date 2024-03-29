@@ -1,4 +1,4 @@
-import {getStorage, ref, getDownloadURL, list, listAll, uploadBytesResumable} from 'firebase/storage'
+import {getStorage, ref, getDownloadURL, list, listAll, uploadBytesResumable, deleteObject} from 'firebase/storage'
 import {db} from './ContactForm.jsx'
 import * as url from 'url'
 import PhotoObj from '../components/ui/Photo.jsx'
@@ -35,12 +35,73 @@ window.onload = function GeneratePhotos() {
     })
 }
 
-function CreateNewPhoto(category, url) {
+function CreateNewPhoto(category, url, fullPath) {
+  let photoContainer = document.createElement('div')
+  photoContainer.className = 'photo-container'
+  photoContainer.style.width = 'calc(100% / 6)' // Set width to 1/6th of the parent container's width
+  photoContainer.style.height = 'calc(100% / 6)' // Set height to 1/6th of the parent container's height
+
   let newImg = new Image()
   newImg.src = url
   newImg.alt = 'Image not found'
-  newImg.className = category
-  document.getElementById('galleryID').appendChild(newImg)
+  newImg.className = 'photo'
+  photoContainer.appendChild(newImg)
+
+  // Create a container for the remove button
+  let removeContainer = document.createElement('div')
+  removeContainer.className = 'remove-container'
+
+  // Create a remove button
+  let removeBtn = document.createElement('button')
+  removeBtn.innerText = 'Remove'
+  removeBtn.onclick = function () {
+    removePhoto(fullPath)
+    photoContainer.remove() // Remove the entire photo container when removed
+  }
+
+  // Apply inline styles to the remove button
+  removeBtn.style.backgroundColor = '#FFFFFF'
+  removeBtn.style.color = '#000000'
+  removeBtn.style.border = '2px solid #FFFFFF'
+  removeBtn.style.borderRadius = '8px'
+  removeBtn.style.padding = '6px 12px' // Adjusted padding
+  removeBtn.style.fontSize = '0.8em' // Smaller font size
+
+  removeContainer.appendChild(removeBtn)
+  photoContainer.appendChild(removeContainer)
+
+  // Initially hide the remove button
+  removeContainer.style.display = 'none'
+
+  // Show the remove button when an image is added
+  photoContainer.onmouseover = function () {
+    removeContainer.style.display = 'block'
+  }
+
+  // Hide the remove button when mouse leaves the image
+  photoContainer.onmouseleave = function () {
+    removeContainer.style.display = 'none'
+  }
+
+  document.getElementById('galleryID').appendChild(photoContainer)
+}
+
+// Function to remove photo
+async function removePhoto(fullPath) {
+  try {
+    await deleteObject(ref(storage, fullPath))
+    console.log('File deleted successfully')
+    // Remove the photo from the UI
+    const photoToRemove = document.querySelector(`img[src="${fullPath}"]`)
+    if (photoToRemove) {
+      photoToRemove.parentNode.remove() // Remove the parent container of the image
+    } else {
+      console.error('Corresponding DOM element not found for deleted photo.')
+    }
+  } catch (error) {
+    console.error('Error removing file: ', error)
+    // Handle errors here
+  }
 }
 
 //Might need the commented code below in the future, ask Paul before deleting please
