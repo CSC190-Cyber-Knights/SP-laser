@@ -38,14 +38,42 @@ window.onload = function GeneratePhotos() {
 function CreateNewPhoto(category, url, fullPath) {
   let photoContainer = document.createElement('div')
   photoContainer.className = 'photo-container'
-  photoContainer.style.width = 'calc(100% / 6)' // Set width to 1/6th of the parent container's width
-  photoContainer.style.height = 'calc(100% / 6)' // Set height to 1/6th of the parent container's height
+  photoContainer.style.position = 'relative' //position child elements absolutely with respect to the photoContainer's bounds
+  photoContainer.style.width = 'calc(100% / 6)'
+  photoContainer.style.height = 'calc(100% / 6)'
+  photoContainer.style.overflow = 'hidden' //for good measure
 
   let newImg = new Image()
   newImg.src = url
   newImg.alt = 'Image not found'
   newImg.className = 'photo'
+  newImg.style.width = '100%' //image covers container width
+  newImg.style.height = '100%' //image covers container height
+  newImg.style.objectFit = 'cover' //maintaining aspect ratio
   photoContainer.appendChild(newImg)
+
+  //onclick event listener
+  newImg.onclick = function () {
+    //checks if image is full-size. if YES, clear styles and reapply initial styles so that it returns to original state
+    if (this.style.position === 'fixed') {
+      //clear all inline styles
+      this.style = ''
+      //initial styles for the gallery view
+      this.style.width = '100%'
+      this.style.height = '100%'
+      this.style.objectFit = 'cover'
+    } else {
+      //if image not in full-size, applies following styles to expand it
+      this.style.position = 'fixed'
+      this.style.top = '50%'
+      this.style.left = '50%'
+      this.style.transform = 'translate(-50%, -50%)'
+      this.style.width = '80%' //may be adjusted
+      this.style.height = '80%'
+      this.style.objectFit = 'contain' //show full-size image
+      this.style.zIndex = '1000' //put it above other content
+    }
+  }
 
   // Create a container for the remove button
   let removeContainer = document.createElement('div')
