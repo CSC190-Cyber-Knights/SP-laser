@@ -46,7 +46,7 @@ function CreateNewPhoto(category, url, fullPath) {
   let newImg = new Image()
   newImg.src = url
   newImg.alt = 'Image not found'
-  newImg.className = 'photo'
+  newImg.className = category
   newImg.style.width = '100%' //image covers container width
   newImg.style.height = '100%' //image covers container height
   newImg.style.objectFit = 'cover' //maintaining aspect ratio
