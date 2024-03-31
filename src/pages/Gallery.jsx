@@ -4,35 +4,30 @@ import * as url from 'url'
 import PhotoObj from '../components/ui/Photo.jsx'
 import {useState} from 'react'
 
-//const docRef = doc(db, "gs://laserengraving-9a35a.appspot.com/images", "/IMG_0950.jpeg");
-//const docSnap = await getDoc(docRef);
-const storage = getStorage() //connect to firebase storage
-const imagesRef = ref(storage, 'images/') //reference to image in firebase storage
-const testImage = ref(storage, 'images/IMG_0950.jpeg') //test image
+const databaseReference = getStorage() //connect to firebase storage
+const rootImagesFolderReference = ref(databaseReference, 'images/') //reference to images folder in firebase databaseReference
 
-window.onload = function GeneratePhotos() {
-  console.log('GeneratePhotos Called')
-  listAll(imagesRef)
-    .then((imagesListResult) => {
-      imagesListResult.prefixes.forEach((folderRef) => {
-        const category = folderRef.name + ' w-1/6 h-1/6 photo'
-        CreateInput(folderRef.name)
+window.onload = RetrievePhotos()
 
-        listAll(folderRef).then((itemListResult) => {
-          itemListResult.items.forEach((itemRef) => {
-            getDownloadURL(ref(storage, itemRef.fullPath))
-              .then((myUrl) => {
-                console.log(category + ', ' + itemRef.fullPath)
-                CreateNewPhoto(category, myUrl)
-              })
-              .catch((error) => {})
-          })
+async function RetrievePhotos() {
+  //console.log("Generating Photos")
+  const imagesFolderList = await list(rootImagesFolderReference, {maxResults: 7}) //
+
+  for (const subFolderReference of imagesFolderList.prefixes) {
+    const category = subFolderReference.name
+    CreateInput(subFolderReference.name)
+    //console.log(category);
+    const imagesList = await list(subFolderReference, {maxResults: 100 /*Number of images to display per subfolder*/})
+
+    for (const imageReference of imagesList.items) {
+      getDownloadURL(ref(databaseReference, imageReference.fullPath))
+        .then((myUrl) => {
+          //console.log(category + ', ' + imageReference.fullPath)
+          CreateNewPhoto(category, myUrl)
         })
-      })
-    })
-    .catch((error) => {
-      // Uh-oh, an error occurred!
-    })
+        .catch((error) => {})
+    }
+  }
 }
 
 function CreateNewPhoto(category, url, fullPath) {
@@ -49,7 +44,7 @@ function CreateNewPhoto(category, url, fullPath) {
   newImg.className = category
   newImg.style.width = '100%' //image covers container width
   newImg.style.height = '100%' //image covers container height
-  newImg.style.objectFit = 'cover' //maintaining aspect ratio
+  newImg.style.objectFit = 'fill' //maintaining aspect ratio
   photoContainer.appendChild(newImg)
 
   //onclick event listener
@@ -117,7 +112,7 @@ function CreateNewPhoto(category, url, fullPath) {
 // Function to remove photo
 async function removePhoto(fullPath) {
   try {
-    await deleteObject(ref(storage, fullPath))
+    await deleteObject(ref(databaseReference, fullPath))
     console.log('File deleted successfully')
     // Remove the photo from the UI
     const photoToRemove = document.querySelector(`img[src="${fullPath}"]`)
@@ -131,34 +126,6 @@ async function removePhoto(fullPath) {
     // Handle errors here
   }
 }
-
-//Might need the commented code below in the future, ask Paul before deleting please
-/*
-async function pageToken(){
-
-  const firstPage = await list(imagesRef, { maxResults: 100 });
-  //Do stuff here
-
-  console.log(firstPage.toString())
-  for (let i = 0; i < firstPage.items.length; i++)
-  {
-    getDownloadURL(ref(storage, firstPage.items[i].name))
-        .then((myUrl) => {
-          console.log(firstPage.items[i].name)
-          CreateNewPhoto(category, myUrl)
-        })
-        .catch((error) => {})
-  }
-
-  if (firstPage.nextPageToken){
-    const secondPage = await list(imagesRef, {
-      maxResults: 100,
-      pageToken: firstPage.nextPageToken,
-    });
-    //Do stuff here
-  }
-}
-*/
 
 function CreateInput(category) {
   let input = document.createElement('input')
@@ -208,6 +175,8 @@ function checkAll() {
 const GalleryPage = () => {
   const [category, setCategory] = useState('/images/')
   const [file, setFile] = useState(null)
+  //RetrievePhotos()
+  //console.log("Test")
   function handleChange(event) {
     setCategory(event.target.value)
   }
@@ -216,9 +185,9 @@ const GalleryPage = () => {
       alert('Please choose an image')
     }
 
-    const storageRef = ref(storage, `${category}${file.name}`)
+    const storageRef = ref(databaseReference, `${category}${file.name}`)
 
-    // Receives the storage reference and the file to upload.
+    // Receives the databaseReference reference and the file to upload.
     const uploadTask = uploadBytesResumable(storageRef, file)
 
     uploadTask.on(
@@ -260,7 +229,7 @@ const GalleryPage = () => {
           <h1 id={'inputs'} className="py-8 text-left text-3xl font-bold" style={{color: '#FFFFFF'}}>
             <span style={{marginRight: '16px'}}></span>
           </h1>
-          <ul id={'galleryID'} className={'flex-container'}></ul>
+          <ul id={'galleryID'} className={'flex-container gap-4'}></ul>
         </div>
       </div>
       <div className="rounded-lg w-fit flex-col space-y-4 border-4 border-white">
