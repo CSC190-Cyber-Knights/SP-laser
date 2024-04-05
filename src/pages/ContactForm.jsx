@@ -30,6 +30,12 @@ export const db = getFirestore(app)
 
 // Connect the Firebase storage
 const storage = getStorage() //connect to firebase storage
+
+//EmailJS credentials
+const EmailServiceID = 'service_zadrexa'
+const EmailTemplateID = 'template_wi09qe3'
+const EmailPublicKey ='Io04H3uOQN5v-GZbf'
+
 export const ContactForm = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -39,6 +45,7 @@ export const ContactForm = () => {
     orderDescription: '',
     file: '',
   })
+
 
   const [file, setFile] = useState(null)
   let validForm = false
@@ -69,8 +76,7 @@ export const ContactForm = () => {
     if (validForm === true) {
       // the ID used are based anishrajah personal paid emailjs account
       emailjs
-        .sendForm('service_ywhri5k', 'template_i2wvm7j', sForm, 'wme-Hao43E-l4SCEG') //send to email result of success and text or error
-
+        .sendForm(EmailServiceID,EmailTemplateID,sForm,EmailPublicKey)
         .then(
           (result) => {
             console.log('Success', result.status, result.text)
@@ -83,6 +89,7 @@ export const ContactForm = () => {
 
     // upload the image to the Firebase storage under 'uploads'
     // if there is no file uploaded then skip the uploading to image to Firebase storage
+    /*
     if (file) {
       const storageRef = ref(storage, `/uploads/${file.name}`)
 
@@ -100,9 +107,10 @@ export const ContactForm = () => {
         }
       )
     }
+    */
 
     // erase the file name from the label
-    document.getElementById('file').value = null
+    //document.getElementById('file').value = null
 
     // initialize the all the fields in the form
     setFormData({
@@ -166,15 +174,15 @@ export const ContactForm = () => {
       return true
     }
   }
-  function validateFile(input_str) {
-    if (document.getElementById('file').files.length === 0) {
-      alert('Invalid empty file upload')
-      validForm = false
-      return false
-    } else {
-      return true
-    }
-  }
+  //function validateFile(input_str) {
+   // if (document.getElementById('file').files.length === 0) {
+   //   alert('Invalid empty file upload')
+   //   validForm = false
+   //   return false
+   // } else {
+   //   return true
+   // }
+  //}
   const validateForm = (e) => {
     //run through each entered value into functions above
     //      alert("val event")
@@ -183,14 +191,14 @@ export const ContactForm = () => {
     const lName = document.getElementById('lastName').value
     const email = document.getElementById('userEmail').value
     const description = document.getElementById('orderDescription').value
-    const file = document.getElementById('file').value
+    //const file = document.getElementById('file').value
     validForm = true
     validateName(fName)
     validateName(lName)
     validateEmail(email)
     validatePhoneNumber(phone)
     validateDescription(description)
-    validateFile(file)
+    //validateFile(file)
   }
 
   return (
@@ -358,6 +366,7 @@ export const ContactForm = () => {
         </div>
 
         {/*file upload button */}
+        {/*
         <div>
           <input
             type="file"
@@ -372,7 +381,7 @@ export const ContactForm = () => {
             onChange={(e) => setFile(e.target.files[0])}
             accept="/image/*"
           />
-        </div>
+        </div>*/}
 
         {/* hidden element for the email forwarding */}
         <div>
