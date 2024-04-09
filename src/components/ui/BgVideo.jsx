@@ -24,6 +24,8 @@ export const BgVideo = ({src, freezeTime}) => {
       className={' absolute z-10 min-h-full w-auto min-w-full object-cover opacity-30'}
       autoPlay={true}
       onAnimationStart={true}
+      controls={false}
+      muted={true}
     >
       <source src={src} type={'video/mp4'} />
     </video>
