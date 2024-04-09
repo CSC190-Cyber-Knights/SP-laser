@@ -7,10 +7,11 @@ import {InfoCard} from '../components/ui/InfoCard.jsx'
 }
 
 const AboutMe = () => {
+  console.log('test')
   return (
     <div
       className={
-        "justifyContent: 'flex-end' m-auto flex max-w-7xl flex-col items-center bg-[#ffffff] p-2 font-inter " //css code
+        "justifyContent: 'flex-end' font-inter m-auto flex max-w-7xl flex-col items-center bg-[#ffffff] p-2 " //css code
       }
     >
       <header className={'entry-header'}>

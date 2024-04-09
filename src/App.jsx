@@ -10,6 +10,7 @@ import Gallery from './pages/Gallery.jsx'
 import {Layout} from './components/layout/Layout.jsx'
 import {HomeBeta} from './pages/HomeBeta.jsx'
 import {Admin} from './pages/Admin.jsx'
+import GalleryItem from './pages/gallery/GalleryItem.jsx'
 
 function App() {
   const {scrollYProgress} = useScroll()
@@ -70,6 +71,14 @@ function App() {
           element={
             <Layout>
               <Admin />
+            </Layout>
+          }
+        />
+        <Route
+          path={'/gallery/:itemId'}
+          element={
+            <Layout>
+              <GalleryItem />
             </Layout>
           }
         />
