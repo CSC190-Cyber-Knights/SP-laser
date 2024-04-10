@@ -1,9 +1,8 @@
-import React from 'react'
 import {Link} from 'react-router-dom'
 
 const GalleryPage = () => {
   const thumbnails = [
-    {url: 'src/assets/firearms_thumbnail.jpeg', alt: 'weapon engraving', link: './gallery/firearms', title: 'Firearms'},
+    {url: 'src/assets/firearms_thumbnail.jpg', alt: 'weapon engraving', link: './gallery/firearms', title: 'firearms'},
     {
       url: 'src/assets/thermos_thumbnail.jpeg',
       alt: 'thermos & cups engraving',
@@ -14,7 +13,7 @@ const GalleryPage = () => {
   ]
 
   return (
-    <section className={'flex h-full w-full items-center justify-center font-sans'}>
+    <section className={'flex min-h-screen w-full items-center justify-center pb-8 font-sans'}>
       <div className={'grid grid-rows-4 gap-4 p-4 md:grid-cols-2 md:grid-rows-2 md:pt-8'}>
         <div className={'flex h-full w-full text-center'}>
           <h2 className={'h-full w-full content-center font-sans text-7xl text-imposter_red'}>Gallery</h2>

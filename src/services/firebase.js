@@ -4,7 +4,7 @@ import {initializeApp} from 'firebase/app'
 import {getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged} from 'firebase/auth'
 import {getStorage} from 'firebase/storage'
 
-// Your web app's Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyDRGD42qYfcoahaW-THL9ZrkDP1GV9kbsQ',
   authDomain: 'laserengraving-9a35a.firebaseapp.com',
@@ -24,11 +24,10 @@ export default storage
 export const auth = getAuth(app)
 const provider = new GoogleAuthProvider()
 
-//function that prompts the user with a popup to sign in via google
+//function that prompts the user with a popup to sign in via Google
 export const userSignIn = async () => {
   return signInWithPopup(auth, provider)
     .then((result) => {
-      //results from google
       const user = result.user.displayName
       const email = result.user.email
       console.log(user, email)

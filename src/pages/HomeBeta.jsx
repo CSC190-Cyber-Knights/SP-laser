@@ -3,14 +3,12 @@ import LaserVideo from '../assets/laser_footage.mp4'
 export const HomeBeta = () => {
   return (
     <div className=" m-auto flex w-screen flex-col justify-center bg-mat_grey p-0">
-      <section className=" flex min-h-screen min-w-full flex-col items-start justify-center  gap-4 overflow-hidden p-0">
+      <section className=" flex min-h-screen min-w-full flex-col  justify-center  gap-4 overflow-hidden p-0">
         <BgVideo src={LaserVideo} freezeTime={10} />
-        <div className="z-20 flex w-full flex-col gap-4 p-2">
-          <div className="">
-            <h2 className="w-fit text-center font-sans text-6xl font-bold uppercase text-imposter_red md:text-left md:text-6xl">
-              Precision Laser Engraving
-            </h2>
-          </div>
+        <div className="z-20 flex w-full flex-col gap-4 p-2 text-center">
+          <h2 className="w-full text-center font-sans text-6xl font-bold uppercase text-imposter_red md:text-6xl">
+            Precision Laser Engraving
+          </h2>
 
           <div>
             <p className="w-full p-2 pt-8  text-center font-sans text-lg font-extralight text-cad_grey">
@@ -31,7 +29,7 @@ export const HomeBeta = () => {
 
       <section className="flex h-screen max-w-full flex-col justify-evenly gap-1 bg-no-repeat p-8">
         <div className="w-fit self-center text-center">
-          <h2 className="font-inter text-center text-3xl font-extrabold uppercase text-cad_grey md:text-8xl">
+          <h2 className="font-inter text-center text-3xl font-extrabold uppercase text-cad_grey md:text-5xl">
             Lets Collaborate
           </h2>
         </div>
