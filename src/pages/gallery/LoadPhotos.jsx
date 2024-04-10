@@ -8,10 +8,6 @@ const LoadPhotos = ({photos, nextPageToken, fetchNextPage}) => {
           {photos.map((photo, index) => (
             <div key={index} className="rounded max-w-sm overflow-hidden shadow-lg">
               <img src={photo} loading="lazy" alt={`Photo ${index}`} className="w-full" />
-              <div className="px-6 py-4">
-                <div className="mb-2 text-xl font-bold">Photo {index + 1}</div>
-                {/* Add more photo details here if available */}
-              </div>
             </div>
           ))}
         </div>

@@ -7,7 +7,7 @@ const GalleryPage = () => {
       url: 'src/assets/thermos_thumbnail.jpeg',
       alt: 'thermos & cups engraving',
       link: './gallery/thermos',
-      title: 'Thermoses',
+      title: 'thermos',
     },
     {url: 'src/assets/other_thumbnail.jpeg', alt: 'other engraving', link: './gallery/other', title: 'Other'},
   ]

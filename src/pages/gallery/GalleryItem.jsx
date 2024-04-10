@@ -36,7 +36,7 @@ export const GalleryItem = () => {
   }
 
   return (
-    <div>
+    <div className={'flex py-8'}>
       <LoadPhotos photos={images} nextPageToken={nextPageToken} fetchNextPage={fetchNextPage} />
       {loading && <p>loading...</p>}
     </div>
