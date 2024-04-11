@@ -28,6 +28,7 @@ export default function Header() {
   return (
     <header className="font-inter bg-def_blue">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8" aria-label="Global">
+        <img src={"/docs/media/Everything Laser Engraved-logos_white.png"} width={"50"} alt={""}/>
         <div className="flex lg:flex-1">
           <NavLink className="-m-1.5 p-1.5" to={'/'}>
             HOME
