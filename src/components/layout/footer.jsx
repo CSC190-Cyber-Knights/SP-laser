@@ -3,9 +3,23 @@ export const Footer = () => {
     <footer className="bg-gray-100 text-center text-gray-600 lg:text-left">
       <div className="flex items-center justify-center border-b border-gray-300 p-6 lg:justify-between">
         <div className="mr-12 hidden lg:block">
-          <span>© Everything Lazer Engraved, Inc. All Rights Reserved</span>
+          <span>© Everything Lazer Engraved, Inc. All Rights Reserved</span>{' '}
+          {/* <------- Or change this line to update copyright info with LLC info */}
         </div>
         <div className="flex justify-center">
+          {/* Comment out LLC Info */}
+          {/* <-------- Remove this when ready
+
+        <div className="mr-12 hidden lg:block">
+          <span>© Placeholder LLC. All Rights Reserved</span>
+        </div>
+        <div className="flex justify-center">
+
+          Remove this when ready -------> */}
+
+          {/* Comment out the Facebook icon */}
+          {/* <-------- Remove this when ready
+
           <a href="https://www.facebook.com/" className="mr-6 text-gray-600">
             <svg
               aria-hidden="true"
@@ -23,6 +37,12 @@ export const Footer = () => {
               ></path>
             </svg>
           </a>
+
+          Remove this when ready -------> */}
+
+          {/* Comment out the linkedin icon */}
+          {/* <-------- Remove this when ready
+
           <a href="https://www.linkedin.com/" className="mr-6 text-gray-600">
             <svg
               aria-hidden="true"
@@ -40,6 +60,12 @@ export const Footer = () => {
               ></path>
             </svg>
           </a>
+
+          Remove this when ready -------> */}
+
+          {/* Comment out the Google icon */}
+          {/* <-------- Remove this when ready
+
           <a href="https://www.google.com/" className="mr-6 text-gray-600">
             <svg
               aria-hidden="true"
@@ -57,6 +83,12 @@ export const Footer = () => {
               ></path>
             </svg>
           </a>
+
+          Remove this when ready -------> */}
+
+          {/* Comment out the Instagram icon */}
+          {/* <------ Remove this when ready
+
           <a href="#!" className="mr-6 text-gray-600">
             <svg
               aria-hidden="true"
@@ -75,6 +107,11 @@ export const Footer = () => {
             </svg>
           </a>
 
+          Remove this when ready -------> */}
+
+          {/* Comment out the Twitter icon */}
+          {/* <------ Remove this when ready
+
           <a href="https://www.twitter.com/" className="mr-6 text-gray-600">
             <svg
               aria-hidden="true"
@@ -92,6 +129,8 @@ export const Footer = () => {
               ></path>
             </svg>
           </a>
+
+          Remove this when ready -------> */}
         </div>
       </div>
     </footer>
