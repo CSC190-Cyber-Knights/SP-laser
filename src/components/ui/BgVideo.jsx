@@ -21,9 +21,9 @@ export const BgVideo = ({src, freezeTime}) => {
   return (
     <video
       ref={videoRef}
-      className={' absolute z-10 min-h-full w-auto min-w-full object-cover opacity-30'}
+      className={'absolute min-h-full w-auto min-w-fit object-cover opacity-30'}
       autoPlay={true}
-      onAnimationStart={true}
+      disablePictureInPicture={true}
       controls={false}
       muted={true}
     >

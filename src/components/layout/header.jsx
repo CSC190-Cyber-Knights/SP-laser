@@ -1,6 +1,6 @@
 import {Fragment, useState} from 'react'
 import {Dialog, Popover, Transition} from '@headlessui/react'
-import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
+import {Bars3Icon, XMarkIcon, HomeIcon} from '@heroicons/react/24/outline'
 import {Link, NavLink} from 'react-router-dom'
 
 export default function Header() {
@@ -18,7 +18,7 @@ export default function Header() {
       )
     } else {
       return (
-        <NavLink className={'text-sm font-light  leading-6 text-gray-900'} to={path}>
+        <NavLink className={'text-sm font-light leading-6'} to={path}>
           {label}
         </NavLink>
       )
@@ -26,12 +26,15 @@ export default function Header() {
   }
 
   return (
-    <header className="font-inter bg-def_blue">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8" aria-label="Global">
-        <img src={"/docs/media/Everything Laser Engraved-logos_white.png"} width={"50"} alt={""}/>
+    <header className="font-inter relative z-30 min-h-8 bg-def_blue dark:text-white">
+      <nav className="z-50 mx-auto flex max-w-7xl  items-center justify-between p-2 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <NavLink className="-m-1.5 p-1.5" to={'/'}>
-            HOME
+            <Link to={'/'}>
+              <h1 className={'font-poppins text-3xl font-bold capitalize dark:text-white'}>
+                ELE<span className={'text-imposter_red'}>.</span>
+              </h1>
+            </Link>
           </NavLink>
         </div>
 
@@ -66,7 +69,7 @@ export default function Header() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <NaviLink path={'/'} label={'lasermade'} />
+            <NaviLink path={'/'} label={'Home'} />
             <button
               type="button"
               className="rounded-md -m-2.5 p-2.5 text-gray-700"
@@ -78,7 +81,7 @@ export default function Header() {
           </div>
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="space-y-2 py-6">
+              <div className="space-y-2 py-6 text-white">
                 <NaviLink popover={false} label={'Gallery'} path={'/gallery'} />
                 <NaviLink popover={false} label={'Contact'} path={'/contact'} />
                 <NaviLink popover={false} label={'About'} path={'/about'} />

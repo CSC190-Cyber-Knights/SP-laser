@@ -7,7 +7,7 @@ export const HomeBeta = () => {
         <BgVideo src={LaserVideo} freezeTime={10} />
         <div className="z-20 flex w-full flex-col gap-4 p-2 text-center">
           <h2 className="w-full text-center font-sans text-6xl font-bold uppercase text-imposter_red md:text-6xl">
-            Precision Laser Engraving
+            Everything Laser Engraved
           </h2>
 
           <div>

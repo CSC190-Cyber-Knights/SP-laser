@@ -2,13 +2,13 @@ import Header from './header.jsx'
 import PropTypes from 'prop-types'
 import Footer from './footer.jsx'
 
-export const Layout = ({children}) => {
+export const Layout = (props) => {
   return (
-    <>
+    <div>
       <Header />
-      <main>{children}</main>
+      {props.children}
       <Footer />
-    </>
+    </div>
   )
 }
 
