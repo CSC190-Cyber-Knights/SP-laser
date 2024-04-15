@@ -1,32 +1,107 @@
 import {useState} from 'react'
-import {imageUpload} from '../services/imageCRUD'
+import {ref, getDownloadURL, uploadBytesResumable, getStorage} from 'firebase/storage'
 export const Admin = () => {
-  const [imagePath, setImagePath] = useState(null)
+  const [category, setCategory] = useState('/images/')
+  const [file, setFile] = useState(null)
+  const databaseReference = getStorage()
+  function handleChange(event) {
+    setCategory(event.target.value)
+  }
   const handleUpload = () => {
-    // if there is nothing in the image variable, a file path, then return and do nothing
-    if (imagePath == null) return
-    imageUpload(imagePath)
+    if (!file) {
+      alert('Please choose an image')
+    }
+
+    const storageRef = ref(databaseReference, `${category}${file.name}`)
+
+    // Receives the databaseReference reference and the file to upload.
+    const uploadTask = uploadBytesResumable(storageRef, file)
+
+    uploadTask.on(
+        'state_changed',
+        (err) => console.log(err),
+        () => {
+          // download url
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            console.log(url)
+          })
+        }
+    )
+    document.getElementById('file').value = null
+    setCategory('/images/')
   }
   return (
-    <div>
-      <h1>this is the admin page, please upload something to test</h1>
-      <div>
-        <div className="mb-3 w-96">
-          <label htmlFor="formFile" className="mb-2 inline-block text-neutral-700 dark:text-neutral-200">
-            Upload Files
-          </label>
-          <input
-            className="focus:border-primary focus:shadow-te-primary dark:focus:border-primary relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:text-neutral-700 focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100"
-            onChange={(event) => {
-              setImagePath(event.target.files)
-            }}
-            type="file"
-            multiple="multiple"
-            id="formFile"
-          />
-          <button onClick={handleUpload}>Upload Image</button>
+      <div
+          style={{
+            backgroundColor: '#003153',
+          }}
+      >
+        <div className="rounded-lg w-fit flex-col space-y-4">
+          <h1 className="items-center text-center text-lg font-bold text-white">Add Photo to Gallery</h1>
+
+          <form className="flex-col items-start space-y-3 text-white" onSubmit>
+            <div>
+              <h1 className="text-md font-bold items-center text-left text-white">Choose Category</h1>
+
+              <input
+                  type="radio"
+                  name="category"
+                  value="/images/"
+                  id="images"
+                  checked={category === '/images/'}
+                  onChange={handleChange}
+              />
+              <label className="text-md text-white mr-3">None</label>
+              <input
+                  type="radio"
+                  name="category"
+                  value="/images/firearm_accessories/"
+                  id="firearm_accessories"
+                  checked={category === '/images/firearm_accessories/'}
+                  onChange={handleChange}
+              />
+              <label className="text-md text-white mr-3">Firearm Accessories</label>
+              <input
+                  type="radio"
+                  name="category"
+                  value="/images/firearms/"
+                  id="firearms"
+                  checked={category === '/images/firearms/'}
+                  onChange={handleChange}
+              />
+              <label className="text-md text-white mr-3">Firearms</label>
+              <input
+                 type="radio"
+                  name="category"
+                  value="/images/thermos/"
+                  id="thermos"
+                  checked={category === '/images/thermos/'}
+                  onChange={handleChange}
+              />
+              <label className="text-md text-white">Thermos</label>
+            </div>
+            <div className="flex w-full ">
+              <input
+                  className=""
+                 type="file"
+                 name="file"
+                 id="file"
+                 onChange={(event) => setFile(event.target.files[0])}
+                 accept="/image/*"
+              />
+            </div>
+            <div>
+             <button
+                  type="button"
+                  className="rounded-lg bg-black px-2.5 py-1.5 text-center text-sm
+                  font-semibold text-white"
+                  onClick={handleUpload}
+              >
+                Upload
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-    </div>
   )
 }
