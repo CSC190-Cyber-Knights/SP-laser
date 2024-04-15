@@ -1,35 +1,40 @@
-import {useRef, useEffect} from 'react'
+import { useRef, useEffect } from 'react';
 
-export const BgVideo = ({src, freezeTime}) => {
-  const videoRef = useRef(null)
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-    video.muted = true
-    // freeze time with an event listener
-    video.addEventListener('timeupdate', () => {
-      if (video.currentTime >= freezeTime) {
-        video.pause()
-      }
-    })
-    // cleanup
-    return () => {
-      video.removeEventListener('timeupdate', this)
-    }
-  }, [freezeTime])
+export const BgVideo = ({ src }) => {
+    const videoRef = useRef(null);
 
-  return (
-    <video
-      ref={videoRef}
-      className={'absolute min-h-full w-auto min-w-fit object-cover opacity-30'}
-      autoPlay={true}
-      disablePictureInPicture={true}
-      controls={false}
-      muted={true}
-    >
-      <source src={src} type={'video/mp4'} />
-    </video>
-  )
-}
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
 
-export default BgVideo
+        video.muted = true;
+        video.loop = true; // Add loop attribute to make the video loop continuously
+
+        return () => {
+            video.removeEventListener('timeupdate', this);
+        };
+    }, []);
+
+    return (
+        <div style={{ position: 'relative', width: '100%', height: 'calc(100vh - 80px)' }}>
+            {/* Assuming the header height is 80px, you may need to adjust this value based on your actual header height */}
+            <video
+                ref={videoRef}
+                className={'absolute top-0 left-0 w-full h-full object-cover opacity-30 pointer-events-none'}
+                autoPlay={true}
+                disablePictureInPicture={true}
+                controls={false}
+                muted={true}
+            >
+                <source src={src} type={'video/mp4'} />
+            </video>
+        </div>
+    );
+};
+
+export default BgVideo;
+
+
+
+
+
