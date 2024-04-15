@@ -9,6 +9,21 @@ const rootImagesFolderReference = ref(databaseReference, 'images/') //reference 
 
 window.onload = RetrievePhotos()
 
+//used for API bundling - cached photos are not called again
+async function getCachedUrl(imageReference) {
+  const fullPath = imageReference.fullPath
+  const cachedUrl = localStorage.getItem(fullPath)
+  if (cachedUrl) {
+    //console.log("Using cached URL for: ", fullPath);
+    return cachedUrl
+  } else {
+    const newUrl = await getDownloadURL(ref(databaseReference, fullPath))
+    localStorage.setItem(fullPath, newUrl)
+    //console.log("Caching new URL for: ", fullPath);
+    return newUrl
+  }
+}
+
 async function RetrievePhotos() {
   //console.log("Generating Photos")
   const imagesFolderList = await list(rootImagesFolderReference, {maxResults: 7}) //
@@ -20,10 +35,10 @@ async function RetrievePhotos() {
     const imagesList = await list(subFolderReference, {maxResults: 100 /*Number of images to display per subfolder*/})
 
     for (const imageReference of imagesList.items) {
-      getDownloadURL(ref(databaseReference, imageReference.fullPath))
+      getCachedUrl(imageReference)
         .then((myUrl) => {
           //console.log(category + ', ' + imageReference.fullPath)
-          CreateNewPhoto(category, myUrl)
+          CreateNewPhoto(category, myUrl, imageReference.fullPath)
         })
         .catch((error) => {})
     }
@@ -187,8 +202,12 @@ const GalleryPage = () => {
 
     const storageRef = ref(databaseReference, `${category}${file.name}`)
 
-    // Receives the databaseReference reference and the file to upload.
-    const uploadTask = uploadBytesResumable(storageRef, file)
+    //metadata for cache control
+    const metadata = {
+      cacheControl: 'public, max-age=31536000', //cached for max-age time
+    }
+
+    const uploadTask = uploadBytesResumable(storageRef, file, metadata)
 
     uploadTask.on(
       'state_changed',
@@ -203,6 +222,7 @@ const GalleryPage = () => {
     document.getElementById('file').value = null
     setCategory('/images/')
   }
+
   return (
     <div
       style={{
