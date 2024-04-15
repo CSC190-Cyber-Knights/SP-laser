@@ -34,7 +34,7 @@ const storage = getStorage() //connect to firebase storage
 //EmailJS credentials
 const EmailServiceID = 'service_zadrexa'
 const EmailTemplateID = 'template_wi09qe3'
-const EmailPublicKey ='Io04H3uOQN5v-GZbf'
+const EmailPublicKey = 'Io04H3uOQN5v-GZbf'
 
 export const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -45,7 +45,6 @@ export const ContactForm = () => {
     orderDescription: '',
     file: '',
   })
-
 
   const [file, setFile] = useState(null)
   let validForm = false
@@ -75,17 +74,22 @@ export const ContactForm = () => {
     // check if valid form to send
     if (validForm === true) {
       // the ID used are based anishrajah personal paid emailjs account
-      emailjs
-        .sendForm(EmailServiceID,EmailTemplateID,sForm,EmailPublicKey)
-        .then(
-          (result) => {
-            console.log('Success', result.status, result.text)
-          },
-          (error) => {
-            console.log('FAILED', error)
-          }
-        )
+      emailjs.sendForm(EmailServiceID, EmailTemplateID, sForm, EmailPublicKey).then(
+        (result) => {
+          console.log('Success', result.status, result.text)
+        },
+        (error) => {
+          console.log('FAILED', error)
+        }
+      )
+    } else {
+      alert('Invalid form')
     }
+    document.getElementById('firstName').style.border = '1px solid white'
+    document.getElementById('lastName').style.border = '1px solid white'
+    document.getElementById('userEmail').style.border = '1px solid white'
+    document.getElementById('userPhone').style.border = '1px solid white'
+    document.getElementById('orderDescription').style.border = '1px solid white'
 
     // upload the image to the Firebase storage under 'uploads'
     // if there is no file uploaded then skip the uploading to image to Firebase storage
@@ -134,9 +138,9 @@ export const ContactForm = () => {
     //   alert("val email")
     for (let i = 0; i < result.length; i++) {
       //run through each letter
-      if (!regex.test(result[i])) {
+      if (!regex.test(result[i]) || !emailString) {
         //if email doesnt follow what set in regex, sends alert and return false email
-        alert('Invalid email')
+        //alert('Invalid email')
         validForm = false
         return false
       }
@@ -145,9 +149,9 @@ export const ContactForm = () => {
   }
   function validateName(nameString) {
     //       alert("val name")
-    if (!/^[a-zA-Z]*$/g.test(nameString)) {
+    if (!/^[a-zA-Z]*$/g.test(nameString) || !nameString) {
       //test if name doesn't follow upper or lower case letters, alerts and returns false
-      alert('Invalid character in name')
+      //alert('Invalid character in name')
       validForm = false
       return false
     } else {
@@ -160,14 +164,14 @@ export const ContactForm = () => {
     if (regex.test(input_str)) {
       return true
     } else {
-      alert('Invalid phone number')
+      //alert('Invalid phone number')
       validForm = false
       return false
     }
   }
   function validateDescription(input_str) {
-    if (!document.getElementById('orderDescription').value) {
-      alert('Invalid empty description')
+    if (!input_str) {
+      //alert('Invalid empty description')
       validForm = false
       return false
     } else {
@@ -175,13 +179,13 @@ export const ContactForm = () => {
     }
   }
   //function validateFile(input_str) {
-   // if (document.getElementById('file').files.length === 0) {
-   //   alert('Invalid empty file upload')
-   //   validForm = false
-   //   return false
-   // } else {
-   //   return true
-   // }
+  // if (document.getElementById('file').files.length === 0) {
+  //   alert('Invalid empty file upload')
+  //   validForm = false
+  //   return false
+  // } else {
+  //   return true
+  // }
   //}
   const validateForm = (e) => {
     //run through each entered value into functions above
@@ -193,11 +197,21 @@ export const ContactForm = () => {
     const description = document.getElementById('orderDescription').value
     //const file = document.getElementById('file').value
     validForm = true
-    validateName(fName)
-    validateName(lName)
-    validateEmail(email)
-    validatePhoneNumber(phone)
-    validateDescription(description)
+    if (validateName(fName) === false) {
+      document.getElementById('firstName').style.border = '1px solid red'
+    }
+    if (validateName(lName) === false) {
+      document.getElementById('lastName').style.border = '1px solid red'
+    }
+    if (validateEmail(email) === false) {
+      document.getElementById('userEmail').style.border = '1px solid red'
+    }
+    if (validatePhoneNumber(phone) === false) {
+      document.getElementById('userPhone').style.border = '1px solid red'
+    }
+    if (validateDescription(description) === false) {
+      document.getElementById('orderDescription').style.border = '1px solid red'
+    }
     //validateFile(file)
   }
 
