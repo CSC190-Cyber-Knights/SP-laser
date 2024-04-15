@@ -17,7 +17,6 @@ export const BgVideo = ({ src }) => {
 
     return (
         <div style={{ position: 'relative', width: '100%', height: 'calc(100vh - 80px)' }}>
-            {/* Assuming the header height is 80px, you may need to adjust this value based on your actual header height */}
             <video
                 ref={videoRef}
                 className={'absolute top-0 left-0 w-full h-full object-cover opacity-30 pointer-events-none'}
