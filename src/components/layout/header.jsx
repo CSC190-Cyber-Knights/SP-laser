@@ -29,7 +29,7 @@ export default function Header() {
     <header className="font-inter relative z-30 min-h-8 bg-def_blue dark:text-white">
       <nav className="z-50 mx-auto flex max-w-7xl  items-center justify-between p-2 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <NavLink className="-m-1.5 p-1.5" to={'/'}>
+          <NavLink className="-m-1.5 p-1.5 text-xl text-deep_charcoal" to={'/'}>
             <Link to={'/'}>
               <h1 className={'font-poppins text-3xl font-bold capitalize dark:text-white'}>
                 ELE<span className={'text-imposter_red'}>.</span>
