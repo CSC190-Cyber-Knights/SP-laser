@@ -15,8 +15,9 @@ export default {
         imposter_red: '#FF0035',
         cad_grey: '#8B939C',
         eng_violet: '#59546C',
-        def_blue: '#38405F',
+        def_blue: '#C0C0C0',
         rich_black: '#0E131F',
+        deep_charcoal: '#333333',
       },
       backgroundImage: {
         'random-line': "url('./src/assets/line.svg')",
