@@ -3,7 +3,7 @@ export const Footer = () => {
       <footer className="bg-gray-100 text-center text-gray-600 lg:text-left">
         <div className="flex items-center justify-center border-b border-gray-300 p-6 lg:justify-center">
           <div className="lg:inline-block">
-            <span>© Everything Lazer Engraved, Inc. All Rights Reserved</span>
+            <span>© Everything Laser Engraved, Inc. All Rights Reserved</span>
           </div>
           {/*<div className="flex justify-center">
             <a href="https://www.facebook.com/" className="mr-6 text-gray-600">
