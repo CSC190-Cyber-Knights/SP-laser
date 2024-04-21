@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.1.0",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "badge-maker": "^3.3.1",
@@ -31,13 +32,16 @@
     "react-dom": "^18.2.0",
     "react-google-button": "^0.7.2",
     "react-icons": "^4.12.0",
+    "react-photo-album": "^2.3.1",
     "react-router-dom": "^6.18.0",
     "react-wrap-balancer": "^1.1.0",
     "uuid": "^9.0.1",
-    "vite-plugin-svgr": "^4.2.0"
+    "vite-plugin-svgr": "^4.2.0",
+    "yet-another-react-lightbox": "^3.17.3"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",

@@ -1,14 +1,7 @@
-import {useState} from 'react'
-
-export default function PhotoObj(props) {
-  const {url} = props
-  const color = 'green'
-
+export const Photo = ({src, alt, size = 80}) => {
   return (
-    <div className={'flex w-1/4 flex-col bg-slate-500'}>
-      <div>
-        <img src={url} alt="product description" className={'w-fit'} />
-      </div>
+    <div>
+      <img src={src} alt={alt} className={`rounded-[12px] object-cover w-[${size}px] h-[${size}px]`} />
     </div>
   )
 }

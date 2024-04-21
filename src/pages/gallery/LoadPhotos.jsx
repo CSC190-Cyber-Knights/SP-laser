@@ -1,33 +1,56 @@
-import React from 'react'
+import PhotoAlbum from 'react-photo-album'
+import {useParams} from 'react-router-dom'
+import {useEffect, useState} from 'react'
+import {getSubDirImages} from '../../services/image-functions/getSubDirImages.js'
 
-const LoadPhotos = ({photos, nextPageToken, fetchNextPage}) => {
-  return (
-    <>
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {photos.map((photo, index) => (
-            <div key={index} className="rounded max-w-sm overflow-hidden shadow-lg">
-              <img src={photo} loading="lazy" alt={`Photo ${index}`} className="w-full" />
-            </div>
-          ))}
-        </div>
-      </div>
+const LoadPhotos = () => {
+  const {itemId} = useParams()
+  const [selected, setSelected] = useState('')
+  const [images, setImages] = useState([])
+  const [lightBox, setLightBox] = useState(false)
 
-      {nextPageToken && (
-        <div className="mt-4 text-center">
-          <button
-            onClick={(e) => {
-              e.preventDefault()
-              fetchNextPage(nextPageToken)
-            }}
-            className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-          >
-            Load More
-          </button>
-        </div>
-      )}
-    </>
-  )
+  useEffect(() => {
+    const fetchPhotos = async () => {
+      const res = await getSubDirImages({dir: itemId})
+      setImages(res)
+    }
+    fetchPhotos().finally(() => console.log('Images fetched'))
+  }, [itemId])
+
+  //show image in lightbox
+  const showImage = (img) => {
+    setSelected(img)
+    setLightBox(true)
+  }
+
+  //hide lightbox
+  const hideLightBox = () => {
+    setLightBox(false)
+  }
+
+  const showNext = (e) => {
+    e.stopPropagation()
+    let cur = images.indexOf(selected)
+    if (cur < images.length - 1) {
+      setSelected(images[cur + 1])
+    } else {
+      let next = images[cur + 1]
+      setLightBox(next)
+    }
+  }
+
+  const showPrev = (e) => {
+    e.stopPropagation()
+    let cur = images.indexOf(selected)
+    if (cur > 0) {
+      setSelected(images[cur - 1])
+    } else {
+      let prev = images[cur - 1]
+      setLightBox(prev)
+    }
+  }
+
+  return <div>{}</div>
 }
 
 export default LoadPhotos

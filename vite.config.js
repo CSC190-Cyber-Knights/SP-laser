@@ -6,8 +6,6 @@ import vitePluginSvgr from 'vite-plugin-svgr'
 export default defineConfig({
   plugins: [react(), vitePluginSvgr()],
   server: {
-    host: '0.0.0.0',
-    port: 3000,
     watch: {
       usePolling: true,
     },

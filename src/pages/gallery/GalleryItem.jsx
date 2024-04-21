@@ -14,11 +14,7 @@ export const GalleryItem = () => {
     fetchImages(itemId)
   }, [itemId])
 
-  const fetchNextPage = () => {
-    if (nextPageToken && !loading) {
-      fetchImages(itemId, nextPageToken)
-    }
-  }
+  const pageName = itemId.replace(/_/g, ' ')
 
   const fetchImages = async (itemId, token = null) => {
     // if loading or there is no item id, return the function
@@ -36,8 +32,8 @@ export const GalleryItem = () => {
   }
 
   return (
-    <div className={'flex py-8'}>
-      <LoadPhotos photos={images} nextPageToken={nextPageToken} fetchNextPage={fetchNextPage} />
+    <div>
+      <LoadPhotos photos={images} category={pageName} />
       {loading && <p>loading...</p>}
     </div>
   )

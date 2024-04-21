@@ -11,6 +11,7 @@ import {Layout} from './components/layout/Layout.jsx'
 import {HomeBeta} from './pages/HomeBeta.jsx'
 import {Admin} from './pages/Admin.jsx'
 import GalleryItem from './pages/gallery/GalleryItem.jsx'
+import LoadPhotos from './pages/gallery/LoadPhotos.jsx'
 
 function App() {
   const {scrollYProgress} = useScroll()
@@ -78,7 +79,7 @@ function App() {
           path={'/gallery/:itemId'}
           element={
             <Layout>
-              <GalleryItem />
+              <LoadPhotos />
             </Layout>
           }
         />

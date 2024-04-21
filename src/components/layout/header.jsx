@@ -26,7 +26,7 @@ export default function Header() {
   }
 
   return (
-    <header className="font-inter relative z-30 min-h-8 bg-def_blue dark:text-white">
+    <header className="font-inter relative z-50 min-h-8 bg-def_blue dark:text-white">
       <nav className="z-50 mx-auto flex max-w-7xl  items-center justify-between p-2 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <NavLink className="-m-1.5 p-1.5 text-xl text-deep_charcoal" to={'/'}>
@@ -66,8 +66,8 @@ export default function Header() {
         </Popover.Group>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-        <div className="fixed inset-0 z-10" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <div className="fixed inset-0 z-50" />
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <NaviLink path={'/'} label={'Home'} />
             <button
