@@ -12,6 +12,7 @@ import {HomeBeta} from './pages/HomeBeta.jsx'
 import {Admin} from './pages/Admin.jsx'
 import GalleryItem from './pages/gallery/GalleryItem.jsx'
 import LoadPhotos from './pages/gallery/LoadPhotos.jsx'
+import DELETELATER from './pages/DELETELATER.jsx'
 
 function App() {
   const {scrollYProgress} = useScroll()
@@ -80,6 +81,14 @@ function App() {
           element={
             <Layout>
               <LoadPhotos />
+            </Layout>
+          }
+        />
+        <Route
+          path={'/del'}
+          element={
+            <Layout>
+              <DELETELATER />
             </Layout>
           }
         />
