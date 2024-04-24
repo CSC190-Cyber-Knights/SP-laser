@@ -1,36 +1,54 @@
 import {GoogleButton} from 'react-google-button'
 import {useState} from 'react'
 import {signInWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail} from 'firebase/auth'
-import { userSignIn,userSignOut } from '../services/firebase'
-import { redirect } from 'react-router-dom'
+import {userSignOut} from '../services/firebase'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
 
 {
   /*Signin features a google click login if already logged into google, and a signout*/
 }
 
-export const SignIn = () => {
+
+export const SignIn = ({user}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const auth = getAuth()
+  const navigate= useNavigate()
+  const provider = new GoogleAuthProvider()
 
-
-  const SignIn = (e) => {
+  const userSignIn = (e) => {
     e.preventDefault()
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential)
+        navigate('/admin')
       })
       .catch((error) => {
         console.log(error)
         console.log(error.message)
       })
   }
-
+  //function that prompts the user with a popup to sign in via Google
+const userSignInGoogle = async () => {
+  return signInWithPopup(auth, provider)
+    .then((result) => {
+      const user = result.user.displayName
+      const email = result.user.email
+      console.log(user, email)
+      navigate('/admin')
+    })
+    .catch((error) => {
+      const errorCode = error.code
+      const errorMsg = error.message
+      console.error(errorCode, errorMsg)
+    })
+}
   onAuthStateChanged(auth, (user) => {
     if (user) {
       // User is signed in, see docs for a list of available properties
       const uid = user.uid
-      console.log("signed in")
+     console.log("signed in")
 
       // ...
     } else {
@@ -51,7 +69,7 @@ export const SignIn = () => {
         <h1 className="py-8 text-center text-3xl font-bold" style={{color: '#FFFFFF'}}>
           Admin Sign In
         </h1>
-        <form onSubmit={SignIn}>
+        <form onSubmit={userSignIn}>
           <div>
             <div className="flex w-full flex-col">
               <label
@@ -119,7 +137,7 @@ export const SignIn = () => {
       {/*allow google account log in*/}
       <GoogleButton
         onClick={() => {
-          userSignIn()
+          userSignInGoogle()
         }}
       />
 

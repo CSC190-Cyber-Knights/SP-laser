@@ -13,15 +13,41 @@ import {Admin} from './pages/Admin.jsx'
 import GalleryItem from './pages/gallery/GalleryItem.jsx'
 import LoadPhotos from './pages/gallery/LoadPhotos.jsx'
 import DELETELATER from './pages/DELETELATER.jsx'
+import { auth } from './services/firebase.js'
+import { onAuthStateChanged } from 'firebase/auth'
+import { ProtectedRoute } from './components/AuthContext/protectedRoute.jsx'
+import { useEffect,useState } from 'react'
+
 
 function App() {
+  const [user, setUser] = useState(null)
+  const [isFetching, setIsFetching] = useState(true);
+  
+
+  //user auth state changes
+  useEffect(() =>{
+    const unsubscribe = onAuthStateChanged(auth, (user) =>{
+      if(user){
+        setUser(user)
+        setIsFetching(false)
+        return
+      }
+      setUser(null)
+      setIsFetching(false)
+    })
+    //cleanup function
+    return () => unsubscribe()
+  })
   const {scrollYProgress} = useScroll()
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
   })
-
+  if(isFetching)
+  {
+    return <h2>Loading...</h2>
+  }
   return (
     <BrowserRouter>
       <Routes>
@@ -70,11 +96,11 @@ function App() {
         />
         <Route
           path={'/admin'}
-          element={
+          element={<ProtectedRoute user = {user}>
             <Layout>
               <Admin />
             </Layout>
-          }
+            </ProtectedRoute>}
         />
         <Route
           path={'/gallery/:itemId'}

@@ -24,20 +24,7 @@ export default storage
 export const auth = getAuth(app)
 const provider = new GoogleAuthProvider()
 
-//function that prompts the user with a popup to sign in via Google
-export const userSignIn = async () => {
-  return signInWithPopup(auth, provider)
-    .then((result) => {
-      const user = result.user.displayName
-      const email = result.user.email
-      console.log(user, email)
-    })
-    .catch((error) => {
-      const errorCode = error.code
-      const errorMsg = error.message
-      console.error(errorCode, errorMsg)
-    })
-}
+
 
 //signs out the user
 export const userSignOut = async () => {
@@ -54,7 +41,7 @@ export const userSignOut = async () => {
 onAuthStateChanged(auth, (user) => {
   //if user is signed in
   if (user) {
-    alert('You signed In')
+    //alert('You signed In')
   } else {
     //not signed in
   }
