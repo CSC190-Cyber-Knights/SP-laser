@@ -13,21 +13,20 @@ import {Admin} from './pages/Admin.jsx'
 import GalleryItem from './pages/gallery/GalleryItem.jsx'
 import LoadPhotos from './pages/gallery/LoadPhotos.jsx'
 import DELETELATER from './pages/DELETELATER.jsx'
-import { auth } from './services/firebase.js'
-import { onAuthStateChanged } from 'firebase/auth'
-import { ProtectedRoute } from './components/AuthContext/protectedRoute.jsx'
-import { useEffect,useState } from 'react'
-
+import ErrorPage from './pages/ErrorPage.jsx'
+import {auth} from './services/firebase.js'
+import {onAuthStateChanged} from 'firebase/auth'
+import {ProtectedRoute} from './components/AuthContext/protectedRoute.jsx'
+import {useEffect, useState} from 'react'
 
 function App() {
   const [user, setUser] = useState(null)
-  const [isFetching, setIsFetching] = useState(true);
-  
+  const [isFetching, setIsFetching] = useState(true)
 
   //user auth state changes
-  useEffect(() =>{
-    const unsubscribe = onAuthStateChanged(auth, (user) =>{
-      if(user){
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
         setUser(user)
         setIsFetching(false)
         return
@@ -44,8 +43,7 @@ function App() {
     damping: 30,
     restDelta: 0.001,
   })
-  if(isFetching)
-  {
+  if (isFetching) {
     return <h2>Loading...</h2>
   }
   return (
@@ -96,11 +94,13 @@ function App() {
         />
         <Route
           path={'/admin'}
-          element={<ProtectedRoute user = {user}>
-            <Layout>
-              <Admin />
-            </Layout>
-            </ProtectedRoute>}
+          element={
+            <ProtectedRoute user={user}>
+              <Layout>
+                <Admin />
+              </Layout>
+            </ProtectedRoute>
+          }
         />
         <Route
           path={'/gallery/:itemId'}
@@ -115,6 +115,14 @@ function App() {
           element={
             <Layout>
               <DELETELATER />
+            </Layout>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <Layout>
+              <ErrorPage />
             </Layout>
           }
         />
