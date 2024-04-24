@@ -17,6 +17,8 @@ export const SignIn = ({user}) => {
   const navigate= useNavigate()
   const provider = new GoogleAuthProvider()
 
+
+  //Signs in user using email and password and sends the user to admin after a successful sign in
   const userSignIn = (e) => {
     e.preventDefault()
     signInWithEmailAndPassword(auth, email, password)
@@ -25,10 +27,13 @@ export const SignIn = ({user}) => {
         navigate('/admin')
       })
       .catch((error) => {
+        //if the user is not authenticated, they will most likely recieve an error
         console.log(error)
         console.log(error.message)
+        alert("Invalid Email or Password")
       })
   }
+
   //function that prompts the user with a popup to sign in via Google
 const userSignInGoogle = async () => {
   return signInWithPopup(auth, provider)
@@ -41,6 +46,7 @@ const userSignInGoogle = async () => {
     .catch((error) => {
       const errorCode = error.code
       const errorMsg = error.message
+      alert("Invalid Email or Not Authenticated")
       console.error(errorCode, errorMsg)
     })
 }
@@ -57,11 +63,20 @@ const userSignInGoogle = async () => {
     }
   })
 
+  //this handles password resets, using sendPasswordResetEmail from firebase and an email reseting your password is sent to the authenticated email
   function handlePasswordReset() {
     const email = prompt('Please enter your email')
-    sendPasswordResetEmail(auth, email)
-    alert('Email Sent! Check you Inbox.')
-  }
+    const emailPattern = (/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+    if(!emailPattern.test(email)){
+      alert('Invalid email format. Please enter a valid email address.')
+      return
+    }
+    sendPasswordResetEmail(auth, email).then(() =>{
+      alert('Email Sent! Check your Inbox.')
+    }).catch((error) => {
+      alert('Error sending email: ' + error.message)
+    })
+    }
 
   return (
     <div className="flex min-h-screen flex-col items-center" style={{backgroundColor: '#003153'}}>
@@ -115,7 +130,7 @@ const userSignInGoogle = async () => {
             </div>
           </div>
           <div className="flex w-full flex-col">
-            <button className="rounded-lg w-full bg-neutral-800 py-1 text-lg font-light text-neutral-300" type="submit">
+            <button className="rounded-lg w-full bg-neutral-800 py-1 text-lg font-light text-neutral-300 mt-4" type="submit">
               Sign In
             </button>
           </div>
@@ -124,7 +139,7 @@ const userSignInGoogle = async () => {
 
       <p
         onClick={handlePasswordReset}
-        className="forgot-password"
+        className="forgot-password mt-4 underline cursor-pointer"
         style={{
           fontWeight: 'bold',
           color: '#FFFFFF',
@@ -151,12 +166,4 @@ const userSignInGoogle = async () => {
     </div>
   )
 }
-/*
-//const signInButton = document.getElementById("signInButton")
-//const signOutButton = document.getElementById("signOutButton")
-
-
-signInButton.addEventListener('click', userSignIn)
-signOutButton.addEventListener('click',userSignOut)
-/*/
 export default SignIn
