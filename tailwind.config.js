@@ -29,9 +29,6 @@ export default {
         poppins: ['Poppins', 'sans-serif'],
       },
     },
-    borderRadius: {
-      '4xl': '2rem',
-    },
   },
   plugins: [],
 }

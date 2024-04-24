@@ -1,14 +1,14 @@
-import Header from './header.jsx'
+import Header from './Header.jsx'
 import PropTypes from 'prop-types'
-import Footer from './footer.jsx'
+import Footer from './Footer.jsx'
 
-export const Layout = (props) => {
+export const Layout = ({children}) => {
   return (
-    <div>
+    <>
       <Header />
-      {props.children}
+      {children}
       <Footer />
-    </div>
+    </>
   )
 }
 

@@ -10,7 +10,7 @@ export default function Header() {
     if (!popover) {
       return (
         <NavLink
-          className="rounded-lg -mx-3 block px-3 py-2 text-base font-light leading-7 text-gray-900 hover:bg-gray-50"
+          className="-mx-3 block rounded-lg px-3 py-2 text-base font-light leading-7 text-gray-900 hover:bg-gray-50"
           to={path}
         >
           {label}
@@ -30,18 +30,16 @@ export default function Header() {
       <nav className="z-50 mx-auto flex max-w-7xl  items-center justify-between p-2 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <NavLink className="-m-1.5 p-1.5 text-xl text-deep_charcoal" to={'/'}>
-            <Link to={'/'}>
-              <h1 className={'font-poppins text-3xl font-bold capitalize dark:text-white'}>
-                ELE<span className={'text-imposter_red'}>.</span>
-              </h1>
-            </Link>
+            <h1 className={'font-poppins text-3xl font-bold capitalize dark:text-white'}>
+              ELE<span className={'text-imposter_red'}>.</span>
+            </h1>
           </NavLink>
         </div>
 
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="rounded-md -m-2.5 inline-flex items-center justify-center p-2.5 text-gray-700"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
@@ -72,7 +70,7 @@ export default function Header() {
             <NaviLink path={'/'} label={'Home'} />
             <button
               type="button"
-              className="rounded-md -m-2.5 p-2.5 text-gray-700"
+              className="-m-2.5 rounded-md p-2.5 text-gray-700"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
