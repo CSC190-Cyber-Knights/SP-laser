@@ -1,5 +1,4 @@
 import {Fragment} from 'react'
-import {motion} from 'framer-motion'
 
 export const Photo = ({src, alt, size = 50}) => {
   return (

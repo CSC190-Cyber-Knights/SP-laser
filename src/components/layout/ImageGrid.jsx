@@ -1,4 +1,3 @@
-import useFireStore from '../../hooks/useFireStore.js'
 import {useEffect, useState} from 'react'
 import Loading from '../ui/Loading.jsx'
 import {getImages} from '../../firebase/libs/fetch.js'

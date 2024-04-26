@@ -5,14 +5,10 @@ import {AiFillSave} from 'react-icons/ai'
 import {BoltIcon} from '@heroicons/react/24/outline/index.js'
 import {ButtonLink} from '../components/ui/ButtonLink.jsx'
 
-{
-  /* Homepage features high usage of css and plaintext. It also shows images and a header/footer*/
-}
-
 const HomePage = () => {
   return (
     <div
-      className={'m-auto flex max-w-7xl flex-col items-center justify-center bg-[#ffffff] p-2 font-inter'} //css code to specify where it is shown
+      className={'font-inter m-auto flex max-w-7xl flex-col items-center justify-center bg-[#ffffff] p-2'} //css code to specify where it is shown
     >
       {/* Hero */}
       <div className={'mt-2 grid max-w-full grid-rows-1 bg-random-line bg-contain px-2 md:grid-cols-2'}>

@@ -22,15 +22,15 @@ export const HomeBeta = () => {
               The cutting edge of personalization where your ideas meet the precision of laser engraving to create
               lasting impressions.
               <span className="invisible hidden md:visible ">
-                Whether it's a bespoke gift that speaks volumes, a unique piece of decor that tells your story, or a
-                professional mark that sets your brand apart, we bring your vision to life with the perfect blend of
-                craftsmanship and innovation.
+                A bespoke gift that speaks volumes, a unique piece of decor that tells your story, or a professional
+                mark that sets your brand apart, we bring your vision to life with the perfect blend of craftsmanship
+                and innovation.
               </span>
             </p>
           </div>
           <Link
             to="/gallery"
-            className="self-center rounded-4xl bg-red-700 px-4 py-2 font-sans font-thin text-white shadow-sm hover:bg-red-600"
+            className="rounded-4xl self-center bg-red-700 px-4 py-2 font-sans font-thin text-white shadow-sm hover:bg-red-600"
           >
             Gallery
           </Link>
@@ -46,7 +46,7 @@ export const HomeBeta = () => {
           <p className="text-center font-serif text-5xl font-semibold text-imposter_red">I'm Michael</p>
         </div>
         <div className="flex flex-col justify-center gap-2">
-          <div className="rounded-lg w-fit self-center backdrop-blur-lg">
+          <div className="w-fit self-center rounded-lg backdrop-blur-lg">
             <p className="self-center p-2 text-center font-serif text-2xl text-cad_grey">
               I run my engraving business from my own workshop here in Sacramento. All your orders are handled
               personally by me. If it's made of metal ask me about it.

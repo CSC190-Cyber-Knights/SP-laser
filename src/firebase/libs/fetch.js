@@ -65,14 +65,3 @@ export const getImages = async (tag) => {
     console.error('Error fetching images:', error)
   }
 }
-
-const testTags = async () => {
-  const tags = await getTags()
-  let lsDocs = []
-  console.log('Tags:', tags)
-  for (let i = 0; i < tags.length; i++) {
-    const images = await getImages(tags[i].name)
-    lsDocs.push(images)
-  }
-  console.log(lsDocs)
-}

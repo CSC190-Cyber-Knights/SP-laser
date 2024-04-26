@@ -1,7 +1,7 @@
 import {Fragment, useState} from 'react'
 import {Dialog, Popover, Transition} from '@headlessui/react'
-import {Bars3Icon, XMarkIcon, HomeIcon} from '@heroicons/react/24/outline'
-import {Link, NavLink} from 'react-router-dom'
+import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
+import {NavLink} from 'react-router-dom'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
