@@ -4,23 +4,12 @@ import {projectFireStore} from '../config.js'
 const db = projectFireStore
 const getRef = (colName) => collection(db, colName)
 
-// Initialize Firestore (Make sure your Firebase config is set up)
-export async function getFirstImage(tag) {
-  const colName = `images/categories/${tag}`
-  const firstImageQuery = query(getRef(colName), limit(1))
-  try {
-    const querySnapshot = await getDocs(firstImageQuery)
-    if (!querySnapshot.empty) {
-      const firstDoc = querySnapshot.docs[0]
-      console.log('First image data:', firstDoc.data())
-    } else {
-      console.log('No images found in collection.')
-    }
-  } catch (error) {
-    console.error('Error fetching first image:', error)
-  }
-}
-
+/**
+ * Retrieves an array of tags from the Firestore 'tags' collection.
+ *
+ * @returns {Promise<Array>} A promise that resolves to an array of tags.
+ * @throws {Error} If an error occurs while fetching the tags.
+ */
 export const getTags = async () => {
   let tags = []
   try {
@@ -34,6 +23,12 @@ export const getTags = async () => {
   }
 }
 
+/**
+ * Retrieves thumbnails for each tag from Firestore collections.
+ *
+ * @returns {Promise<Object>} A promise that resolves to an object containing the thumbnails and tags.
+ * @throws {Error} If an error occurs while fetching the thumbnails.
+ */
 export const getThumbnails = async () => {
   const tags = await getTags()
   let lsDocs = []
@@ -50,6 +45,13 @@ export const getThumbnails = async () => {
   return {lsDocs, tags}
 }
 
+/**
+ * Retrieves all images from a Firestore collection based on the provided tag.
+ *
+ * @param {string} tag - The tag used to identify the collection.
+ * @returns {Promise<Array>} A promise that resolves to an array of image documents.
+ * @throws {Error} If an error occurs while fetching the images.
+ */
 export const getImages = async (tag) => {
   const docs = []
   const colName = `images/categories/${tag}`
