@@ -2,10 +2,31 @@ import {collection, doc, setDoc, serverTimestamp} from 'firebase/firestore'
 import {getDownloadURL, uploadBytesResumable} from 'firebase/storage'
 import {projectFireStore, projectStorage} from '../config.js'
 import {ref} from 'firebase/storage'
+import imageCompression from 'browser-image-compression'
 import Compressor from 'compressorjs'
 
 const db = projectFireStore
 
+/**
+ * Saves a tag to Firestore.
+ *
+ * @async
+ * @param {string} tag - The tag to be saved.
+ * @returns {Promise<void>}
+ * @throws {Error} If an error occurs while saving the tag.
+ *
+ * @example
+ * await saveTag('nature');
+ * // Logs: ✅ Tag Saved nature
+ *
+ * @example
+ * await saveTag('');
+ * // Throws an error: There was an error saving the tag
+ *
+ * @description
+ * This function saves a tag to the Firestore database. It creates a document reference
+ * in the 'tags' collection using the provided tag as the document ID.
+ */
 export const saveTag = async (tag) => {
   const tagRef = doc(db, 'tags', tag)
   try {
@@ -19,6 +40,13 @@ export const saveTag = async (tag) => {
   }
 }
 
+/**
+ * Writes image data to Firestore.
+ *
+ * @param {string} id - The ID of the image.
+ * @param {string} name - The name of the image.
+ * @param {string} src - The URL of the image.
+ */
 const writeFirestore = async (id, name, src) => {
   const colRef = doc(collection(db, 'images', 'categories', id))
   try {
@@ -32,6 +60,14 @@ const writeFirestore = async (id, name, src) => {
   }
 }
 
+/**
+ * Saves image data to Firestore.
+ *
+ * @param {Object} data - The image data to be saved.
+ * @param {string} data.id - The ID of the image.
+ * @param {string} data.url - The URL of the image.
+ * @param {string} data.fileName - The name of the image file.
+ */
 export const saveFirestore = async ({data}) => {
   const {id, url, fileName} = data
   try {
@@ -43,32 +79,31 @@ export const saveFirestore = async ({data}) => {
 }
 
 /**
- * compressImage takes in a file and compresses it
+ * Compresses an image file.
  *
- * @param {File} file - the file to compress
+ * @param {File} file - The image file to be compressed.
+ * @returns {Promise<File>} A promise that resolves to the compressed image file.
  */
 const compressImage = async (file) => {
   if (!file) {
     throw new Error('No file provided')
   }
-  return new Promise((resolve, reject) => {
-    new Compressor(file, {
-      quality: 0.6,
-      maxWidth: 1920,
-      maxHeight: 1080,
-      success: (result) => {
-        const reader = new FileReader()
-        reader.onloadend = () => {
-          const blob = new Blob([reader.result], {type: file.type})
-          resolve(blob)
-        }
-        reader.onerror = reject
-        reader.readAsArrayBuffer(result)
-      },
-      error: reject,
-    })
-  })
+  const options = {
+    maxSizeMB: 1, // Adjust the maximum size as needed
+    maxWidthOrHeight: 1920, // Adjust the maximum width or height as needed
+    useWebWorker: true, // Use a web worker for better performance
+  }
+
+  try {
+    const compressedFile = await imageCompression(file, options)
+    console.log('Image compressed successfully')
+    return compressedFile
+  } catch (error) {
+    console.error('Error compressing image:', error)
+    throw error
+  }
 }
+
 /**
  * Takes in a file and an id, compresses the file and
  * uploads it to the firebase storage compressed
