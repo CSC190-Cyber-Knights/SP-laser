@@ -26,7 +26,7 @@ export default function Header() {
   }
 
   return (
-    <header className="font-inter relative z-50 min-h-8 bg-def_blue dark:text-white">
+    <header className="font-inter relative z-50 h-12 bg-bg_primary align-baseline  text-egg">
       <nav className="z-50 mx-auto flex max-w-7xl  items-center justify-between p-2 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <NavLink className="-m-1.5 p-1.5 text-xl text-deep_charcoal" to={'/'}>
@@ -47,7 +47,7 @@ export default function Header() {
           </button>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <Popover className="relative">
+          <Popover className="relative text-white ">
             <Transition
               as={Fragment}
               enter="transition ease-out duration-200"
@@ -65,7 +65,7 @@ export default function Header() {
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-50" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-bg_primary px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <NaviLink path={'/'} label={'Home'} />
             <button
@@ -79,7 +79,7 @@ export default function Header() {
           </div>
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="space-y-2 py-6 text-white">
+              <div className="space-y-2 py-6 text-egg">
                 <NaviLink popover={false} label={'Gallery'} path={'/gallery'} />
                 <NaviLink popover={false} label={'Contact'} path={'/contact'} />
                 <NaviLink popover={false} label={'About'} path={'/about'} />

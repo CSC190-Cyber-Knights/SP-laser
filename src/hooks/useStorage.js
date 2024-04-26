@@ -1,39 +1,24 @@
-import {useState, useEffect, useCallback} from 'react'
+import {useEffect, useState} from 'react'
 import {projectFireStore, projectStorage} from '../firebase/config'
 import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
 import {addDoc, collection} from 'firebase/firestore'
+import Compressor from 'compressorjs'
+import {saveFirestore} from '../firebase/libs/upload.js'
 
-// make a type definition for project FireStore and project storage
-
-export const useStorage = (file, category) => {
+/**
+ * function to handle the storage of images in the firebase storage
+ *
+ * @param file
+ * @param id
+ * @returns {{progress: number, error: string, url: string}}
+ */
+export const useStorage = (file, id) => {
   const [progress, setProgress] = useState(0)
   const [error, setError] = useState(null)
   const [url, setUrl] = useState(null)
 
-  const saveToFireStore = useCallback(
-    async (referenceCol, url) => {
-      const createdAt = Date.now()
-      try {
-        await addDoc(referenceCol, {
-          url,
-          createdAt,
-          category: category,
-        })
-        console.log(category)
-      } catch (e) {
-        alert('There was an error uploading your file')
-        console.log(e)
-      }
-    },
-    [category]
-  )
-
   useEffect(() => {
-    // references
-    const storageRef = ref(projectStorage, `${category}/${file.name}`)
-    // firebase will create a collection called images if it doesn't exist already
-    const collectionRef = collection(projectFireStore, 'images')
-
+    const storageRef = ref(projectStorage, `${id}/${file.name}`)
     // whenever the progress of the upload changes, update the progress state
     uploadBytesResumable(storageRef, file).on(
       'state_changed',
@@ -42,23 +27,21 @@ export const useStorage = (file, category) => {
         setProgress(percent)
       },
       (err) => {
-        // if there is an error, set the error state it will be returned to the component
         setError(err)
       },
       async () => {
-        // get the url of the image that  has just been uploaded
-        const url = await getDownloadURL(storageRef)
-        // add the url and the date the image was uploaded to the collection
+        console.log(url, id)
         try {
-          await saveToFireStore(collectionRef, url)
+          const src = await getDownloadURL(storageRef)
+          await saveFirestore({data: {id, src, file}})
         } catch (e) {
-          console.log(e)
+          console.error(e)
           setError('Error handling image upload')
         }
         setUrl(url)
       }
     )
-  }, [category, file, saveToFireStore])
+  }, [id, file, url])
 
   return {progress, url, error}
 }

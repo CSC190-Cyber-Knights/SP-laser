@@ -1,14 +1,15 @@
 import {UploadForm} from '../components/ui/UploadForm.jsx'
-import {Title} from '../components/layout/Title.jsx'
-import {FaCloud} from 'react-icons/fa'
+import {FaPencil} from 'react-icons/fa6'
+import Title from '../components/layout/Title.jsx'
 
 export const Admin = () => {
   return (
-    <div className={'flex h-screen w-full flex-col items-center bg-rich_black'}>
-      <FaCloud className={'text-9xl text-white'} />
-      <div className="w-fit flex-col space-y-4 rounded-lg">
-        <Title hero={'Admin Page'} subHero={'Choose a Category'} />
-        <UploadForm />
+    <div className={'bg-bg-primary flex h-screen min-h-fit w-full flex-col items-center bg-egg'}>
+      <div className="flex w-full flex-col items-center justify-center">
+        <Title hero={'Admin Page'} subHero={'Choose a Category'} Icon={FaPencil} />
+        <div className="h-fit w-3/4 overflow-hidden">
+          <UploadForm />
+        </div>
       </div>
     </div>
   )

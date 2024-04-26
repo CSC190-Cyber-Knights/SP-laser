@@ -2,7 +2,6 @@
 import React from 'react'
 import {motion, useScroll, useSpring} from 'framer-motion'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import HomePage from './pages/HomePage.jsx'
 import {ContactForm} from './pages/ContactForm.jsx'
 import {SignIn} from './pages/SignIn.jsx'
 import AboutMe from './pages/AboutMe.jsx'
@@ -10,42 +9,16 @@ import Gallery from './pages/Gallery.jsx'
 import {Layout} from './components/layout/Layout.jsx'
 import {HomeBeta} from './pages/HomeBeta.jsx'
 import {Admin} from './pages/Admin.jsx'
-import GalleryItem from './pages/gallery/GalleryItem.jsx'
 import LoadPhotos from './pages/gallery/LoadPhotos.jsx'
-import DELETELATER from './pages/DELETELATER.jsx'
-import ErrorPage from './pages/ErrorPage.jsx'
-import {auth} from './services/firebase.js'
-import {onAuthStateChanged} from 'firebase/auth'
-import {ProtectedRoute} from './components/AuthContext/protectedRoute.jsx'
-import {useEffect, useState} from 'react'
 
 function App() {
-  const [user, setUser] = useState(null)
-  const [isFetching, setIsFetching] = useState(true)
-
-  //user auth state changes
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user)
-        setIsFetching(false)
-        return
-      }
-      setUser(null)
-      setIsFetching(false)
-    })
-    //cleanup function
-    return () => unsubscribe()
-  })
   const {scrollYProgress} = useScroll()
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
   })
-  if (isFetching) {
-    return <h2>Loading...</h2>
-  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -95,11 +68,9 @@ function App() {
         <Route
           path={'/admin'}
           element={
-            <ProtectedRoute user={user}>
-              <Layout>
-                <Admin />
-              </Layout>
-            </ProtectedRoute>
+            <Layout>
+              <Admin />
+            </Layout>
           }
         />
         <Route
@@ -107,22 +78,6 @@ function App() {
           element={
             <Layout>
               <LoadPhotos />
-            </Layout>
-          }
-        />
-        <Route
-          path={'/del'}
-          element={
-            <Layout>
-              <DELETELATER />
-            </Layout>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <Layout>
-              <ErrorPage />
             </Layout>
           }
         />

@@ -7,11 +7,21 @@ export default {
       md: '768px',
       lg: '1024px',
       xl: '1280px',
-      '2xl': '1536px',
     },
 
     extend: {
       colors: {
+        pastel1: '#ffb3ba',
+        pastel2: '#ffdfba',
+        pastel3: '#ffffba',
+        pastel4: '#baffc9',
+        pastel5: '#bae1ff',
+
+        primary: '#313E50',
+        secondary: '#3A435E',
+        bg_primary: '#455561',
+        egg: '#F3E8EE',
+
         imposter_red: '#FF0035',
         cad_grey: '#8B939C',
         eng_violet: '#59546C',

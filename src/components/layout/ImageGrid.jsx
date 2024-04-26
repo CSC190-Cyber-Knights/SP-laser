@@ -1,53 +1,34 @@
 import useFireStore from '../../hooks/useFireStore.js'
-import {motion} from 'framer-motion'
 import {useEffect, useState} from 'react'
-import Title from './Title.jsx'
-import {useParams} from 'react-router-dom'
+import Loading from '../ui/Loading.jsx'
+import {getImages} from '../../firebase/libs/fetch.js'
+import {Photo} from '../ui/media/Photo.jsx'
 
-export const ImageGrid = ({setSelectedImg, categoryCollection}) => {
-  const {category} = useParams()
-  const {docs} = useFireStore(categoryCollection)
+export const ImageGrid = ({setSelectedImg, id}) => {
+  console.log('ImageGrid id:', id)
+  const [images, setImages] = useState([])
   const [loading, setLoading] = useState(true)
   useEffect(() => {
-    if (docs.length > 0) {
+    getImages(id).then((images) => {
+      setImages(images)
       setLoading(false)
-    }
-  }, [docs])
+      console.log('ImageGrid images:', images)
+    })
+  }, [id])
   //set loading animation if docs is empty
   if (loading) {
-    return (
-      <div className="min-w-screen flex min-h-screen items-center justify-center bg-gray-100 p-5">
-        <div className="flex animate-pulse space-x-2">
-          <div className="h-3 w-3 rounded-full bg-gray-500"></div>
-          <div className="h-3 w-3 rounded-full bg-gray-500"></div>
-          <div className="h-3 w-3 rounded-full bg-gray-500"></div>
-        </div>
-      </div>
-    )
+    return <Loading />
   }
   return (
-    <div className={'flex h-fit min-h-screen w-screen flex-col'}>
-      <Title hero={category} />
-      <div className={'m-auto mx-5 h-fit w-max grid-cols-2 gap-10 sm:grid-cols-3  '}>
-        {docs.map((doc) => (
-          <motion.div
-            layout
-            whileHover={{opacity: 1}}
-            key={doc.id}
-            className={'px-1/2 grid overflow-hidden  py-0 opacity-80'}
-          >
-            <motion.img
-              initial={{opacity: 0}}
-              animate={{opacity: 1}}
-              transition={{delay: 1}}
-              src={doc.url}
-              alt={doc.id}
-              className={'max-w-md object-cover'}
-              onLoad={() => console.log('image loaded', doc.url)}
-              onError={() => console.log('image failed', doc.url)}
-            />
-          </motion.div>
-        ))}
+    <div className={'flex h-screen min-h-fit w-full items-start justify-center px-2 py-3'}>
+      <div className={'min-h-fit max-w-screen-lg'}>
+        <div className={'grid grid-flow-dense grid-cols-2 grid-rows-2 gap-2 md:grid-cols-3 lg:grid-cols-5'}>
+          {images.map((doc, index) => (
+            <div key={index}>
+              <Photo src={doc.url} alt={`${doc.name}_${id}`} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

@@ -1,10 +1,16 @@
-export const Title = ({hero, subHero, subText}) => {
+import {Fragment} from 'react'
+
+const Title = ({hero, subHero, Icon}) => {
   return (
-    <div className={'m-auto grid grid-cols-1 grid-rows-2 p-3 pt-5 text-center'}>
-      <h1 className={'text-4xl leading-tight'}>{hero}</h1>
-      {subHero && <h2>{subHero}</h2>}
-      {subText && <p>{subText}</p>}
-    </div>
+    <Fragment>
+      <div className={'h-18 my-4 flex w-full flex-col items-center gap-3 pt-6 text-center leading-tight'}>
+        <div className={'flex w-fit flex-row'}>
+          {Icon && <Icon className={'mr-2 text-5xl'} />}
+          <h1 className={'h-full w-full text-5xl font-semibold capitalize'}>{hero}</h1>
+        </div>
+        <h2>{subHero}</h2>
+      </div>
+    </Fragment>
   )
 }
 export default Title
