@@ -10,6 +10,7 @@ import {Layout} from './components/layout/Layout.jsx'
 import {HomeBeta} from './pages/HomeBeta.jsx'
 import {Admin} from './pages/Admin.jsx'
 import LoadPhotos from './pages/gallery/LoadPhotos.jsx'
+import ErrorPage from './pages/ErrorPage.jsx'
 
 function App() {
   const {scrollYProgress} = useScroll()
@@ -78,6 +79,14 @@ function App() {
           element={
             <Layout>
               <LoadPhotos />
+            </Layout>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <Layout>
+              <ErrorPage />
             </Layout>
           }
         />

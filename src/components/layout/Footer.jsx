@@ -5,6 +5,7 @@ export const Footer = () => {
         <div className="mr-12 hidden lg:block">
           <span>© Everything Lazer Engraved, Inc. All Rights Reserved</span>
         </div>
+        {/*
         <div className="flex justify-center">
           <a href="https://www.facebook.com/" className="mr-6 text-gray-600">
             <svg
@@ -93,6 +94,7 @@ export const Footer = () => {
             </svg>
           </a>
         </div>
+        */}
       </div>
     </footer>
   )
