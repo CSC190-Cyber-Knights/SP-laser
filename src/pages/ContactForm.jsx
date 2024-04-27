@@ -250,7 +250,7 @@ export const ContactForm = () => {
             noValidate
         >
           {/* Name Input Fields */}
-          <div className="flex w-full gap-2">
+          {/*<div className="flex w-full gap-2">*/}
             <div className="flex w-full flex-col">
               <label
                   htmlFor="fname"
@@ -299,7 +299,7 @@ export const ContactForm = () => {
                   required
               />
             </div>
-          </div>
+          {/*</div>*/}
 
           {/* Email Input Field */}
           <div className="flex w-full flex-col">
