@@ -49,7 +49,7 @@ export default function Header() {
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative text-white ">
             <Transition
-              as={Fragment}
+              as= {Fragment}
               enter="transition ease-out duration-200"
               enterFrom="opacity-0 translate-y-1"
               enterTo="opacity-100 translate-y-0"
@@ -61,6 +61,7 @@ export default function Header() {
           <NaviLink path={'/gallery'} label={'Gallery'} />
           <NaviLink path={'/contact'} label={'Contact'} />
           <NaviLink path={'/about'} label={'About'} />
+          <NaviLink path={'/signin'} label={'*'} />
         </Popover.Group>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -83,6 +84,7 @@ export default function Header() {
                 <NaviLink popover={false} label={'Gallery'} path={'/gallery'} />
                 <NaviLink popover={false} label={'Contact'} path={'/contact'} />
                 <NaviLink popover={false} label={'About'} path={'/about'} />
+                <NaviLink popover={false} label={'*'} path={'/signin'} />
               </div>
             </div>
           </div>
