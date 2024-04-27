@@ -34,7 +34,7 @@ const storage = getStorage() //connect to firebase storage
 //EmailJS credentials
 const EmailServiceID = 'service_zadrexa'
 const EmailTemplateID = 'template_wi09qe3'
-const EmailPublicKey ='Io04H3uOQN5v-GZbf'
+const EmailPublicKey = 'Io04H3uOQN5v-GZbf'
 
 export const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -45,7 +45,6 @@ export const ContactForm = () => {
     orderDescription: '',
     file: '',
   })
-
 
   const [file, setFile] = useState(null)
   let validForm = false
@@ -75,17 +74,22 @@ export const ContactForm = () => {
     // check if valid form to send
     if (validForm === true) {
       // the ID used are based anishrajah personal paid emailjs account
-      emailjs
-        .sendForm(EmailServiceID,EmailTemplateID,sForm,EmailPublicKey)
-        .then(
+      emailjs.sendForm(EmailServiceID, EmailTemplateID, sForm, EmailPublicKey).then(
           (result) => {
             console.log('Success', result.status, result.text)
           },
           (error) => {
             console.log('FAILED', error)
           }
-        )
+      )
+    } else {
+      alert('Invalid form')
     }
+    document.getElementById('firstName').style.border = '1px solid white'
+    document.getElementById('lastName').style.border = '1px solid white'
+    document.getElementById('userEmail').style.border = '1px solid white'
+    document.getElementById('userPhone').style.border = '1px solid white'
+    document.getElementById('orderDescription').style.border = '1px solid white'
 
     // upload the image to the Firebase storage under 'uploads'
     // if there is no file uploaded then skip the uploading to image to Firebase storage
@@ -125,7 +129,7 @@ export const ContactForm = () => {
   }
   const validateEmails = (email) => {
     return email.match(
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     )
   }
   function validateEmail(emailString) {
@@ -134,9 +138,9 @@ export const ContactForm = () => {
     //   alert("val email")
     for (let i = 0; i < result.length; i++) {
       //run through each letter
-      if (!regex.test(result[i])) {
+      if (!regex.test(result[i]) || !emailString) {
         //if email doesnt follow what set in regex, sends alert and return false email
-        alert('Invalid email')
+        //alert('Invalid email')
         validForm = false
         return false
       }
@@ -145,9 +149,9 @@ export const ContactForm = () => {
   }
   function validateName(nameString) {
     //       alert("val name")
-    if (!/^[a-zA-Z]*$/g.test(nameString)) {
+    if (!/^[a-zA-Z]*$/g.test(nameString) || !nameString) {
       //test if name doesn't follow upper or lower case letters, alerts and returns false
-      alert('Invalid character in name')
+      //alert('Invalid character in name')
       validForm = false
       return false
     } else {
@@ -160,14 +164,14 @@ export const ContactForm = () => {
     if (regex.test(input_str)) {
       return true
     } else {
-      alert('Invalid phone number')
+      //alert('Invalid phone number')
       validForm = false
       return false
     }
   }
   function validateDescription(input_str) {
-    if (!document.getElementById('orderDescription').value) {
-      alert('Invalid empty description')
+    if (!input_str) {
+      //alert('Invalid empty description')
       validForm = false
       return false
     } else {
@@ -175,13 +179,13 @@ export const ContactForm = () => {
     }
   }
   //function validateFile(input_str) {
-   // if (document.getElementById('file').files.length === 0) {
-   //   alert('Invalid empty file upload')
-   //   validForm = false
-   //   return false
-   // } else {
-   //   return true
-   // }
+  // if (document.getElementById('file').files.length === 0) {
+  //   alert('Invalid empty file upload')
+  //   validForm = false
+  //   return false
+  // } else {
+  //   return true
+  // }
   //}
   const validateForm = (e) => {
     //run through each entered value into functions above
@@ -193,180 +197,190 @@ export const ContactForm = () => {
     const description = document.getElementById('orderDescription').value
     //const file = document.getElementById('file').value
     validForm = true
-    validateName(fName)
-    validateName(lName)
-    validateEmail(email)
-    validatePhoneNumber(phone)
-    validateDescription(description)
+    if (validateName(fName) === false) {
+      document.getElementById('firstName').style.border = '1px solid red'
+    }
+    if (validateName(lName) === false) {
+      document.getElementById('lastName').style.border = '1px solid red'
+    }
+    if (validateEmail(email) === false) {
+      document.getElementById('userEmail').style.border = '1px solid red'
+    }
+    if (validatePhoneNumber(phone) === false) {
+      document.getElementById('userPhone').style.border = '1px solid red'
+    }
+    if (validateDescription(description) === false) {
+      document.getElementById('orderDescription').style.border = '1px solid red'
+    }
     //validateFile(file)
   }
 
   return (
-    //put into sendable form these elements below, as well as displaying them onto the sitep
-    <div className="flex min-h-screen flex-col items-center" style={{backgroundColor: '#003153'}}>
-      {' '}
-      {/*background color */}
-      {/* Title Section */}
-      <div className="flex flex-col items-center p-8">
-        <h1
-          className="flex items-center gap-2 text-5xl font-bold tracking-tight text-neutral-600"
-          style={{color: '#FFFFFF'}}
-        >
-          <GiLaserPrecision className="text-red-400" />
-          Order Form
-        </h1>
-        <h2
-          className="text-lg font-light"
-          style={{
-            fontSize: '24px', // font larger
-            fontWeight: 'bold', // font bold
-            color: '#FFFFFF', // color to white
-            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', // shadow for depth
-            marginBottom: '20px', // space below the heading
-          }}
-        >
-          Let me know what you want to create
-        </h2>
-      </div>
-      {/* Submit order Form Section */}
-      <form
-        id="orderForm"
-        className="flex w-full max-w-lg flex-col items-start gap-3 p-4"
-        onSubmit={handleSubmit}
-        noValidate
-      >
-        {/* Name Input Fields */}
-        <div className="flex w-full gap-2">
-          <div className="flex w-full flex-col">
-            <label
-              htmlFor="fname"
-              className="text-neutral-600"
+      //put into sendable form these elements below, as well as displaying them onto the sitep
+      <div className="flex min-h-screen flex-col items-center" style={{backgroundColor: '#003153'}}>
+        {' '}
+        {/*background color */}
+        {/* Title Section */}
+        <div className="flex flex-col items-center p-8">
+          <h1
+              className="flex items-center gap-2 text-5xl font-bold tracking-tight text-neutral-600"
+              style={{color: '#FFFFFF'}}
+          >
+            <GiLaserPrecision className="text-red-400" />
+            Order Form
+          </h1>
+          <h2
+              className="text-lg font-light"
               style={{
-                fontWeight: 'bold',
-                color: '#FFFFFF',
-                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                fontSize: '24px', // font larger
+                fontWeight: 'bold', // font bold
+                color: '#FFFFFF', // color to white
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', // shadow for depth
+                marginBottom: '20px', // space below the heading
               }}
+          >
+            Let me know what you want to create
+          </h2>
+        </div>
+        {/* Submit order Form Section */}
+        <form
+            id="orderForm"
+            className="flex w-full max-w-lg flex-col items-start gap-3 p-4"
+            onSubmit={handleSubmit}
+            noValidate
+        >
+          {/* Name Input Fields */}
+          <div className="flex w-full gap-2">
+            <div className="flex w-full flex-col">
+              <label
+                  htmlFor="fname"
+                  className="text-neutral-600"
+                  style={{
+                    fontWeight: 'bold',
+                    color: '#FFFFFF',
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                  }}
+              >
+                First Name
+              </label>
+              <input
+                  id="firstName"
+                  name="firstName"
+                  className="rounded-lg h-12 border-slate-300 bg-neutral-100 p-2 shadow"
+                  type="text"
+                  placeholder="John"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  required
+              />
+            </div>
+
+            <div className="flex w-full flex-col">
+              {/* Last Name Label */}
+              <label
+                  htmlFor="lname"
+                  className="text-neutral-600"
+                  style={{
+                    fontWeight: 'bold',
+                    color: '#FFFFFF',
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                  }}
+              >
+                Last Name
+              </label>
+              <input
+                  id="lastName"
+                  name="lastName"
+                  className="rounded-lg h-12 border-slate-300 bg-neutral-100 p-2 shadow"
+                  type="text"
+                  placeholder="Doe"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  required
+              />
+            </div>
+          </div>
+
+          {/* Email Input Field */}
+          <div className="flex w-full flex-col">
+            {/* Email Label */}
+            <label
+                htmlFor="user-email"
+                className="text-neutral-600"
+                style={{
+                  fontWeight: 'bold',
+                  color: '#FFFFFF',
+                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                }}
             >
-              First Name
+              Email
             </label>
             <input
-              id="firstName"
-              name="firstName"
-              className="rounded-lg h-12 border-slate-300 bg-neutral-100 p-2 shadow"
-              type="text"
-              placeholder="John"
-              value={formData.firstName}
-              onChange={handleChange}
-              required
+                id="userEmail"
+                name="userEmail"
+                className="rounded-lg h-12 border-slate-300 bg-neutral-100 p-2 shadow"
+                type="email" // Changed to 'email' type for proper validation
+                placeholder="johndoe2022@gmail.com"
+                value={formData.userEmail}
+                onChange={handleChange}
+                required
             />
           </div>
 
+          {/* Phone Number Input Field */}
           <div className="flex w-full flex-col">
-            {/* Last Name Label */}
+            {/* Phone Number Label */}
             <label
-              htmlFor="lname"
-              className="text-neutral-600"
-              style={{
-                fontWeight: 'bold',
-                color: '#FFFFFF',
-                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-              }}
+                htmlFor="user-phone"
+                className="text-neutral-600"
+                style={{
+                  fontWeight: 'bold',
+                  color: '#FFFFFF',
+                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                }}
             >
-              Last Name
+              Phone Number
             </label>
             <input
-              id="lastName"
-              name="lastName"
-              className="rounded-lg h-12 border-slate-300 bg-neutral-100 p-2 shadow"
-              type="text"
-              placeholder="Doe"
-              value={formData.lastName}
-              onChange={handleChange}
-              required
+                id="userPhone"
+                name="userPhone"
+                className="rounded-lg h-12 border-slate-300 bg-neutral-100 p-2 shadow placeholder:italic"
+                type="tel" // Changed to 'tel' type for proper validation
+                placeholder="(###) ###-####"
+                value={formData.userPhone}
+                onChange={handleChange}
+                required
             />
           </div>
-        </div>
 
-        {/* Email Input Field */}
-        <div className="flex w-full flex-col">
-          {/* Email Label */}
-          <label
-            htmlFor="user-email"
-            className="text-neutral-600"
-            style={{
-              fontWeight: 'bold',
-              color: '#FFFFFF',
-              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-            }}
-          >
-            Email
-          </label>
-          <input
-            id="userEmail"
-            name="userEmail"
-            className="rounded-lg h-12 border-slate-300 bg-neutral-100 p-2 shadow"
-            type="email" // Changed to 'email' type for proper validation
-            placeholder="johndoe2022@gmail.com"
-            value={formData.userEmail}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          {/* Description Textarea */}
+          <div className="flex w-full flex-col">
+            {/* Order Description Label */}
+            <label
+                htmlFor="order-description"
+                className="text-neutral-600"
+                style={{
+                  fontWeight: 'bold',
+                  color: '#FFFFFF',
+                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                }}
+            >
+              Describe It
+            </label>
+            <textarea
+                id="orderDescription"
+                name="orderDescription"
+                className="rounded-lg border-slate-300 bg-neutral-100 p-1.5 shadow"
+                rows="5" // Adjusted for better default size
+                placeholder="Provide a detailed description..."
+                value={formData.orderDescription}
+                onChange={handleChange}
+                required
+            />
+          </div>
 
-        {/* Phone Number Input Field */}
-        <div className="flex w-full flex-col">
-          {/* Phone Number Label */}
-          <label
-            htmlFor="user-phone"
-            className="text-neutral-600"
-            style={{
-              fontWeight: 'bold',
-              color: '#FFFFFF',
-              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-            }}
-          >
-            Phone Number
-          </label>
-          <input
-            id="userPhone"
-            name="userPhone"
-            className="rounded-lg h-12 border-slate-300 bg-neutral-100 p-2 shadow placeholder:italic"
-            type="tel" // Changed to 'tel' type for proper validation
-            placeholder="(###) ###-####"
-            value={formData.userPhone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        {/* Description Textarea */}
-        <div className="flex w-full flex-col">
-          {/* Order Description Label */}
-          <label
-            htmlFor="order-description"
-            className="text-neutral-600"
-            style={{
-              fontWeight: 'bold',
-              color: '#FFFFFF',
-              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-            }}
-          >
-            Describe It
-          </label>
-          <textarea
-            id="orderDescription"
-            name="orderDescription"
-            className="rounded-lg border-slate-300 bg-neutral-100 p-1.5 shadow"
-            rows="5" // Adjusted for better default size
-            placeholder="Provide a detailed description..."
-            value={formData.orderDescription}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        {/*file upload button */}
-        {/*
+          {/*file upload button */}
+          {/*
         <div>
           <input
             type="file"
@@ -383,25 +397,25 @@ export const ContactForm = () => {
           />
         </div>*/}
 
-        {/* hidden element for the email forwarding */}
-        <div>
-          <input type="hidden" id="to_name" name="to_name" value="cyberknightslaser@outlook.com" />
-        </div>
+          {/* hidden element for the email forwarding */}
+          <div>
+            <input type="hidden" id="to_name" name="to_name" value="cyberknightslaser@outlook.com" />
+          </div>
 
-        {/* Form Submit Button */}
-        <button
-          type="submit"
-          style={{
-            fontWeight: 'bold',
-            color: '#FFFFFF',
-            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-          }}
-          className="rounded-lg w-full bg-neutral-800 py-1 text-lg font-light text-neutral-300"
-          onClick={validateForm}
-        >
-          Submit
-        </button>
-      </form>
-    </div>
+          {/* Form Submit Button */}
+          <button
+              type="submit"
+              style={{
+                fontWeight: 'bold',
+                color: '#FFFFFF',
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+              }}
+              className="rounded-lg w-full bg-neutral-800 py-1 text-lg font-light text-neutral-300"
+              onClick={validateForm}
+          >
+            Submit
+          </button>
+        </form>
+      </div>
   )
 }
