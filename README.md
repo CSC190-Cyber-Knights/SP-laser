@@ -63,6 +63,7 @@ This page allows the client to create new image categories and upload new photo'
 
 - [![React][React.js]][React-url]
 - [![FireBase][Firebase.js]][Firebase-url]
+- [![EmailJS][EmailJS.js]][EmailJS-url]
 
 ## Testing
 
