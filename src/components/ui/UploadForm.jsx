@@ -103,6 +103,7 @@ export const UploadForm = () => {
 
         <TagInput onAddTag={handleAddTag}/>
         <button
+            id = "submitbtn"
             onClick={handleSubmit}
             className={`rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 ${isLoading ? 'cursor-not-allowed opacity-50' : ''}`}
             disabled={isLoading}
@@ -112,6 +113,7 @@ export const UploadForm = () => {
         {success && <p className="text-green-500">✅ Upload successful!</p>}
         {error && <p className="text-red-500">{error}</p>}
         <button
+            id = "signout"
             onClick={() => {
               userSignOutWithNavigate()
             }}
