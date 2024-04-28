@@ -4,6 +4,7 @@ import {signInWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordRes
 import {userSignOut} from '../services/firebase'
 import {GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
 import {useNavigate} from 'react-router-dom'
+
 import {FaGoogle} from 'react-icons/fa'
 
 export const SignIn = ({user}) => {
@@ -45,8 +46,6 @@ export const SignIn = ({user}) => {
         console.error(errorCode, errorMsg)
       })
   }
-
-  //check users status
   onAuthStateChanged(auth, (user) => {
     if (user) {
       // User is signed in, see docs for a list of available properties
@@ -90,6 +89,7 @@ export const SignIn = ({user}) => {
                 </label>
                 <input
                   className="h-12 rounded-lg border-slate-200 bg-neutral-100 p-2 shadow"
+                  id = "useremail"
                   type="email"
                   placeholder="John@gmail.com"
                   required
@@ -103,6 +103,7 @@ export const SignIn = ({user}) => {
                 </label>
                 <input
                   className="h-12 rounded-lg border-slate-300 bg-neutral-100 p-2 shadow"
+                  id = "userpassword"
                   type="password"
                   placeholder="**********"
                   required
@@ -114,6 +115,7 @@ export const SignIn = ({user}) => {
             <div className="flex w-full flex-col">
               <button
                 className="mt-4 w-full rounded-lg bg-neutral-800 py-1 text-lg font-light text-neutral-300"
+                id = "submitbtn"
                 type="submit"
               >
                 Sign In
@@ -122,6 +124,7 @@ export const SignIn = ({user}) => {
           </form>
           <div className={'mt-4'}>
             <GoogleButton
+                id = "gbutton"
               onClick={() => {
                 userSignInGoogle()
               }}
@@ -131,6 +134,7 @@ export const SignIn = ({user}) => {
             </p>
 
             <button
+                id = "signout"
               onClick={() => {
                 userSignOut()
               }}
