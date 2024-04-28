@@ -3,10 +3,11 @@ import Loading from '../ui/Loading.jsx'
 import {getImages} from '../../firebase/libs/fetch.js'
 import {Photo} from '../ui/media/Photo.jsx'
 
-export const ImageGrid = ({setSelectedImg, id}) => {
+export const ImageGrid = ({onImageClick, id}) => {
   console.log('ImageGrid id:', id)
   const [images, setImages] = useState([])
   const [loading, setLoading] = useState(true)
+
   useEffect(() => {
     getImages(id).then((images) => {
       setImages(images)
@@ -23,7 +24,7 @@ export const ImageGrid = ({setSelectedImg, id}) => {
       <div className={'min-h-fit max-w-screen-lg'}>
         <div className={'grid grid-flow-dense grid-cols-2 grid-rows-2 gap-2 md:grid-cols-3 lg:grid-cols-5'}>
           {images.map((doc, index) => (
-            <div key={index}>
+            <div key={index} onClick={() => onImageClick(doc.url)}>
               <Photo src={doc.url} alt={`${doc.name}_${id}`} />
             </div>
           ))}

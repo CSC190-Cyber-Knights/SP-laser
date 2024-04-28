@@ -1,26 +1,20 @@
 import {motion} from 'framer-motion'
 
-const Modal = ({setSelectedImg, selectedImg}) => {
-  const handleClick = (e) => {
-    if (e.target.classList.contains('backdrop')) {
-      setSelectedImg(null)
-    }
+const Modal = ({onClose, selectedImg}) => {
+  const handleBackgroundClick = () => {
+    onClose()
   }
 
   return (
     <motion.div
-      className="backdrop fixed left-0 top-0 h-full w-full bg-mat_grey opacity-50"
-      onClick={handleClick}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
       initial={{opacity: 0}}
       animate={{opacity: 1}}
+      onClick={() => handleBackgroundClick()}
     >
-      <motion.img
-        src={selectedImg}
-        alt="enlarged pic"
-        initial={{y: '-100vh'}}
-        animate={{y: 0}}
-        className={'backdrop mx-14 my-auto block max-h-[80%] max-w-[60%] border-white shadow-lg'}
-      />
+      <motion.div className="relative" initial={{y: '-100vh'}} animate={{y: 0}}>
+        <motion.img src={selectedImg} alt="enlarged pic" className="max-h-[80vh] max-w-[90vw] rounded shadow-lg" />
+      </motion.div>
     </motion.div>
   )
 }

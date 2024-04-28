@@ -4,21 +4,16 @@ import BgVideo from '../components/ui/BgVideo'
 import LaserVideo from '../assets/laser_footage.mp4'
 
 export const HomeBeta = () => {
-  const headerHeight = 80 // Example header height, adjust as needed
+  const HeroText = () => {
+    return (
+      <>
+        <div className="hfit absolute left-1/2 top-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 transform flex-col gap-4 p-2 text-center">
+          <h1 className="bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text p-3 text-5xl font-bold text-transparent sm:text-6xl">
+            Everything Laser Engraving
+          </h1>
 
-  return (
-    <div className="relative m-auto flex w-screen flex-col justify-center bg-mat_grey p-0">
-      <section
-        className="relative flex min-h-screen min-w-full flex-col justify-center gap-4 overflow-hidden p-0"
-        style={{marginTop: `-${headerHeight}px`}}
-      >
-        <BgVideo src={LaserVideo} freezeTime={10} />
-        <div className="absolute left-1/2 top-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 transform flex-col gap-4 p-2 text-center">
-          <h2 className="w-full text-center font-sans text-6xl font-bold uppercase text-imposter_red md:text-6xl">
-            Everything Laser Engraved
-          </h2>
           <div>
-            <p className="w-full p-2 pt-8 text-center font-sans text-lg font-extralight text-cad_grey">
+            <p className="w-full text-balance p-2 pt-8 text-center font-sans text-lg font-extralight text-cad_grey">
               The cutting edge of personalization where your ideas meet the precision of laser engraving to create
               lasting impressions.
               <span className="invisible hidden md:visible ">
@@ -28,13 +23,29 @@ export const HomeBeta = () => {
               </span>
             </p>
           </div>
-          <Link
-            to="/gallery"
-            className="rounded-4xl self-center bg-red-700 px-4 py-2 font-sans font-thin text-white shadow-sm hover:bg-red-600"
-          >
-            Gallery
-          </Link>
+          <div className="flex justify-center">
+            <Link
+              to={'/gallery'}
+              className="rounded border border-red-500 bg-transparent px-4 py-2 font-semibold capitalize text-red-700 hover:border-transparent hover:bg-red-500 hover:text-white"
+            >
+              gallery
+            </Link>
+          </div>
         </div>
+      </>
+    )
+  }
+
+  const headerHeight = 80 // Example header height, adjust as needed
+  return (
+    <div className="relative m-auto flex w-screen flex-col justify-center bg-mat_grey p-0">
+      <section
+        className="relative flex min-h-screen min-w-full flex-col items-center justify-center gap-4 overflow-hidden p-0"
+        style={{marginTop: `-${headerHeight}px`}}
+      >
+        <BgVideo src={LaserVideo} freezeTime={10} />
+        {/* Hero & Body */}
+        <HeroText />
       </section>
       <section className="flex h-screen max-w-full flex-col justify-evenly gap-1 bg-no-repeat p-8">
         <div className="w-fit self-center text-center">
