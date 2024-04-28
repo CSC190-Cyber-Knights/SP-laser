@@ -65,6 +65,14 @@ This page allows the client to create new image categories and upload new photo'
 - [![FireBase][Firebase.js]][Firebase-url]
 - [![EmailJS][EmailJS.js]][EmailJS-url]
 
+[React.js]: https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white
+[React-url]: https://reactjs.org/
+[Firebase.js]: https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=white
+[Firebase-url]: https://firebase.google.com/
+[EmailJS.js]: https://img.shields.io/badge/EmailJS-0DB7ED?style=flat-square&logo=emailjs&logoColor=white
+[EmailJS-url]: https://www.emailjs.com/
+
+
 ## Testing
 
 WIP
