@@ -1,7 +1,6 @@
 import {collection, query, limit, getDocs} from 'firebase/firestore'
-import {projectFireStore} from '../config.js'
+import {db} from '../config.js'
 
-const db = projectFireStore
 const getRef = (colName) => collection(db, colName)
 
 /**

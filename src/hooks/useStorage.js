@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import {projectFireStore, projectStorage} from '../firebase/config'
+import {db, fireStorage} from '../firebase/config'
 import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
 import {addDoc, collection} from 'firebase/firestore'
 import Compressor from 'compressorjs'
@@ -18,7 +18,7 @@ export const useStorage = (file, id) => {
   const [url, setUrl] = useState(null)
 
   useEffect(() => {
-    const storageRef = ref(projectStorage, `${id}/${file.name}`)
+    const storageRef = ref(fireStorage, `${id}/${file.name}`)
     // whenever the progress of the upload changes, update the progress state
     uploadBytesResumable(storageRef, file).on(
       'state_changed',

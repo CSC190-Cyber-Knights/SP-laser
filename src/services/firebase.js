@@ -22,9 +22,6 @@ const app = initializeApp(firebaseConfig)
 const storage = getStorage(app)
 export default storage
 export const auth = getAuth(app)
-const provider = new GoogleAuthProvider()
-
-
 
 //signs out the user
 export const userSignOut = async () => {

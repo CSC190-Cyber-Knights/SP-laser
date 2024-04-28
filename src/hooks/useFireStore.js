@@ -1,4 +1,4 @@
-import {projectFireStore} from '../firebase/config.js'
+import {db} from '../firebase/config.js'
 import {useEffect, useState, useRef} from 'react'
 import {collection, query, orderBy, onSnapshot} from 'firebase/firestore'
 
@@ -9,7 +9,7 @@ export const useFireStore = (id) => {
   const cache = useRef({})
 
   useEffect(() => {
-    const colRef = collection(projectFireStore, `images`)
+    const colRef = collection(db, `images`)
     // only run the function if the id has changed
     if (id !== prevIdRef.current) {
       prevIdRef.current = id

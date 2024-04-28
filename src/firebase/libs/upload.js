@@ -1,11 +1,8 @@
 import {collection, doc, setDoc, serverTimestamp} from 'firebase/firestore'
 import {getDownloadURL, uploadBytesResumable} from 'firebase/storage'
-import {projectFireStore, projectStorage} from '../config.js'
+import {db, fireStorage} from '../config.js'
 import {ref} from 'firebase/storage'
 import imageCompression from 'browser-image-compression'
-import Compressor from 'compressorjs'
-
-const db = projectFireStore
 
 /**
  * Saves a tag to Firestore.
@@ -113,7 +110,7 @@ const compressImage = async (file) => {
  **/
 export const saveStorage = async (file, id) => {
   try {
-    const storageRef = ref(projectStorage, `photos/${id}/${file.name}`)
+    const storageRef = ref(fireStorage, `photos/${id}/${file.name}`)
     const compressedFile = await compressImage(file).then((blob) => new File([blob], file.name, {type: file.type}))
     await uploadBytesResumable(storageRef, compressedFile, {contentType: file.type})
     const url = await getDownloadURL(storageRef)

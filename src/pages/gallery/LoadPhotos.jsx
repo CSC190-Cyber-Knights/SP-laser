@@ -6,7 +6,6 @@ import {useState} from 'react'
 
 const LoadPhotos = () => {
   const {itemId} = useParams()
-  console.log('LoadPhotos id:', itemId)
   const [selectedImage, setSelectedImage] = useState(null)
 
   const handleImageEvent = (imageUrl) => {
@@ -18,7 +17,7 @@ const LoadPhotos = () => {
   }
 
   return (
-    <div className={'flex min-h-screen w-full flex-col p-0'}>
+    <div className={'flex min-h-fit w-full flex-col p-0'}>
       <Title hero={itemId} />
       {selectedImage && <Modal selectedImg={selectedImage} onClose={handleCloseModal} />}
       <ImageGrid onImageClick={handleImageEvent} id={itemId} />
