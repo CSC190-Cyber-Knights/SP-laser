@@ -5,6 +5,8 @@ import {userSignOut} from '../services/firebase'
 import {GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
 import {useNavigate} from 'react-router-dom'
 
+import {FaGoogle} from 'react-icons/fa'
+
 export const SignIn = ({user}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -75,93 +77,68 @@ export const SignIn = ({user}) => {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center" style={{backgroundColor: '#003153'}}>
-      <div>
-        <h1 className="py-8 text-center text-3xl font-bold" style={{color: '#FFFFFF'}}>
-          Admin Sign In
-        </h1>
-        <form onSubmit={userSignIn}>
-          <div>
-            <div className="flex w-full flex-col">
-              <label
-                htmlFor="email"
-                className="text-neutral-600"
-                style={{
-                  fontWeight: 'bold',
-                  color: '#FFFFFF',
-                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-                }}
-              >
-                Email Address
-              </label>
-              <input
-                className="h-12 rounded-lg border-slate-200 bg-neutral-100 p-2 shadow"
-                type="email"
-                placeholder="Enter your email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              ></input>
+    <div className="mt-2 flex h-screen w-full flex-col items-center bg-topography">
+      <div className={'w-full p-4  sm:w-96'}>
+        <div className={' rounded-xl bg-red-300/20 px-6 py-8 shadow-2xl backdrop-blur-md dark:bg-indigo-900'}>
+          <h1 className="py-8 text-center text-3xl font-bold">Admin Sign In</h1>
+          <form onSubmit={userSignIn}>
+            <div className={'flex flex-col gap-3'}>
+              <div className="flex w-full flex-col">
+                <label htmlFor="email" className="font-light ">
+                  Email Address
+                </label>
+                <input
+                  className="h-12 rounded-lg border-slate-200 bg-neutral-100 p-2 shadow"
+                  type="email"
+                  placeholder="John@gmail.com"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                ></input>
+              </div>
+              <div className="flex w-full flex-col">
+                <label htmlFor="email" className="font-light">
+                  Password
+                </label>
+                <input
+                  className="h-12 rounded-lg border-slate-300 bg-neutral-100 p-2 shadow"
+                  type="password"
+                  placeholder="**********"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                ></input>
+              </div>
             </div>
             <div className="flex w-full flex-col">
-              <label
-                htmlFor="email"
-                className="text-neutral-600"
-                style={{
-                  fontWeight: 'bold',
-                  color: '#FFFFFF',
-                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-                }}
+              <button
+                className="mt-4 w-full rounded-lg bg-neutral-800 py-1 text-lg font-light text-neutral-300"
+                type="submit"
               >
-                Password
-              </label>
-              <input
-                className="h-12 rounded-lg border-slate-300 bg-neutral-100 p-2 shadow"
-                type="password"
-                placeholder="Enter your password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              ></input>
+                Sign In
+              </button>
             </div>
-          </div>
-          <div className="flex w-full flex-col">
+          </form>
+          <div className={'mt-4'}>
+            <GoogleButton
+              onClick={() => {
+                userSignInGoogle()
+              }}
+            />
+            <p onClick={handlePasswordReset} className="forgot-password mt-4 cursor-pointer">
+              Forgot Password?
+            </p>
+
             <button
-              className="mt-4 w-full rounded-lg bg-neutral-800 py-1 text-lg font-light text-neutral-300"
-              type="submit"
+              onClick={() => {
+                userSignOut()
+              }}
             >
-              Sign In
+              Sign Out
             </button>
           </div>
-        </form>
+        </div>
       </div>
-
-      <p
-        onClick={handlePasswordReset}
-        className="forgot-password mt-4 cursor-pointer underline"
-        style={{
-          fontWeight: 'bold',
-          color: '#FFFFFF',
-          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-        }}
-      >
-        Forgot Password?
-      </p>
-
-      {/*allow google account log in*/}
-      <GoogleButton
-        onClick={() => {
-          userSignInGoogle()
-        }}
-      />
-
-      <button
-        onClick={() => {
-          userSignOut()
-        }}
-      >
-        Sign Out
-      </button>
     </div>
   )
 }

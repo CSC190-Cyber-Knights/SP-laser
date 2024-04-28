@@ -8,32 +8,39 @@ import {motion} from 'framer-motion'
 import {FaImage} from 'react-icons/fa'
 
 const TagContainer = ({thumbnails, tag}) => {
+  // The number of thumbnails
+  const thumbnailCount = thumbnails.length
+
   return (
-    <>
-      <motion.div
-        layout
-        initial={{opacity: 1}}
-        whileHover={{opacity: 0.8}}
-        whileTap={{opacity: 1}}
-        transition={{duration: 0.3}}
-        className={'relative w-4/5'}
+    <motion.div
+      layout
+      initial={{opacity: 1}}
+      whileHover={{opacity: 0.8}}
+      whileTap={{opacity: 1}}
+      transition={{duration: 0.3}}
+      className={'relative max-w-screen-lg'}
+    >
+      <div className={`grid w-full grid-cols-2 grid-rows-2 gap-1`}>
+        {thumbnails.map((thumbnail, index) => (
+          <div
+            key={index}
+            className={`
+              ${thumbnailCount === 1 ? 'col-span-2 row-span-2' : ''}
+              ${thumbnailCount === 2 ? 'col-start- row-span-2' + (index + 1) : ''}
+            `}
+          >
+            <Photo src={thumbnail.url} alt={'test'} />
+          </div>
+        ))}
+      </div>
+      <div
+        className={
+          'absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 opacity-0 transition duration-300 ease-in-out hover:opacity-100'
+        }
       >
-        <div className={'grid w-full grid-cols-2 grid-rows-2 gap-2'}>
-          {thumbnails.map((thumbnail, index) => (
-            <div key={index} className={''}>
-              <Photo src={thumbnail.url} alt={'test'} />
-            </div>
-          ))}
-        </div>
-        <div
-          className={
-            'absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 opacity-0 transition duration-300 ease-in-out hover:opacity-100 sm:visible'
-          }
-        >
-          <span className={'rounded bg-blue-600 p-2 text-xl font-bold capitalize text-white'}>{tag}</span>
-        </div>
-      </motion.div>
-    </>
+        <span className={' rounded bg-blue-600 p-2 text-xl font-bold capitalize text-white'}>{tag}</span>
+      </div>
+    </motion.div>
   )
 }
 
@@ -50,19 +57,23 @@ const GalleryPage = () => {
     })
   }, [])
 
-  if (loading) {
-    return <Loading />
-  }
-
   return (
-    <div className={'flex max-h-fit min-h-screen w-full flex-col items-center gap-2'}>
+    <div className={'flex min-h-screen w-full flex-col items-center gap-2'}>
       <Title hero={'Gallery'} subHero={'See some of my work'} Icon={FaImage} />
       <section className={'flex min-h-screen w-5/6 flex-col items-center pb-8 font-sans'}>
         {loading && <Loading />}
-        <div className={'grid grid-rows-4 justify-center gap-0.5 p-4 sm:grid-cols-2 md:grid-rows-2 md:pt-8'}>
+        <div
+          className={
+            'grid grid-rows-4 justify-center gap-0.5  sm:grid-cols-2 sm:p-4 md:grid-rows-2 md:pt-8 lg:grid-rows-3'
+          }
+        >
           {tags.map((tag, index) => (
-            <Link className={'flex items-center justify-center'} to={`/gallery/${tag}`} key={index}>
-              <TagContainer tag={tag} thumbnails={thumbnails[tag]} />
+            <Link
+              className={'flex items-center justify-center p-2  sm:gap-8 sm:p-8'}
+              to={`/gallery/${tag}`}
+              key={index}
+            >
+              {thumbnails[tag] && thumbnails[tag].length > 0 && <TagContainer tag={tag} thumbnails={thumbnails[tag]} />}
             </Link>
           ))}
         </div>

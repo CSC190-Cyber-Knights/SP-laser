@@ -13,7 +13,7 @@ import {Fragment} from 'react'
 export const Layout = ({children}) => {
   return (
     <Fragment>
-      <div className={'flex min-h-screen flex-col'}>
+      <div className={'flex min-h-screen w-full flex-col'}>
         <Header />
         {children}
         <Footer />

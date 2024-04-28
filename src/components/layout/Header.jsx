@@ -29,7 +29,7 @@ export default function Header() {
   }
 
   return (
-    <header className="font-inter relative z-50 bg-gray-900 text-white">
+    <header className="font-inter relative z-50 h-fit max-w-full bg-gray-900 text-white">
       {/* Navigation */}
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">

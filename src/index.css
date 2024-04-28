@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: Inter, Arial, sans-serif;
-  src: url(' ../public/fonts/Inter-VariableFont_slnt,wght.ttf');
+  src: url('../public/static/fonts/Inter-VariableFont_slnt,wght.ttf');
 }
 
 ::selection {

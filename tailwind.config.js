@@ -19,8 +19,6 @@ export default {
 
         primary: '#313E50',
         secondary: '#3A435E',
-        bg_primary: '#455561',
-        egg: '#F3E8EE',
 
         imposter_red: '#FF0035',
         cad_grey: '#8B939C',
@@ -33,6 +31,8 @@ export default {
       },
       backgroundImage: {
         'random-line': "url('./src/assets/line.svg')",
+        topography: "url('./public/static/assets/topography.svg')",
+        'ca-flag': "url('./public/static/assets/ca-flag.svg')",
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
