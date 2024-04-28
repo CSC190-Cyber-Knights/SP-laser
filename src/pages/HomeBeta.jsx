@@ -25,6 +25,7 @@ export const HomeBeta = () => {
           </div>
           <div className="flex justify-center">
             <Link
+                id = "gallerybtn"
               to={'/gallery'}
               className="rounded border border-red-500 bg-transparent px-4 py-2 font-semibold capitalize text-red-700 hover:border-transparent hover:bg-red-500 hover:text-white"
             >
