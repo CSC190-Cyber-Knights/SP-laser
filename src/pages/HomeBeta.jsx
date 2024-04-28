@@ -66,7 +66,7 @@ export const HomeBeta = () => {
         </div>
       </section>
 
-      <section className={'flex h-fit w-full flex-col bg-topography bg-contain px-4'}>
+      <section className={'flex h-fit w-full flex-col bg-contain'}>
         <section className="body-font bg-gray-900 text-gray-400">
           <div className="container mx-auto px-5 py-24">
             <h1 className="title-font mb-20 text-center text-2xl font-medium text-white sm:text-3xl">

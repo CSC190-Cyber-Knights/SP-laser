@@ -33,6 +33,7 @@ export default {
         'random-line': "url('./src/assets/line.svg')",
         topography: "url('./public/static/assets/topography.svg')",
         'ca-flag': "url('./public/static/assets/ca-flag.svg')",
+        texture: "url('./public/static/assets/texture.svg')",
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
