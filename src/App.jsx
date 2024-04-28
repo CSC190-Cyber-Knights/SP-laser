@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react'
+import {React, useState, useEffect} from 'react'
 import {motion, useScroll, useSpring} from 'framer-motion'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import {ContactForm} from './pages/ContactForm.jsx'
@@ -11,6 +11,9 @@ import {HomeBeta} from './pages/HomeBeta.jsx'
 import {Admin} from './pages/Admin.jsx'
 import LoadPhotos from './pages/gallery/LoadPhotos.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
+import {auth} from './services/firebase.js'
+import {onAuthStateChanged} from 'firebase/auth'
+import {ProtectedRoute} from './components/AuthContext/protectedRoute.jsx'
 
 function App() {
   const {scrollYProgress} = useScroll()
@@ -19,6 +22,29 @@ function App() {
     damping: 30,
     restDelta: 0.001,
   })
+
+  const [user, setUser] = useState(null)
+  const [isFetching, setIsFetching] = useState(true)
+
+  //user auth state changes
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user)
+        setIsFetching(false)
+        return
+      }
+      setUser(null)
+      setIsFetching(false)
+    })
+    //cleanup function
+    return () => unsubscribe()
+  })
+
+  //provides a loading screen to transition to admin
+  if (isFetching) {
+    return <h2>Loading...</h2>
+  }
 
   return (
     <BrowserRouter>
@@ -69,9 +95,11 @@ function App() {
         <Route
           path={'/admin'}
           element={
-            <Layout>
-              <Admin />
-            </Layout>
+            <ProtectedRoute user={user}>
+              <Layout>
+                <Admin />
+              </Layout>
+            </ProtectedRoute>
           }
         />
         <Route

@@ -4,7 +4,6 @@ import {signInWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordRes
 import {userSignOut} from '../services/firebase'
 import {GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
 import {useNavigate} from 'react-router-dom'
-
 import {FaGoogle} from 'react-icons/fa'
 
 export const SignIn = ({user}) => {
@@ -46,6 +45,8 @@ export const SignIn = ({user}) => {
         console.error(errorCode, errorMsg)
       })
   }
+
+  //check users status
   onAuthStateChanged(auth, (user) => {
     if (user) {
       // User is signed in, see docs for a list of available properties
