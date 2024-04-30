@@ -48,6 +48,3 @@ export const deleteFirestore = async (tag, id) => {
     console.error('Error deleting document:', error)
   }
 }
-
-let id = 'PbrqebXvFJ38DoTMKDbR'
-await deleteFirestore('miscellaneous', 'PbrqebXvFJ38DoTMKDbR')
