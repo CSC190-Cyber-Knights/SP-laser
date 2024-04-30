@@ -25,24 +25,30 @@ export const getTags = async () => {
 
 /**
  * Retrieves thumbnails for each tag from Firestore collections.
+ * Filtering out any tags that do not have images inside of them
  *
  * @returns {Promise<Object>} A promise that resolves to an object containing the thumbnails and tags.
  * @throws {Error} If an error occurs while fetching the thumbnails.
  */
 export const getThumbnails = async () => {
   const tags = await getTags()
-  let lsDocs = []
+  let lsDocs = {}
+
   for (const tag of tags) {
     const colName = `images/categories/${tag.name}`
     const q = await query(getRef(colName), limit(4))
     const imagesSnapshot = await getDocs(q)
-    lsDocs[tag.name] = []
-    imagesSnapshot.forEach((document) => {
-      lsDocs[tag.name].push(document.data())
-    })
+
+    if (!imagesSnapshot.empty) {
+      lsDocs[tag.name] = imagesSnapshot.docs.map((doc) => doc.data())
+    }
   }
-  console.log(lsDocs)
-  return {lsDocs, tags}
+
+  const filteredTags = tags.filter((tag) => Object.prototype.hasOwnProperty.call(lsDocs, tag.name))
+  // sort the tags based on how many images they have, show more populated tags first
+  const sortedTags = filteredTags.sort((a, b) => lsDocs[b.name].length - lsDocs[a.name].length)
+
+  return {lsDocs, tags: sortedTags}
 }
 
 const storage = getStorage()
@@ -130,7 +136,7 @@ export const getImages = async (tag) => {
     const imagesSnapshot = await getDocs(collectionRef)
     imagesSnapshot.forEach((document) => {
       console.log(document.data())
-      docs.push(document.data())
+      docs.push({id: document.id, ...document.data()})
     })
     return docs
   } catch (error) {

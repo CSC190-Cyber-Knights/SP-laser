@@ -6,8 +6,10 @@ const Dot = () => (
   </Fragment>
 )
 const Loading = () => (
-  <div className="flex h-full w-full items-center justify-center bg-gray-100 p-5">
+  <div className="flex h-full w-full items-center justify-center bg-gray-100 bg-transparent p-5">
     <div className="flex animate-pulse space-x-2">
+      <Dot />
+      <Dot />
       <Dot />
     </div>
   </div>

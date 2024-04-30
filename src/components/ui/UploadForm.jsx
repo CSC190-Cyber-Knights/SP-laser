@@ -5,9 +5,10 @@ import {saveTag} from '../../firebase/libs/upload.js'
 import TagInput from './tags/TagInput.jsx'
 import {Photo} from './media/Photo.jsx'
 import ListTags from './tags/ListTags.jsx'
-import {auth} from "../../services/firebase.js";
-import {useNavigate} from "react-router-dom";
-import {signOut} from "firebase/auth";
+import {auth} from '../../services/firebase.js'
+import {useNavigate} from 'react-router-dom'
+import {signOut} from 'firebase/auth'
+import {DocumentList} from '../DocumentList.jsx'
 
 export const UploadForm = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -20,16 +21,16 @@ export const UploadForm = () => {
   const navigate = useNavigate()
 
   const userSignOutWithNavigate = async () => {
-
     signOut(auth)
-        .then(() => {
-          navigate('/signin')
-          alert('You have been signed out')
-        })
-        .catch((e) => {
-          console.error(e)
-        })
+      .then(() => {
+        navigate('/signin')
+        alert('You have been signed out')
+      })
+      .catch((e) => {
+        console.error(e)
+      })
   }
+
   useEffect(() => {
     getTags().then((fetchedTags) => {
       setTags(fetchedTags)
@@ -83,43 +84,42 @@ export const UploadForm = () => {
   }
 
   return (
-      <div className="flex w-full flex-col items-center gap-4">
-        <h2 className="text-2xl font-bold dark:text-egg">Upload Photo</h2>
-        {preview && (
-            <div className={'w-52'}>
-              <Photo src={preview}/>
-            </div>
-        )}
-        {tags.length > 0 && <ListTags tags={tags} selectedTag={selectedTag} onSelectTag={setSelectedTag}/>}
-        <div className="mb-3 w-96">
-          <input
-              className="focus:shadow-te-primary relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
-              disabled={isLoading}
-              onChange={handleFileChange}
-              type="file"
-              id="formFile"
-          />
+    <div className="flex w-full flex-col items-center gap-4">
+      <h2 className="dark:text-egg text-2xl font-bold">Upload Photo</h2>
+      {preview && (
+        <div className={'w-52'}>
+          <Photo src={preview} />
         </div>
-
-        <TagInput onAddTag={handleAddTag}/>
-        <button
-            id = "submitbtn"
-            onClick={handleSubmit}
-            className={`rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 ${isLoading ? 'cursor-not-allowed opacity-50' : ''}`}
-            disabled={isLoading}
-        >
-          {isLoading ? 'Uploading...' : 'Upload Photo'}
-        </button>
-        {success && <p className="text-green-500">✅ Upload successful!</p>}
-        {error && <p className="text-red-500">{error}</p>}
-        <button
-            id = "signout"
-            onClick={() => {
-              userSignOutWithNavigate()
-            }}
-        >
-          Sign Out
-        </button>
+      )}
+      {tags.length > 0 && <ListTags tags={tags} selectedTag={selectedTag} onSelectTag={setSelectedTag} />}
+      <div className="mb-3 w-96">
+        <input
+          className="focus:shadow-te-primary relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
+          disabled={isLoading}
+          onChange={handleFileChange}
+          type="file"
+          id="formFile"
+        />
       </div>
+      <TagInput onAddTag={handleAddTag} />
+      <button
+        onClick={handleSubmit}
+        className={` rounded-lg bg-blue-500 px-4 py-2 font-bold text-white shadow hover:bg-blue-700 ${isLoading ? 'cursor-not-allowed opacity-50' : ''}`}
+        disabled={isLoading}
+      >
+        {isLoading ? 'Uploading...' : 'Upload Photo'}
+      </button>
+      {success && <p className="text-green-500">✅ Upload successful!</p>}
+      {error && <p className="text-red-500">{error}</p>}
+      <button
+        className={'rounded bg-gray-300 px-2 py-1 text-sm shadow hover:shadow-lg'}
+        onClick={() => {
+          userSignOutWithNavigate()
+        }}
+      >
+        Sign Out
+      </button>
+      <DocumentList tag={selectedTag} />
+    </div>
   )
 }

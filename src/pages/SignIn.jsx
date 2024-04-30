@@ -19,13 +19,10 @@ export const SignIn = ({user}) => {
     e.preventDefault()
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential)
         navigate('/admin')
       })
       .catch((error) => {
         //if the user is not authenticated, they will most likely recieve an error
-        console.log(error)
-        console.log(error.message)
         alert('Invalid Email or Password')
       })
   }
@@ -36,7 +33,6 @@ export const SignIn = ({user}) => {
       .then((result) => {
         const user = result.user.displayName
         const email = result.user.email
-        console.log(user, email)
         navigate('/admin')
       })
       .catch((error) => {
@@ -77,9 +73,13 @@ export const SignIn = ({user}) => {
   }
 
   return (
-    <div className="mt-2 flex h-screen w-full flex-col items-center bg-topography">
+    <div className="mt-2 flex h-screen w-full flex-col items-center bg-slate-800 bg-topography dark:text-neutral-200">
       <div className={'w-full p-4  sm:w-96'}>
-        <div className={' rounded-xl bg-red-300/20 px-6 py-8 shadow-2xl backdrop-blur-md dark:bg-indigo-900'}>
+        <div
+          className={
+            ' rounded-xl bg-red-300/20 px-6 py-8 shadow-2xl backdrop-blur-md dark:bg-neutral-500/80 dark:backdrop-blur-lg'
+          }
+        >
           <h1 className="py-8 text-center text-3xl font-bold">Admin Sign In</h1>
           <form onSubmit={userSignIn}>
             <div className={'flex flex-col gap-3'}>
@@ -89,7 +89,7 @@ export const SignIn = ({user}) => {
                 </label>
                 <input
                   className="h-12 rounded-lg border-slate-200 bg-neutral-100 p-2 shadow"
-                  id = "useremail"
+                  id="useremail"
                   type="email"
                   placeholder="John@gmail.com"
                   required
@@ -103,9 +103,10 @@ export const SignIn = ({user}) => {
                 </label>
                 <input
                   className="h-12 rounded-lg border-slate-300 bg-neutral-100 p-2 shadow"
-                  id = "userpassword"
+                  id="userpassword"
                   type="password"
                   placeholder="**********"
+                  autoComplete={'on'}
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -115,7 +116,7 @@ export const SignIn = ({user}) => {
             <div className="flex w-full flex-col">
               <button
                 className="mt-4 w-full rounded-lg bg-neutral-800 py-1 text-lg font-light text-neutral-300"
-                id = "submitbtn"
+                id="submitbtn"
                 type="submit"
               >
                 Sign In
@@ -124,7 +125,7 @@ export const SignIn = ({user}) => {
           </form>
           <div className={'mt-4'}>
             <GoogleButton
-                id = "gbutton"
+              id="gbutton"
               onClick={() => {
                 userSignInGoogle()
               }}
@@ -134,7 +135,7 @@ export const SignIn = ({user}) => {
             </p>
 
             <button
-                id = "signout"
+              id="signout"
               onClick={() => {
                 userSignOut()
               }}

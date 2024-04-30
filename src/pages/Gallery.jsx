@@ -17,9 +17,11 @@ const TagContainer = ({thumbnails, tag}) => {
       initial={{opacity: 1}}
       whileHover={{opacity: 0.8}}
       whileTap={{opacity: 1}}
-      transition={{duration: 0.3}}
+      spring={{stiffness: 100}}
+      transition={{duration: 0.5}}
       className={'relative max-w-screen-lg'}
     >
+      <h2 className={`mb-2 w-full text-2xl font-semibold sm:hidden dark:text-neutral-200`}>{tag}</h2>
       <div className={`grid w-full grid-cols-2 grid-rows-2 gap-1`}>
         {thumbnails.map((thumbnail, index) => (
           <div
@@ -38,7 +40,7 @@ const TagContainer = ({thumbnails, tag}) => {
           'absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 opacity-0 transition duration-300 ease-in-out hover:opacity-100'
         }
       >
-        <span className={' rounded bg-blue-600 p-2 text-xl font-bold capitalize text-white'}>{tag}</span>
+        <span className={' rounded bg-blue-600 px-2 py-1 text-lg font-bold capitalize text-white'}>{tag}</span>
       </div>
     </motion.div>
   )
@@ -58,14 +60,30 @@ const GalleryPage = () => {
   }, [])
 
   return (
-    <div className={'flex min-h-screen w-full flex-col items-center gap-2'}>
+    <div className={'flex min-h-screen w-full flex-col items-center gap-2 dark:bg-slate-800'}>
       <Title hero={'Gallery'} subHero={'See some of my work'} Icon={FaImage} />
       <section className={'flex min-h-screen w-5/6 flex-col items-center pb-8 font-sans'}>
-        {loading && <Loading />}
+        {loading && (
+          <div className={'h-screen w-screen p-4'}>
+            <Loading />
+          </div>
+        )}
         <div
-          className={
-            'grid grid-rows-4 justify-center gap-0.5  sm:grid-cols-2 sm:p-4 md:grid-rows-2 md:pt-8 lg:grid-rows-3'
-          }
+          layout
+          animate={{opacity: 1}}
+          transition={{duration: 0.5}}
+          className={`grid 
+            grid-cols-1
+             grid-rows-4 
+             justify-center
+             gap-0.5
+             sm:grid-cols-2 
+             sm:p-4 
+             md:grid-rows-3
+             md:pt-8
+             lg:grid-cols-3
+             lg:grid-rows-3 xl:grid-cols-4  
+             `}
         >
           {tags.map((tag, index) => (
             <Link

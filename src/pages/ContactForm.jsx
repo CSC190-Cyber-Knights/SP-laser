@@ -221,109 +221,110 @@ export const ContactForm = () => {
   }
 
   return (
-    //put into sendable form these elements below, as well as displaying them onto the sitep
-    <div className="flex min-h-screen flex-col items-center">
-      {/* Title Section */}
-      <Title hero={'Contact'} subHero={"Let's Create Something"} Icon={FaPhone} />
-      {/* Submit order Form Section */}
-      <form
-        id="orderForm"
-        className="flex w-full max-w-lg flex-col items-start gap-3 p-4"
-        onSubmit={handleSubmit}
-        noValidate
-      >
-        {/* Name Input Fields */}
-        {/*<div className="flex w-full gap-2">*/}
-        <div className="flex w-full flex-col">
-          <label htmlFor="fname" className="text-neutral-600">
-            First Name
-          </label>
-          <input
-            id="firstName"
-            name="firstName"
-            className="h-12 rounded-lg border-slate-300 bg-neutral-100 p-2 shadow"
-            type="text"
-            placeholder="John"
-            value={formData.firstName}
-            onChange={handleChange}
-            required
-          />
-        </div>
+    //put into sendable form these elements below, as well as displaying them onto the site
+    <div className={'flex min-h-screen w-full flex-col items-center justify-start pt-10 dark:bg-slate-800'}>
+      <div className="sm:max-w-8/12 flex h-fit w-full flex-col items-center rounded py-5 pb-8 sm:w-7/12">
+        {/* Title Section */}
+        <Title hero={'Contact'} subHero={"Let's Create Something"} Icon={FaPhone} />
+        {/* Submit order Form Section */}
+        <form
+          id="orderForm"
+          className="flex w-full max-w-lg flex-col items-start gap-3 p-4"
+          onSubmit={handleSubmit}
+          noValidate
+        >
+          {/* Name Input Fields */}
+          {/*<div className="flex w-full gap-2">*/}
+          <div className="flex w-full flex-col">
+            <label htmlFor="fname" className="text-neutral-600">
+              First Name
+            </label>
+            <input
+              id="firstName"
+              name="firstName"
+              className="h-12 rounded-lg border-slate-300 bg-neutral-100 p-2 shadow"
+              type="text"
+              placeholder="John"
+              value={formData.firstName}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <div className="flex w-full flex-col">
-          {/* Last Name Label */}
-          <label htmlFor="lname" className="text-neutral-600">
-            Last Name
-          </label>
-          <input
-            id="lastName"
-            name="lastName"
-            className="h-12 rounded-lg border-slate-300 bg-neutral-100 p-2 shadow"
-            type="text"
-            placeholder="Doe"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        {/*</div>*/}
+          <div className="flex w-full flex-col">
+            {/* Last Name Label */}
+            <label htmlFor="lname" className="text-neutral-600">
+              Last Name
+            </label>
+            <input
+              id="lastName"
+              name="lastName"
+              className="h-12 rounded-lg border-slate-300 bg-neutral-100 p-2 shadow"
+              type="text"
+              placeholder="Doe"
+              value={formData.lastName}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          {/*</div>*/}
 
-        {/* Email Input Field */}
-        <div className="flex w-full flex-col">
-          {/* Email Label */}
-          <label htmlFor="user-email" className="text-neutral-600">
-            Email
-          </label>
-          <input
-            id="userEmail"
-            name="userEmail"
-            className="h-12 rounded-lg border-slate-300 bg-neutral-100 p-2 shadow"
-            type="email" // Changed to 'email' type for proper validation
-            placeholder="johndoe2022@gmail.com"
-            value={formData.userEmail}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          {/* Email Input Field */}
+          <div className="flex w-full flex-col">
+            {/* Email Label */}
+            <label htmlFor="user-email" className="text-neutral-600">
+              Email
+            </label>
+            <input
+              id="userEmail"
+              name="userEmail"
+              className="h-12 rounded-lg border-slate-300 bg-neutral-100 p-2 shadow"
+              type="email" // Changed to 'email' type for proper validation
+              placeholder="johndoe2022@gmail.com"
+              value={formData.userEmail}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        {/* Phone Number Input Field */}
-        <div className="flex w-full flex-col">
-          {/* Phone Number Label */}
-          <label htmlFor="user-phone" className="text-neutral-600">
-            Phone Number
-          </label>
-          <input
-            id="userPhone"
-            name="userPhone"
-            className="h-12 rounded-lg border-slate-300 bg-neutral-100 p-2 shadow "
-            type="tel" // Changed to 'tel' type for proper validation
-            placeholder="(###) ###-####"
-            value={formData.userPhone}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          {/* Phone Number Input Field */}
+          <div className="flex w-full flex-col">
+            {/* Phone Number Label */}
+            <label htmlFor="user-phone" className="text-neutral-600">
+              Phone Number
+            </label>
+            <input
+              id="userPhone"
+              name="userPhone"
+              className="h-12 rounded-lg border-slate-300 bg-neutral-100 p-2 shadow "
+              type="tel" // Changed to 'tel' type for proper validation
+              placeholder="(###) ###-####"
+              value={formData.userPhone}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        {/* Description Textarea */}
-        <div className="flex w-full flex-col">
-          {/* Order Description Label */}
-          <label htmlFor="order-description" className="text-neutral-600">
-            Describe It
-          </label>
-          <textarea
-            id="orderDescription"
-            name="orderDescription"
-            className="rounded-lg border-slate-300 bg-neutral-100 p-1.5 shadow"
-            rows="5" // Adjusted for better default size
-            placeholder="Provide a detailed description..."
-            value={formData.orderDescription}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          {/* Description Textarea */}
+          <div className="flex w-full flex-col">
+            {/* Order Description Label */}
+            <label htmlFor="order-description" className="text-neutral-600">
+              Describe It
+            </label>
+            <textarea
+              id="orderDescription"
+              name="orderDescription"
+              className="rounded-lg border-slate-300 bg-neutral-100 p-1.5 shadow"
+              rows="5" // Adjusted for better default size
+              placeholder="Provide a detailed description..."
+              value={formData.orderDescription}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        {/*file upload button */}
-        {/*
+          {/*file upload button */}
+          {/*
         <div>
           <input
             type="file"
@@ -340,25 +341,26 @@ export const ContactForm = () => {
           />
         </div>*/}
 
-        {/* hidden element for the email forwarding */}
-        <div>
-          <input type="hidden" id="to_name" name="to_name" value="cyberknightslaser@outlook.com" />
-        </div>
+          {/* hidden element for the email forwarding */}
+          <div>
+            <input type="hidden" id="to_name" name="to_name" value="cyberknightslaser@outlook.com" />
+          </div>
 
-        {/* Form Submit Button */}
-        <button
-          type="submit"
-          style={{
-            fontWeight: 'bold',
-            color: '#FFFFFF',
-            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-          }}
-          className="w-full rounded-lg bg-neutral-800 py-1 text-lg font-light text-neutral-300"
-          onClick={validateForm}
-        >
-          Submit
-        </button>
-      </form>
+          {/* Form Submit Button */}
+          <button
+            type="submit"
+            style={{
+              fontWeight: 'bold',
+              color: '#FFFFFF',
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+            }}
+            className="w-full rounded-lg bg-neutral-800 py-1 text-lg font-light text-neutral-300"
+            onClick={validateForm}
+          >
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   )
 }

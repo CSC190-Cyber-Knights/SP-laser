@@ -43,4 +43,26 @@ export const useFireStore = (id) => {
   return {docs, error}
 }
 
+export const useFirestoreDocs = (collectionPath) => {
+  const [docs, setDocs] = useState([])
+
+  useEffect(() => {
+    const collectionRef = db.collection(collectionPath)
+    collectionRef
+      .get()
+      .then((snapshot) => {
+        const docsData = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+        setDocs(docsData)
+      })
+      .catch((error) => {
+        console.log('Error fetching documents: ', error)
+      })
+  }, [collectionPath])
+
+  return docs
+}
+
 export default useFireStore
