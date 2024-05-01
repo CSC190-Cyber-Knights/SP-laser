@@ -9,7 +9,6 @@ import {getAuth} from 'firebase/auth'
  * Firebase configuration object
  * @type {{storageBucket: string, apiKey: string, messagingSenderId: string, appId: string, projectId: string, measurementId: string, authDomain: string}}
  */
-
 const firebaseConfig = {
   apiKey: 'AIzaSyDRGD42qYfcoahaW-THL9ZrkDP1GV9kbsQ',
   authDomain: 'laserengraving-9a35a.firebaseapp.com',
@@ -25,8 +24,11 @@ const app = initializeApp(firebaseConfig)
 // const testApp = initializeApp(firebaseCollectionTestConfig, 'other')
 // Firebase Storage & Database references functionality
 const fireStorage = getStorage(app)
+// Firestore database reference for documents
 const db = getFirestore(app)
+// Firebase Authenticaion reference
 const auth = getAuth(app)
+// Set the language for the auth
 auth.useDeviceLanguage()
 
 export {fireStorage, db, auth}

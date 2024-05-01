@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 
 import BgVideo from '../components/ui/BgVideo'
-import LaserVideo from '../assets/laser_footage.mp4'
+import LaserVideo from '../../static/laser_footage.mp4'
 
 export const HomeBeta = () => {
   const HeroText = () => {
@@ -25,7 +25,7 @@ export const HomeBeta = () => {
           </div>
           <div className="flex justify-center">
             <Link
-                id = "gallerybtn"
+              id="gallerybtn"
               to={'/gallery'}
               className="rounded border border-red-500 bg-transparent px-4 py-2 font-semibold capitalize text-red-700 hover:border-transparent hover:bg-red-500 hover:text-white"
             >

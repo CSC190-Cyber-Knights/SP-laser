@@ -1,38 +1,47 @@
 import {GoogleButton} from 'react-google-button'
 import {useState} from 'react'
 import {signInWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail} from 'firebase/auth'
-import {userSignOut} from '../services/firebase'
 import {GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
 import {useNavigate} from 'react-router-dom'
+import {userSignOut} from '../firebase/libs/auth'
 
-import {FaGoogle} from 'react-icons/fa'
-
-export const SignIn = ({user}) => {
+/**
+ * Function that signs the user in with the email and password provided
+ * @param {Event} e
+ * @returns {Promise<void>}
+ */
+export const SignIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const auth = getAuth()
   const navigate = useNavigate()
   const provider = new GoogleAuthProvider()
 
-  //Signs in user using email and password and sends the user to admin after a successful sign in
+  /**
+   *  Function that signs the user in with the email and password provided
+   *  @param {Event} e
+   *  @returns {Promise<void>}
+   **/
   const userSignIn = (e) => {
     e.preventDefault()
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(() => {
         navigate('/admin')
       })
       .catch((error) => {
-        //if the user is not authenticated, they will most likely recieve an error
+        console.error('error occurred logging in:', error)
         alert('Invalid Email or Password')
       })
   }
 
   //function that prompts the user with a popup to sign in via Google
+  /**
+   * Function that signs the user in with Google
+   * @returns {Promise<void>}
+   * **/
   const userSignInGoogle = async () => {
     return signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user.displayName
-        const email = result.user.email
+      .then(() => {
         navigate('/admin')
       })
       .catch((error) => {
@@ -42,20 +51,21 @@ export const SignIn = ({user}) => {
         console.error(errorCode, errorMsg)
       })
   }
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      // User is signed in, see docs for a list of available properties
-      const uid = user.uid
-      console.log('signed in')
-
-      // ...
+      console.log(`signed in as ${user.email}`)
     } else {
       console.log('signed out')
-      // User is signed out
     }
   })
 
-  //this handles password resets, using sendPasswordResetEmail from firebase and an email reseting your password is sent to the authenticated email
+  /**
+   * Sends a password reset email to the user with the given email address.
+   *
+   * @param {string} email
+   * @returns {Promise<void>}
+   **/
   function handlePasswordReset() {
     const email = prompt('Please enter your email')
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/

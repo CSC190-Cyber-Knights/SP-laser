@@ -1,5 +1,5 @@
 //signs out the user
-import {onAuthStateChanged, signInWithEmailAndPassword, signOut} from 'firebase/auth'
+import {onAuthStateChanged, signOut} from 'firebase/auth'
 import {auth} from '../config.js'
 
 export const userSignOut = async () => {

@@ -30,10 +30,10 @@ export default {
         deep_charcoal: '#333333',
       },
       backgroundImage: {
-        'random-line': "url('./src/assets/random-line.svg')",
-        topography: "url('./src/assets/topography.svg')",
-        'ca-flag': "url('./src/assets/ca-flag.svg')",
-        texture: "url('./src/assets/texture.svg')",
+        'random-line': "url('./static/random-line.svg')",
+        topography: "url('./static/topography.svg')",
+        'ca-flag': "url('./static/ca-flag.svg')",
+        texture: "url('./static/texture.svg')",
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
