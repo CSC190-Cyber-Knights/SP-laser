@@ -118,8 +118,6 @@ function GetPhotosFromCategory(category){
   })
 }
 */
-let subFolderList = GetSubfolderList()
-const firearmsURLList = GetPhotosFromCategory('firearms')
 
 /**
  * Retrieves all images from a Firestore collection based on the provided tag.

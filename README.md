@@ -72,7 +72,6 @@ This page allows the client to create new image categories and upload new photo'
 [EmailJS.js]: https://img.shields.io/badge/EmailJS-0DB7ED?style=flat-square&logo=emailjs&logoColor=white
 [EmailJS-url]: https://www.emailjs.com/
 
-
 ## Testing
 
 WIP
@@ -92,6 +91,9 @@ WIP
 [![Logo][ELE-logowhiteorange]](https://example.com)
 
 ## Developers:
+
+Christian Leyva:
+cleyvamendez@csus.edu
 
 Paul Marchitiello:
 pmarchitiello@csus.edu
@@ -113,9 +115,6 @@ jacobeberhardt@csus.edu
 
 James Ayers:
 jamesmayers2@csus.edu
-
-Christian Leyva:
-cleyvamendez@csus.edu
 
 Illia Pashkovich:
 ipashkovich@csus.edu

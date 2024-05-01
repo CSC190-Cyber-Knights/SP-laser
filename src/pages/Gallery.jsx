@@ -13,7 +13,7 @@ const TagContainer = ({thumbnails, tag}) => {
 
   return (
     <motion.div
-      layout
+      layout={true}
       initial={{opacity: 1}}
       whileHover={{opacity: 0.8}}
       whileTap={{opacity: 1}}
