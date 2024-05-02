@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom'
 
 import BgVideo from '../components/ui/BgVideo'
+import {motion} from 'framer-motion'
 import LaserVideo from '../../static/laser_footage.mp4'
 
 export const HomeBeta = () => {
@@ -8,9 +9,15 @@ export const HomeBeta = () => {
     return (
       <>
         <div className="absolute left-1/2 top-1/2 z-20 flex h-fit -translate-x-1/2 -translate-y-1/2 transform flex-col gap-4 p-2 text-center">
-          <h1 className="bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text p-3 text-5xl font-bold text-transparent sm:text-6xl dark:text-white">
+          <motion.h1
+            initial={{opacity: 0}}
+            animate={{opacity: 1}}
+            // make it fade in slowly
+            transition={{duration: 2}}
+            className="bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text p-3 text-5xl font-bold text-transparent sm:text-6xl dark:text-white"
+          >
             Everything Laser Engraving
-          </h1>
+          </motion.h1>
 
           <div>
             <p className="w-full text-balance p-2 pt-8 text-center font-sans text-lg font-extralight text-cad_grey">
@@ -51,14 +58,15 @@ export const HomeBeta = () => {
 
       <section className="flex h-4/5 max-w-full flex-col items-center justify-center gap-1 bg-opacity-40 bg-random-line bg-cover bg-center bg-no-repeat p-8">
         <div className="mb-2 flex w-fit flex-col gap-2 self-center text-center sm:flex-row">
-          <h2 className="font-inter text-center text-3xl font-extrabold uppercase md:text-5xl">Lets Collaborate:</h2>
-          <div className={'ml-2'}>
-            <p className="text-center  text-5xl font-bold text-imposter_red">Michael (me)</p>
+          <div className={'text-balance'}>
+            <p className="bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text p-3 text-5xl font-bold text-transparent sm:text-6xl dark:text-white">
+              I'm Michael
+            </p>
           </div>
         </div>
         <div className="flex flex-col justify-center gap-2">
           <div className="w-fit self-center rounded-lg backdrop-blur-lg">
-            <p className="self-center p-2 text-center font-serif text-2xl">
+            <p className=" my-1 self-center text-balance p-2 text-center font-serif text-2xl">
               I run my engraving business from my own workshop here in Sacramento. All your orders are handled
               personally by me. If it's made of metal ask me about it.
             </p>
