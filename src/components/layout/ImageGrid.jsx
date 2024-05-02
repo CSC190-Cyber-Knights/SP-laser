@@ -28,14 +28,16 @@ export const ImageGrid = ({onImageClick, id}) => {
   }
   return (
     <div className={'flex min-h-fit w-full items-start justify-center px-2 py-3'}>
-      <div className={'grid h-fit grid-flow-dense grid-cols-2 grid-rows-2 gap-2 py-6 md:grid-cols-3 lg:grid-cols-5'}>
-        <div className={'min-h-fit max-w-screen-lg'}>
-          {images.map((doc, index) => (
-            <div key={index} onClick={() => onImageClick(doc.url)}>
-              <Photo src={doc.url} alt={`${doc.name}_${id}`} />
-            </div>
-          ))}
-        </div>
+      <div
+        className={
+          'grid h-fit w-full grid-flow-dense grid-cols-1 gap-2 py-6 sm:grid-rows-2 md:grid-cols-3 lg:grid-cols-5'
+        }
+      >
+        {images.map((doc, index) => (
+          <div key={index} className="min-h-fit" onClick={() => onImageClick(doc.url)}>
+            <Photo src={doc.url} alt={`${doc.name}_${id}`} />
+          </div>
+        ))}
       </div>
     </div>
   )
