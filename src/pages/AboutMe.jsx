@@ -3,15 +3,15 @@ import {Photo} from '../components/ui/media/Photo.jsx'
 const AboutMe = () => {
   const photos = [
     {
-      src: './public/static/assets/engraved_glock.jpeg',
+      src: './static/engraved_glock.jpeg',
       alt: 'Engraved Glock',
     },
     {
-      src: './public/static/assets/flask.jpeg',
+      src: './static/flask.jpeg',
       alt: 'Engraved Flask',
     },
     {
-      src: './public/static/assets/lighter.jpeg',
+      src: './static/lighter.jpeg',
       alt: 'Engraved Lighter',
     },
   ]
