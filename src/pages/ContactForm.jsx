@@ -343,7 +343,7 @@ export const ContactForm = () => {
 
           {/* hidden element for the email forwarding */}
           <div>
-            <input type="hidden" id="to_name" name="to_name" value="cyberknightslaser@outlook.com" />
+            <input type="hidden" id="to_name" name="to_name" value="michael5062@sbcglobal.net" />
           </div>
 
           {/* Form Submit Button */}
