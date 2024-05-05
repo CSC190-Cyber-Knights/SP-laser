@@ -6,6 +6,7 @@
 [ELE-logowhiteorange]: docs/media/Everything_Laser_Engraved-logos_whiteorange.png
 [Home-Page]: docs/media/HomePageImage.PNG
 [Gallery-Page]: docs/media/GalleryPageImage.PNG
+[GallerySelection-Page]: docs/media/GallerySelectionPageImage.PNG
 [Contact-Page]: docs/media/ContactPageImage.PNG
 [About-Page]: docs/media/AboutPageImage.PNG
 [Signin-Page]: docs/media/SigninPageImage.PNG
@@ -15,7 +16,7 @@
 
 # Laser Engraving Portfolio and Digital Storefront
 
-[![Logo][ELE-logo]](https://example.com)
+![Logo][ELE-logo]
 
 ## Synopsis:
 
@@ -28,36 +29,37 @@ photos via the admin dashboard.
 ## Home Page:
 
 The landing page for the website.
-[![Logo][Home-Page]](https://example.com)
+[![Logo][Home-Page]](https://laserengraving-9a35a.web.app/)
 
 ## Gallery Page:
 
 Here you may select a category to display more images of that type.
-[![Logo][Gallery-Page]](https://example.com)
+[![Logo][Gallery-Page]](https://laserengraving-9a35a.web.app/gallery)
+[![Logo][GallerySelection-Page]](https://laserengraving-9a35a.web.app/gallery)
 
 ## Contact Page:
 
 This is the order form that customers may fill out to request a service.
-[![Logo][Contact-Page]](https://example.com)
+[![Logo][Contact-Page]](https://laserengraving-9a35a.web.app/contact)
 
 ## About Page:
 
 A page containing some information about the client and his business.
-[![Logo][About-Page]](https://example.com)
+[![Logo][About-Page]](https://laserengraving-9a35a.web.app/about)
 
 ## Signin Page:
 
 The signin page that allows access to the admin page.
-[![Logo][Signin-Page]](https://example.com)
+[![Logo][Signin-Page]](https://laserengraving-9a35a.web.app/signin)
 
 ## Admin Page:
 
 This page allows the client to create new image categories and upload new photo's to a given category.
-[![Logo][Admin-Page]](https://example.com)
+![Logo][Admin-Page]
 
 ## Relational Diagram
 
-[![Logo][Relation-Diagram]](https://example.com)
+![Logo][Relation-Diagram]
 
 ## Built With
 
@@ -74,15 +76,28 @@ This page allows the client to create new image categories and upload new photo'
 
 ## Testing
 
-WIP
+To build & test, the following software is required: Selenium 4.20 Java version, Eclipse IDE, Java SDK 22 Version and Google Chrome.
+To run tests,
 
-## Developer Instructions
-
-WIP
+1. Deploy the website’s React App from the Webstorm or Eclipse IDE using the deployment commands in this manual.
+2. During deployment, the IDE will indicate the URL of the launched website. (i.e:https://laserengraving-9a35a.web.app)
+3. Run the file ‘laserautotest.java’ from the IDE. This will automatically load the Google Chrome browser and complete a series of validation tests on each page of the website.
 
 ## Deployment
 
-WIP
+1. Open the project with your Integrated Development Environment (IDE) (Webstorm, Visual Studio Code).
+2. Open the Terminal: Powershell if Windows or Terminal if MacOS.
+3. Install Firebase Tools Globally: First, ensure that you have the Firebase Command Line Interface (CLI) installed globally on your system. You can do this by running the command: npm install -g firebase-tools.
+4. Login to Firebase: Next, log in to Firebase using the command: firebase login. This command prompts you to authenticate with your Google account, allowing you to access Firebase services from the command line.
+5. Initialize Firebase: After building the React app, initialize Firebase in your project directory using the command: firebase init. This command initiates the Firebase setup process and prompts you to select the Firebase services you want to use.
+6. Select the option: "Hosting: Configure files for Firebase Hosting and (optionally) set up GitHub Action deploys".
+7. Select Existing Project option.
+8. What do you want to use as your public directory? type 'dist' into the command prompt and press 'enter'.
+9. Configure as single-page app (rewrite all urls to /index.html)?: Yes.
+10. Set up automatic builds and deploys with GitHub? No.
+11. File dist/index.html already exists. Overwrite? Yes.
+12. Type 'npm run build' into the command prompt and press 'enter'.
+13. Type 'firebase deploy' into the command prompt and press 'enter'.
 
 ## Jira Timeline
 
