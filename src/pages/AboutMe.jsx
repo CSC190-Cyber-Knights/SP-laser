@@ -1,17 +1,19 @@
 import {Photo} from '../components/ui/media/Photo.jsx'
-
+import glockPic from '../../static/engraved_glock.jpeg'
+import flaskPic from '../../static/flask.jpeg'
+import lighterPic from '../../static/lighter.jpeg'
 const AboutMe = () => {
   const photos = [
     {
-      src: './static/engraved_glock.jpeg',
+      src: glockPic,
       alt: 'Engraved Glock',
     },
     {
-      src: './static/flask.jpeg',
+      src: flaskPic,
       alt: 'Engraved Flask',
     },
     {
-      src: './static/lighter.jpeg',
+      src: lighterPic,
       alt: 'Engraved Lighter',
     },
   ]

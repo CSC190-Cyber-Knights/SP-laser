@@ -32,9 +32,9 @@ const provider = new GoogleAuthProvider()
 const storage = fireStorage //connect to firebase storage
 
 //EmailJS credentials
-const EmailServiceID = 'service_zadrexa'
-const EmailTemplateID = 'template_wi09qe3'
-const EmailPublicKey = 'Io04H3uOQN5v-GZbf'
+const EmailServiceID = 'service_yrhwjke'
+const EmailTemplateID = 'template_swsv8d6'
+const EmailPublicKey = 'uqDkBL06wipBxtmCk'
 
 export const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -343,7 +343,7 @@ export const ContactForm = () => {
 
           {/* hidden element for the email forwarding */}
           <div>
-            <input type="hidden" id="to_name" name="to_name" value="michael5062@sbcglobal.net" />
+            <input type="hidden" id="to_name" name="to_name" value="Michael Garcia" />
           </div>
 
           {/* Form Submit Button */}
