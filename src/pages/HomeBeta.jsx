@@ -59,9 +59,7 @@ export const HomeBeta = () => {
       <section className="flex h-4/5 max-w-full flex-col items-center justify-center gap-1 bg-opacity-40 bg-random-line bg-cover bg-center bg-no-repeat p-8">
         <div className="mb-2 flex w-fit flex-col gap-2 self-center text-center sm:flex-row">
           <div className={'text-balance'}>
-            <p className="bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text p-3 text-5xl font-bold text-transparent sm:text-6xl dark:text-white">
-              I'm Michael
-            </p>
+            <p className="p-3 text-5xl font-bold text-red-700 sm:text-6xl">I'm Michael</p>
           </div>
         </div>
         <div className="flex flex-col justify-center gap-2">
